@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saint Paul Help</title>
-<meta name="description" content="Free help for Saint Paul. Pick your neighborhood. Find real help near you. No account. No data collected.">
-<meta name="theme-color" content="#0a2540">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'none'; frame-src 'none'; frame-ancestors 'none'">
+<title>Neighborhood Helper - Saint Paul</title>
+<meta name="description" content="Free help for Saint Paul residents. Pick your neighborhood, find real help near you. No account. No data collected.">
+<meta name="theme-color" content="#0d2137">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self';">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,667 +14,833 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --navy:#0a2540;--navy-mid:#123562;--navy-lt:#1e4a7c;
-  --gold:#d4900a;--gold-lt:#fdefc3;
-  --white:#ffffff;--off:#f8f5f0;--warm:#e8e2d8;
-  --text:#111827;--soft:#4b5563;
-  --red:#b91c1c;--red-bg:#fef2f2;
-  --r:14px;--rl:20px;
-  --sm:1rem;--base:1.2rem;--md:1.35rem;--lg:1.6rem;--xl:2rem;--xxl:2.5rem;
+  --navy:#0d2137;
+  --navy2:#163352;
+  --navy3:#1e4a7a;
+  --gold:#c8850a;
+  --gold2:#fdefc3;
+  --white:#ffffff;
+  --off:#f7f3ee;
+  --warm:#e6dfd4;
+  --text:#111827;
+  --muted:#4b5563;
+  --red:#9b1c1c;
+  --redbg:#fef2f2;
+  --r:14px;
+  --rl:20px;
+  --s:1rem;
+  --b:1.2rem;
+  --m:1.375rem;
+  --l:1.65rem;
+  --xl:2.1rem;
+  --xxl:2.6rem;
+  --tap:60px;
 }
 html{scroll-behavior:smooth;}
 body{
   font-family:'Atkinson Hyperlegible',sans-serif;
-  font-size:var(--base);line-height:1.7;
+  font-size:var(--b);line-height:1.7;
   color:var(--text);background:var(--off);
   min-height:100vh;display:flex;flex-direction:column;
 }
-.skip-link{
-  position:absolute;top:-100px;left:1rem;
-  background:var(--gold);color:var(--navy);
-  font-weight:700;font-size:var(--base);
-  padding:.75rem 1.25rem;border-radius:0 0 8px 8px;
-  text-decoration:none;z-index:9999;transition:top .1s;
+/* skip link */
+.skip{
+  position:absolute;top:-9999px;left:1rem;
+  background:var(--gold);color:var(--white);
+  font-weight:700;padding:.75rem 1.25rem;
+  border-radius:0 0 8px 8px;text-decoration:none;
+  z-index:9999;transition:top .1s;
 }
-.skip-link:focus{top:0;}
+.skip:focus{top:0;}
+/* focus */
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px;}
-#live-region{position:absolute;left:-9999px;}
-.header{
+/* sr only */
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+/* live region */
+#lr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+/* header */
+.hdr{
   background:var(--navy);padding:1rem 1.25rem;
   position:sticky;top:0;z-index:100;
-  box-shadow:0 2px 16px rgba(0,0,0,.3);
+  box-shadow:0 2px 18px rgba(0,0,0,.35);
 }
-.header-inner{
+.hdr-in{
   max-width:740px;margin:0 auto;
-  display:flex;align-items:center;
-  justify-content:space-between;gap:1rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
 }
-.site-name{
+.logo{
   font-family:'Nunito',sans-serif;font-weight:900;
   font-size:var(--xl);color:var(--white);
   letter-spacing:-.02em;line-height:1.1;
 }
-.site-name span{
+.logo span{
   display:block;font-family:'Atkinson Hyperlegible',sans-serif;
-  font-size:var(--sm);font-weight:400;
-  color:rgba(255,255,255,.55);letter-spacing:.04em;
+  font-weight:400;font-size:var(--s);
+  color:rgba(255,255,255,.5);letter-spacing:.05em;
   text-transform:uppercase;margin-top:2px;
 }
-.lang-row{display:flex;gap:.35rem;flex-wrap:wrap;justify-content:flex-end;}
-.lang-btn{
-  background:transparent;border:2px solid rgba(255,255,255,.22);
+.langs{display:flex;gap:.35rem;flex-wrap:wrap;justify-content:flex-end;}
+.lb{
+  background:transparent;border:2px solid rgba(255,255,255,.2);
   border-radius:20px;padding:.3rem .75rem;
   font-family:'Atkinson Hyperlegible',sans-serif;
-  font-size:var(--sm);font-weight:700;
-  color:rgba(255,255,255,.45);cursor:pointer;
+  font-size:var(--s);font-weight:700;
+  color:rgba(255,255,255,.4);cursor:pointer;
   transition:all .15s;min-height:44px;min-width:44px;
 }
-.lang-btn.active{background:var(--gold);border-color:var(--gold);color:var(--navy);}
-.lang-btn.soon{opacity:.3;cursor:default;}
-.lang-btn:not(.soon):not(.active):hover{border-color:rgba(255,255,255,.5);color:var(--white);}
-.main{
+.lb.on{background:var(--gold);border-color:var(--gold);color:var(--white);}
+.lb.soon{opacity:.28;cursor:default;}
+.lb:not(.soon):not(.on):hover{border-color:rgba(255,255,255,.5);color:var(--white);}
+/* main */
+main{
   flex:1;max-width:740px;margin:0 auto;
   width:100%;padding:1.5rem 1rem 4rem;
 }
-.screen{display:none;}
-.screen.active{display:block;animation:fadeUp .2s ease;}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(6px);}
-  to{opacity:1;transform:translateY(0);}
-}
-.back-btn{
+/* screens */
+.scr{display:none;}
+.scr.on{display:block;animation:fu .2s ease;}
+@keyframes fu{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+/* back button */
+.back{
   display:inline-flex;align-items:center;gap:.5rem;
   background:var(--white);border:2px solid var(--warm);
   border-radius:var(--r);padding:.75rem 1.25rem;
   font-family:'Atkinson Hyperlegible',sans-serif;
-  font-size:var(--base);font-weight:700;color:var(--navy);
-  cursor:pointer;margin-bottom:1.75rem;min-height:56px;
-  transition:all .15s;
+  font-size:var(--b);font-weight:700;color:var(--navy);
+  cursor:pointer;margin-bottom:1.75rem;
+  min-height:var(--tap);transition:all .15s;
 }
-.back-btn:hover{background:var(--warm);border-color:var(--navy);}
-.intro-box{
+.back:hover{background:var(--warm);border-color:var(--navy);}
+/* intro box */
+.box{
   background:var(--navy);border-radius:var(--rl);
   padding:1.75rem 1.5rem;margin-bottom:1.5rem;
 }
-.intro-box h1,.intro-box h2{
+.box h1,.box h2{
   font-family:'Nunito',sans-serif;font-weight:900;
   font-size:var(--xxl);color:var(--white);
   line-height:1.15;margin-bottom:.6rem;
 }
-.intro-box h1 em,.intro-box h2 em{color:var(--gold);font-style:normal;}
-.intro-box p{font-size:var(--md);color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:1rem;}
-.privacy-badge{
+.box h1 em,.box h2 em{color:#fde68a;font-style:normal;}
+.box p{font-size:var(--m);color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:1rem;}
+.badge{
   display:inline-flex;align-items:center;gap:.4rem;
-  background:rgba(212,144,10,.15);
-  border:1.5px solid rgba(212,144,10,.4);
+  background:rgba(255,255,255,.1);
+  border:1.5px solid rgba(255,255,255,.25);
   border-radius:20px;padding:.4rem 1rem;
-  font-size:var(--sm);font-weight:700;color:var(--gold);
-  letter-spacing:.02em;
+  font-size:var(--s);font-weight:700;
+  color:rgba(255,255,255,.8);
 }
-.section-label{
-  font-size:var(--sm);font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--soft);margin-bottom:1rem;
+/* section label */
+.lbl{
+  font-size:var(--s);font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:1rem;
 }
-.grid-2{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:.85rem;margin-bottom:.85rem;
-}
-.nbhd-btn,.tile-btn{
+/* grid */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem;}
+/* neighborhood buttons */
+.nb{
   background:var(--white);border:3px solid transparent;
   border-radius:var(--r);cursor:pointer;text-align:left;
   font-family:'Atkinson Hyperlegible',sans-serif;
-  transition:all .18s;box-shadow:0 2px 8px rgba(0,0,0,.07);
+  padding:1.25rem 1.1rem;min-height:80px;
+  display:flex;flex-direction:column;gap:.3rem;
+  transition:all .18s;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
   -webkit-tap-highlight-color:transparent;
 }
-.nbhd-btn{
-  padding:1.25rem 1rem;min-height:80px;
-  display:flex;flex-direction:column;gap:.3rem;
-}
-.tile-btn{
-  padding:1.35rem 1.1rem;min-height:110px;
-  display:flex;flex-direction:column;gap:.5rem;
-}
-.nbhd-btn:hover,.nbhd-btn:focus-visible,
-.tile-btn:hover,.tile-btn:focus-visible{
+.nb:hover,.nb:focus-visible{
   border-color:var(--gold);
   box-shadow:0 4px 20px rgba(0,0,0,.13);
   transform:translateY(-2px);
 }
-.nbhd-name{
+.nb-name{
   font-family:'Nunito',sans-serif;font-weight:900;
-  font-size:var(--lg);color:var(--navy);line-height:1.2;
+  font-size:var(--l);color:var(--navy);line-height:1.2;
 }
-.nbhd-sub,.tile-sub-text{font-size:var(--sm);color:var(--soft);line-height:1.4;}
-.tile-icon{font-size:2rem;line-height:1;}
-.tile-label{
+.nb-sub{font-size:var(--s);color:var(--muted);line-height:1.4;}
+/* tile buttons */
+.tb{
+  background:var(--white);border:3px solid transparent;
+  border-radius:var(--r);cursor:pointer;text-align:left;
+  font-family:'Atkinson Hyperlegible',sans-serif;
+  padding:1.35rem 1.1rem;min-height:110px;
+  display:flex;flex-direction:column;gap:.5rem;
+  transition:all .18s;
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+  -webkit-tap-highlight-color:transparent;
+}
+.tb:hover,.tb:focus-visible{
+  border-color:var(--gold);
+  box-shadow:0 4px 20px rgba(0,0,0,.13);
+  transform:translateY(-2px);
+}
+.t-icon{font-size:2rem;line-height:1;}
+.t-label{
   font-family:'Nunito',sans-serif;font-weight:800;
-  font-size:var(--md);color:var(--navy);line-height:1.25;
+  font-size:var(--m);color:var(--navy);line-height:1.25;
 }
-.btn-full{
+.t-sub{font-size:var(--s);color:var(--muted);line-height:1.4;}
+/* full-width button (unsure) */
+.full{
   grid-column:1/-1;flex-direction:row !important;
   align-items:center;gap:1rem;
-  background:var(--navy) !important;
-  border-color:var(--navy) !important;
+  background:var(--navy) !important;border-color:var(--navy) !important;
   min-height:88px;
 }
-.btn-full .nbhd-name,.btn-full .tile-label{color:var(--white) !important;font-size:var(--xl) !important;}
-.btn-full .nbhd-sub,.btn-full .tile-sub-text{color:rgba(255,255,255,.65) !important;font-size:var(--base) !important;}
-.btn-full:hover,.btn-full:focus-visible{
-  border-color:var(--gold) !important;background:var(--navy-mid) !important;
-}
-.full-icon{font-size:2.25rem;flex-shrink:0;line-height:1;}
-.branch-card{
+.full .nb-name,.full .t-label{color:var(--white) !important;font-size:var(--xl) !important;}
+.full .nb-sub,.full .t-sub{color:rgba(255,255,255,.6) !important;font-size:var(--b) !important;}
+.full:hover,.full:focus-visible{border-color:var(--gold) !important;background:var(--navy2) !important;}
+.full-ico{font-size:2.25rem;flex-shrink:0;line-height:1;}
+/* branch screen */
+.bcard{
   background:var(--white);border-radius:var(--rl);
-  padding:2rem 1.5rem;box-shadow:0 2px 16px rgba(0,0,0,.08);
-  margin-bottom:1rem;
+  padding:2rem 1.5rem;
+  box-shadow:0 2px 16px rgba(0,0,0,.08);margin-bottom:1rem;
 }
-.branch-q{
+.bq{
   font-family:'Nunito',sans-serif;font-weight:900;
   font-size:var(--xl);color:var(--navy);
   line-height:1.3;margin-bottom:1.5rem;
 }
-.branch-options{display:flex;flex-direction:column;gap:.85rem;}
-.branch-opt{
+.bopts{display:flex;flex-direction:column;gap:.85rem;}
+.bopt{
   background:var(--off);border:3px solid transparent;
   border-radius:var(--r);padding:1.25rem 1.35rem;
   cursor:pointer;font-family:'Atkinson Hyperlegible',sans-serif;
-  font-size:var(--md);font-weight:700;color:var(--navy);
-  text-align:left;transition:all .15s;min-height:70px;line-height:1.4;
+  font-size:var(--m);font-weight:700;color:var(--navy);
+  text-align:left;transition:all .15s;min-height:var(--tap);
+  line-height:1.4;width:100%;
   -webkit-tap-highlight-color:transparent;
 }
-.branch-opt-sub{
-  display:block;font-weight:400;font-size:var(--base);
-  color:var(--soft);margin-top:.25rem;
-}
-.branch-opt:hover,.branch-opt:focus-visible{
+.bopt:hover,.bopt:focus-visible{
   border-color:var(--gold);background:var(--white);
   box-shadow:0 4px 16px rgba(0,0,0,.1);
 }
-.results-hd{margin-bottom:1.5rem;}
-.results-hd h2{
+.bopt-sub{
+  display:block;font-weight:400;
+  font-size:var(--b);color:var(--muted);margin-top:.25rem;
+}
+/* results */
+.rhd{margin-bottom:1.5rem;}
+.rhd h2{
   font-family:'Nunito',sans-serif;font-weight:900;
   font-size:var(--xl);color:var(--navy);
   line-height:1.25;margin-bottom:.35rem;
 }
-.results-hd p{font-size:var(--base);color:var(--soft);}
-.resource-card{
+.rhd p{font-size:var(--b);color:var(--muted);}
+/* resource card */
+.rc{
   background:var(--white);border-radius:var(--rl);
   padding:1.6rem 1.4rem;margin-bottom:1.1rem;
   box-shadow:0 2px 12px rgba(0,0,0,.07);
   border-left:5px solid var(--gold);
 }
-.resource-card.urgent{border-left-color:var(--red);background:var(--red-bg);}
-.urgent-badge{
+.rc.urg{border-left-color:var(--red);background:var(--redbg);}
+.ubadge{
   display:inline-flex;align-items:center;gap:.3rem;
   background:var(--red);color:var(--white);
-  font-size:var(--sm);font-weight:700;
+  font-size:var(--s);font-weight:700;
   padding:.2rem .65rem;border-radius:20px;
-  margin-bottom:.6rem;letter-spacing:.04em;text-transform:uppercase;
+  margin-bottom:.65rem;letter-spacing:.04em;text-transform:uppercase;
 }
-.resource-name{
+.rname{
   font-family:'Nunito',sans-serif;font-weight:900;
-  font-size:var(--lg);color:var(--navy);
+  font-size:var(--l);color:var(--navy);
   line-height:1.25;margin-bottom:.5rem;
 }
-.resource-card.urgent .resource-name{color:var(--red);}
-.resource-tagline{
-  font-size:var(--base);color:var(--text);
+.rc.urg .rname{color:var(--red);}
+.rtag{
+  font-size:var(--b);color:var(--text);
   line-height:1.65;margin-bottom:1.1rem;
 }
-.resource-details{
-  display:flex;flex-direction:column;gap:.55rem;margin-bottom:.85rem;
-}
-.detail-row{
+.rrow{
   display:flex;align-items:flex-start;gap:.65rem;
-  font-size:var(--base);color:var(--text);line-height:1.5;
+  font-size:var(--b);color:var(--text);
+  line-height:1.5;margin-bottom:.5rem;
 }
-.detail-icon{font-size:1.15rem;flex-shrink:0;margin-top:.1rem;}
-.detail-phone a{
-  color:var(--navy);font-weight:700;font-size:var(--lg);
-  text-decoration:none;font-family:'Nunito',sans-serif;
+.rico{font-size:1.1rem;flex-shrink:0;margin-top:.15rem;}
+.rphone{
+  color:var(--navy);font-weight:700;
+  font-size:var(--l);text-decoration:none;
+  font-family:'Nunito',sans-serif;
 }
-.detail-phone a:hover{text-decoration:underline;}
-.lang-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem;}
-.lang-tag{
+.rphone:hover{text-decoration:underline;}
+.ltags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;}
+.ltag{
   background:var(--warm);border-radius:20px;
-  padding:.2rem .65rem;font-size:var(--sm);
-  font-weight:700;color:var(--soft);
+  padding:.2rem .65rem;font-size:var(--s);
+  font-weight:700;color:var(--muted);
 }
-.resource-link{
+.rlink{
   display:inline-block;margin-top:.85rem;
-  font-size:var(--base);font-weight:700;
-  color:var(--navy-lt);text-decoration:underline;
+  font-size:var(--b);font-weight:700;
+  color:var(--navy3);text-decoration:underline;
   text-underline-offset:3px;
 }
-.resource-link:hover{color:var(--gold);}
-.flag-btn{
+.rlink:hover{color:var(--gold);}
+.flagbtn{
   display:block;background:none;border:none;cursor:pointer;
   font-family:'Atkinson Hyperlegible',sans-serif;
-  font-size:var(--sm);color:var(--soft);
+  font-size:var(--s);color:var(--muted);
   text-decoration:underline;text-underline-offset:2px;
   padding:.5rem 0 0;text-align:left;
 }
-.flag-btn:hover{color:var(--red);}
-.results-footer{
+.flagbtn:hover{color:var(--red);}
+/* results footer */
+.rftr{
   background:var(--navy);border-radius:var(--rl);
   padding:1.5rem;margin-top:1.75rem;text-align:center;
 }
-.results-footer p{font-size:var(--base);color:rgba(255,255,255,.8);line-height:1.65;}
-.results-footer a{color:var(--gold);font-weight:700;text-decoration:underline;text-underline-offset:3px;}
-.big-phone{
+.rftr p{font-size:var(--b);color:rgba(255,255,255,.8);line-height:1.65;}
+.rftr a{color:#fde68a;font-weight:700;text-decoration:underline;text-underline-offset:3px;}
+.big211{
   display:block;font-family:'Nunito',sans-serif;font-weight:900;
-  font-size:var(--xxl);color:var(--gold);text-decoration:none;margin:.5rem 0;
+  font-size:var(--xxl);color:#fde68a;text-decoration:none;margin:.5rem 0;
 }
-.big-phone:hover{text-decoration:underline;}
-.site-footer{
+.big211:hover{text-decoration:underline;}
+/* site footer */
+.ftr{
   background:var(--navy);padding:1.5rem 1.25rem;
   text-align:center;margin-top:auto;
 }
-.site-footer p{font-size:var(--sm);color:rgba(255,255,255,.4);line-height:1.7;}
-.site-footer a{color:rgba(255,255,255,.6);text-decoration:underline;}
-.site-footer a:hover{color:var(--gold);}
+.ftr p{font-size:var(--s);color:rgba(255,255,255,.38);line-height:1.7;}
+.ftr a{color:rgba(255,255,255,.55);text-decoration:underline;}
+.ftr a:hover{color:#fde68a;}
+/* responsive */
 @media(max-width:460px){
-  .grid-2{grid-template-columns:1fr;}
-  .btn-full{grid-column:1;}
-  .intro-box h1,.intro-box h2{font-size:var(--xl);}
+  .g2{grid-template-columns:1fr;}
+  .full{grid-column:1;}
+  .box h1,.box h2{font-size:var(--xl);}
+  main{padding:1.25rem .85rem 3rem;}
 }
 </style>
 </head>
 <body>
 
-<a class="skip-link" href="#main">Skip to main content</a>
-<div id="live-region" aria-live="polite" aria-atomic="true" role="status"></div>
+<a class="skip" href="#main">Skip to main content</a>
+<div id="lr" aria-live="polite" aria-atomic="true" role="status"></div>
 
-<header class="header" role="banner">
-  <div class="header-inner">
-    <div class="site-name" aria-label="Saint Paul Help">
-      Saint Paul Help
-      <span aria-hidden="true">Free. Private. For Everyone.</span>
+<header class="hdr" role="banner">
+  <div class="hdr-in">
+    <div class="logo" aria-label="Neighborhood Helper">
+      Neighborhood Helper
+      <span aria-hidden="true">Free &middot; Private &middot; Saint Paul</span>
     </div>
-    <nav class="lang-row" aria-label="Language selection">
-      <button class="lang-btn active" onclick="setLang('en')" aria-pressed="true" aria-label="English, currently selected">EN</button>
-      <button class="lang-btn soon" disabled aria-label="Spanish, coming soon">ES</button>
-      <button class="lang-btn soon" disabled aria-label="Somali, coming soon">SO</button>
-      <button class="lang-btn soon" disabled aria-label="Karen, coming soon">KR</button>
-      <button class="lang-btn soon" disabled aria-label="Lao, coming soon">LO</button>
+    <nav class="langs" aria-label="Language selection">
+      <button class="lb on" onclick="void(0)" aria-pressed="true" aria-label="English, selected">EN</button>
+      <button class="lb soon" disabled aria-label="Spanish coming soon">ES</button>
+      <button class="lb soon" disabled aria-label="Somali coming soon">SO</button>
+      <button class="lb soon" disabled aria-label="Karen coming soon">KR</button>
+      <button class="lb soon" disabled aria-label="Lao coming soon">LO</button>
     </nav>
   </div>
 </header>
 
-<main class="main" id="main" role="main">
+<main id="main" role="main">
 
-  <section class="screen active" id="screen-map" aria-labelledby="h-map">
-    <div class="intro-box">
+  <!-- SCREEN 1: PICK NEIGHBORHOOD -->
+  <section class="scr on" id="scr-map" aria-labelledby="h-map">
+    <div class="box">
       <h1 id="h-map">Where do you <em>live?</em></h1>
       <p>Tap your neighborhood. We will show you real help near you.</p>
-      <div class="privacy-badge" role="note">
+      <div class="badge" role="note">
         <span aria-hidden="true">&#128274;</span>
         We collect zero information about you
       </div>
     </div>
-    <p class="section-label" aria-hidden="true">Choose your area</p>
-    <nav aria-label="Neighborhood selection" id="nbhd-grid" class="grid-2"></nav>
+    <p class="lbl" aria-hidden="true">Choose your area</p>
+    <nav aria-label="Neighborhood selection" id="hood-grid" class="g2"></nav>
   </section>
 
-  <section class="screen" id="screen-tiles" aria-labelledby="h-tiles" aria-hidden="true">
-    <button class="back-btn" onclick="goMap()" aria-label="Go back to neighborhood selection">
+  <!-- SCREEN 2: WHAT DO YOU NEED -->
+  <section class="scr" id="scr-tiles" aria-labelledby="h-tiles" aria-hidden="true">
+    <button class="back" id="btn-back-tiles" type="button" aria-label="Go back to neighborhood selection">
       <span aria-hidden="true">&#8592;</span> Back
     </button>
-    <div class="intro-box">
+    <div class="box">
       <h2 id="h-tiles">What do you <em>need?</em></h2>
-      <p id="tiles-sub">Choose the one that fits best.</p>
+      <p id="tiles-place">Choose the one that fits best.</p>
     </div>
-    <nav aria-label="Help categories" id="tiles-grid" class="grid-2"></nav>
+    <nav aria-label="Help categories" id="tile-grid" class="g2"></nav>
   </section>
 
-  <section class="screen" id="screen-branch" aria-labelledby="h-branch" aria-hidden="true">
-    <button class="back-btn" onclick="goTiles()" aria-label="Go back to categories">
+  <!-- SCREEN 3: BRANCH QUESTION -->
+  <section class="scr" id="scr-branch" aria-labelledby="h-branch" aria-hidden="true">
+    <button class="back" id="btn-back-branch" type="button" aria-label="Go back to categories">
       <span aria-hidden="true">&#8592;</span> Back
     </button>
-    <div class="branch-card" role="group" aria-labelledby="h-branch">
-      <p class="branch-q" id="h-branch"></p>
-      <div class="branch-options" id="branch-opts" role="list"></div>
+    <div class="bcard" role="group" aria-labelledby="h-branch">
+      <p class="bq" id="h-branch" tabindex="-1"></p>
+      <div class="bopts" id="branch-opts" role="list"></div>
     </div>
   </section>
 
-  <section class="screen" id="screen-results" aria-labelledby="h-results" aria-hidden="true">
-    <button class="back-btn" id="results-back" aria-label="Go back">
+  <!-- SCREEN 4: RESULTS -->
+  <section class="scr" id="scr-results" aria-labelledby="h-results" aria-hidden="true">
+    <button class="back" id="btn-back-results" type="button" aria-label="Go back">
       <span aria-hidden="true">&#8592;</span> Back
     </button>
-    <div class="results-hd">
-      <h2 id="h-results"></h2>
-      <p>Real places. Verified. All free.</p>
+    <div class="rhd">
+      <h2 id="h-results" tabindex="-1"></h2>
+      <p>Real places. Verified. All free to contact.</p>
     </div>
     <div id="results-list" role="list"></div>
-    <div class="results-footer" role="complementary">
+    <div class="rftr" role="complementary">
       <p>Not finding what you need?</p>
-      <a class="big-phone" href="tel:211" aria-label="Call 2-1-1 free helpline">2-1-1</a>
-      <p>Call <strong>2-1-1</strong> free, anytime, 24 hours a day.<br>
-      They speak many languages and can help with anything.</p>
+      <a class="big211" href="tel:211" aria-label="Call 2-1-1, free helpline">2-1-1</a>
+      <p>Call <strong>2-1-1</strong> free, 24 hours a day, 7 days a week.<br>
+      They speak many languages and can help with almost anything.</p>
     </div>
   </section>
 
 </main>
 
-<footer class="site-footer" role="contentinfo">
+<footer class="ftr" role="contentinfo">
   <p>
-    Saint Paul Help &mdash; Built by
+    Neighborhood Helper &mdash; Built by
     <a href="https://northstarhr.pages.dev" rel="noopener noreferrer">North Star Human Rights</a><br>
-    Free forever. No data collected. Educational use only. Not legal advice.<br>
-    Something wrong?
-    <a href="/cdn-cgi/l/email-protection#6907061b1d011a1d081b011c0408071b000e011d1a29191b061d060704080005470a0604561a1c0b030c0a1d543a0800071d4c5b5939081c054c5b59210c05194c5b593c190d081d0c">Let us know</a>
+    Free forever. No data collected. Educational only. Not legal advice.<br>
+    Something wrong or out of date?
+    <a href="mailto:northstarhumanrights@protonmail.com?subject=Neighborhood Helper - Resource Update">Let us know</a>
   </p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// -- DATA: no user input ever passed to innerHTML --
+<script>
+'use strict';
 
-var R={
-  r211:{name:"2-1-1 United Way Helpline",tagline:"Free. Confidential. 24 hours a day. They help with food, housing, bills, health care, and more. A real person answers.",phone:"211",address:"Call or text from anywhere in Minnesota",hours:"24 hours, 7 days a week",url:"https://www.211unitedway.org/",langs:["English","Spanish","Somali","Hmong"],urgent:false,d:["citywide"]},
-  r988:{name:"988 Crisis and Mental Health Line",tagline:"If you are in crisis or thinking about hurting yourself, call or text 988. Free. Confidential. Someone will answer.",phone:"988",address:"Call or text from anywhere, anytime",hours:"24 hours, 7 days a week",url:"https://988lifeline.org/",langs:["English","Spanish"],urgent:true,d:["citywide"]},
-  ramsey_a:{name:"Ramsey County Mental Health Crisis Line",tagline:"For adults in a mental health crisis. Phone support, mobile outreach, and walk-in available.",phone:"651-266-7900",address:"402 University Ave E, St. Paul (walk-in)",hours:"Walk-in: Mon-Fri 8am-7pm, Sat-Sun 10am-5pm",url:"https://www.ramseycounty.us/residents/health-medical/clinics-services/mental-health",langs:["English"],urgent:true,d:["citywide"]},
-  ramsey_k:{name:"Ramsey County Children's Crisis Line",tagline:"For children and teens under 18 in a mental health crisis. Available anytime, day or night.",phone:"651-266-7878",address:"Phone and mobile outreach",hours:"24 hours, 7 days a week",url:"https://www.ramseycounty.us/residents/health-medical/clinics-services/mental-health",langs:["English"],urgent:true,d:["citywide"]},
-  home_line:{name:"HOME Line - Free Renter Legal Help",tagline:"Free legal help for renters. Talk to a housing attorney about your rights. No appointment needed. Multiple languages available.",phone:"612-728-5767",address:"Phone and online - serves all of Minnesota",hours:"Monday through Friday, business hours",url:"https://homelinemn.org/",langs:["English","Spanish","Somali","Hmong"],urgent:false,d:["citywide"]},
-  era:{name:"Saint Paul Emergency Rent Help",tagline:"If you got an eviction notice, the City may pay up to $3,500 of your late rent directly to your landlord. Applications reopen April 1, 2026.",phone:"651-266-6671",address:"Apply at stpaul.gov/era or by phone",hours:"Phone checked first 3 days of each month",url:"https://www.stpaul.gov/departments/planning-and-economic-development/housing/emergency-rent-assistance-program-era",langs:["English"],urgent:true,d:["citywide"]},
-  legal_aid:{name:"Mid-Minnesota Legal Aid",tagline:"Free legal help for people with low income. Housing, family issues, immigration, and disability.",phone:"612-334-5970",address:"Twin Cities offices - phone and in-person",hours:"Monday through Friday, business hours",url:"https://mylegalaid.org/",langs:["English","Spanish","Somali","Hmong"],urgent:false,d:["citywide"]},
-  ilcm:{name:"Immigrant Law Center of Minnesota",tagline:"Free immigration legal help for people with low income. Visas, status, naturalization, and deportation defense.",phone:"1-800-223-1368",address:"St. Paul and Twin Cities offices",hours:"ICE detainees: Mon-Thu 1-3pm. Others: call.",url:"https://www.ilcm.org/",langs:["English","Spanish","Somali","Hmong"],urgent:false,d:["citywide"]},
-  sp_imm:{name:"Saint Paul Immigration Resources",tagline:"Official City of Saint Paul page. Know-your-rights information, emergency resources, and legal help. Updated regularly.",phone:null,address:"stpaul.gov/immigration-resources",hours:"Online 24 hours a day",url:"https://www.stpaul.gov/departments/city-attorney/immigration-resources",langs:["English","Spanish","Somali","Hmong","Karen"],urgent:true,d:["citywide"]},
-  cap:{name:"Help Paying Energy Bills",tagline:"Free help paying your heating and energy bills through the LIHEAP program for qualifying households.",phone:"651-603-5800",address:"Ramsey and Washington Counties",hours:"Monday through Friday, business hours",url:"https://caprw.org/",langs:["English"],urgent:false,d:["citywide"]},
-  shelter:{name:"Catholic Charities - Emergency Shelter",tagline:"Emergency shelter for adults who need a place to stay tonight. Must be referred through Adult Shelter Connect.",phone:"651-232-0100",address:"183 Old 6th St W, St. Paul 55102",hours:"Open every day",url:"https://www.cctwincities.org/services/housing/",langs:["English"],urgent:true,d:["citywide"]},
-  mn_care:{name:"Minnesota Community Care",tagline:"Health care for everyone, regardless of income or insurance. Sliding scale pricing. Multiple Saint Paul locations. No one is turned away.",phone:"651-778-2884",address:"Multiple locations across Saint Paul - call for nearest",hours:"Monday through Friday, 8am-4pm",url:"https://www.mncare.org/",langs:["English","Spanish","Somali","Hmong"],urgent:false,d:["citywide"]},
-  walkin:{name:"Walk-In Counseling Center",tagline:"Free, anonymous counseling. No appointment, no insurance, no ID needed. Come in during clinic hours.",phone:"612-870-0565",address:"Minneapolis and St. Paul locations",hours:"Weekdays during clinic hours",url:"https://walkin.org/",langs:["English"],urgent:false,d:["citywide"]},
-  childcare:{name:"Ramsey County Child Care Help",tagline:"Help paying for child care if you work, go to school, or are in job training.",phone:"651-266-4444",address:"Apply online or by phone",hours:"Monday through Friday, 8am-4:30pm",url:"https://www.ramseycounty.us/residents/children-family-services/child-care-assistance",langs:["English","Spanish","Somali","Hmong"],urgent:false,d:["citywide"]},
-  iimn:{name:"International Institute of Minnesota",tagline:"Refugee resettlement, citizenship help, English classes, and job training for immigrants and refugees.",phone:"651-647-0191",address:"1694 Como Ave, St. Paul 55108",hours:"Monday through Friday, business hours",url:"https://iimn.org/",langs:["English","Spanish","Somali","Hmong","Karen"],urgent:false,d:["citywide"]},
-  merrick_f:{name:"Merrick Community Services Food Shelf",tagline:"You shop like a store and pick what your family actually needs. Drive-through available. Right on the East Side.",phone:"651-287-2088",address:"1669 Arcade St N, Door 3, St. Paul 55106",hours:"Monday through Thursday, 8am-5:30pm",url:"https://merrickcs.org/community-services/food/",langs:["English"],urgent:false,d:["east_side"]},
-  fotv:{name:"Fruit of the Vine Food Shelf",tagline:"Welcoming food shelf inside First Covenant Church. Spanish support available.",phone:"952-595-5980",address:"1280 Arcade St, St. Paul 55106",hours:"Call for current hours",url:"https://vcsmn.org/services/",langs:["English","Spanish"],urgent:false,d:["east_side"]},
-  nbhd_f:{name:"Neighborhood House Food Market",tagline:"Free monthly food market. No ID or papers required. Open to everyone.",phone:"651-789-3630",address:"690 E 7th St, St. Paul 55106",hours:"Monthly - call for dates",url:"https://neighborhoodhousemn.org/programs/food-support/",langs:["English","Hmong","Spanish","Somali"],urgent:false,d:["east_side"]},
-  clues:{name:"CLUES - Health, Legal, and Job Help",tagline:"Walk in for mental health care, legal help, financial coaching, and job support. Any insurance or none. East Side location.",phone:"612-746-3537",address:"797 E 7th St, St. Paul 55106",hours:"Call for hours",url:"https://clues.org/",langs:["English","Spanish"],urgent:false,d:["east_side"]},
-  ic_mosaic:{name:"Immigrant Connection Mosaic",tagline:"Low-cost immigration legal help right on the East Side. Naturalization, visas, status renewals. Approved by the U.S. Department of Justice.",phone:"651-583-8797",address:"East Wheelock Pkwy near Payne Ave, St. Paul",hours:"Call for appointments",url:"https://www.mosaicstpaul.org/learn-more",langs:["English"],urgent:false,d:["east_side"]},
-  merrick_j:{name:"Merrick - Job and Employment Help",tagline:"Free help with job searching and resumes on the East Side.",phone:"651-771-9339",address:"1669 Arcade St N, St. Paul 55106",hours:"Monday through Thursday, 8am-5:30pm",url:"https://merrickcs.org/",langs:["English"],urgent:false,d:["east_side"]},
-  f2f:{name:"Face to Face - Youth Help",tagline:"Drop-in shelter and mental health support for young people ages 14 to 24. No appointment needed. East Side location.",phone:"651-772-5555",address:"1165 Arcade St, St. Paul 55106",hours:"Mon-Thu 10am-6pm, Fri 10am-4pm",url:"https://face2face.org/",langs:["English","Hmong"],urgent:false,d:["east_side"]},
-  mnc_west:{name:"Minnesota Community Care - West Side",tagline:"Health care for everyone. Founded in 1969 to serve the West Side. Sliding scale. No one turned away.",phone:"651-312-1996",address:"30 E Baker St, St. Paul 55107",hours:"Monday through Friday, 8am-4pm",url:"https://www.mncare.org/",langs:["English","Spanish"],urgent:false,d:["west_side"]},
-  wsco:{name:"West Side Community Organization",tagline:"Your neighborhood organization. Help with tenant rights, housing issues, and finding resources on the West Side.",phone:"651-293-1708",address:"West Side, St. Paul",hours:"Call for hours",url:"https://www.wsco.org/",langs:["English","Spanish"],urgent:false,d:["west_side"]},
-  clues_w:{name:"CLUES - West Side Services",tagline:"Mental health, legal help, job training, and financial coaching. Founded on the West Side. All are welcome.",phone:"651-379-4240",address:"West Side, St. Paul",hours:"Call for appointments",url:"https://clues.org/",langs:["English","Spanish"],urgent:false,d:["west_side"]},
-  feeding_ft:{name:"Feeding Frogtown",tagline:"Free groceries every other Friday. You pick what you need. No ID. No appointment. No paperwork. Open to everyone.",phone:"651-236-8699",address:"685 Minnehaha Ave W, St. Paul 55104",hours:"Every other Friday, 3pm-6pm",url:"https://www.frogtownmn.org/feedingfrogtown",langs:["English"],urgent:false,d:["frogtown"]},
-  fna:{name:"Frogtown Neighborhood Association",tagline:"Your neighborhood organization. Helps with tenant rights, housing, and connecting to resources in Frogtown.",phone:"651-236-8699",address:"501 Dale St N, St. Paul 55103",hours:"Call for hours",url:"https://www.frogtownmn.org/",langs:["English"],urgent:false,d:["frogtown"]},
-  mnc_frog:{name:"Minnesota Community Care - Frogtown",tagline:"Health care for everyone. Youth clinic for ages 12 to 22 on University Ave. Sliding scale. No one turned away.",phone:"651-793-2234",address:"1212 University Ave, St. Paul 55104",hours:"Monday through Thursday, 8am-4pm",url:"https://www.mncare.org/",langs:["English","Spanish","Hmong","Somali"],urgent:false,d:["frogtown","midway"]},
-  hallie:{name:"Hallie Q. Brown Food Shelf",tagline:"Serving the Rondo community since 1929. You pick what your family needs. Fresh produce, pet food, and personal care items available every day.",phone:"651-224-4601",address:"270 Kent St, St. Paul 55102",hours:"Mon-Thu 9am-6pm, Fri 9am-4pm",url:"https://www.hallieqbrown.org/",langs:["English"],urgent:false,d:["rondo"]},
-  aurora:{name:"Aurora St. Anthony - Housing Help",tagline:"Helps people in Rondo, Frogtown, and Summit-University find and keep affordable housing.",phone:"651-221-0512",address:"Rondo and Frogtown area",hours:"Call for hours",url:"https://www.aurorastanthony.org/",langs:["English"],urgent:false,d:["rondo","frogtown"]},
-  keystone:{name:"Keystone Community Food Center",tagline:"No appointment needed. Walk in during service hours. You pick what you need. Green Line accessible at Fairview stop.",phone:"651-917-3792",address:"1800 University Ave W, St. Paul 55104",hours:"Mon-Fri 10am-12pm and 2pm-4pm",url:"https://keystoneservices.org/food-shelf/",langs:["English"],urgent:false,d:["north_end","midway"]},
-  mnc_north:{name:"Minnesota Community Care - North End",tagline:"Health care for everyone on the North End. Sliding scale pricing. No one turned away.",phone:"651-487-8539",address:"740 W Rose Ave, St. Paul 55117",hours:"Monday through Friday, 8am-4pm",url:"https://www.mncare.org/",langs:["English"],urgent:false,d:["north_end"]},
-  opp_ctr:{name:"Saint Paul Opportunity Center",tagline:"Full services in one place. Health care, mental health, job training, meals, housing help, and showers. Open 7 days a week.",phone:"651-228-0018",address:"393 University Ave W, St. Paul 55103",hours:"7 days a week, 9am-5:15pm",url:null,langs:["English"],urgent:false,d:["downtown","midway"]}
+/* ============================================================
+   DATA
+   All content is hardcoded static strings.
+   No user input ever reaches innerHTML.
+   All dynamic rendering uses DOM methods only.
+   ============================================================ */
+
+var HOODS = [
+  {id:'east',   name:'East Side',         sub:"Payne-Phalen, Arcade, Dayton's Bluff"},
+  {id:'west',   name:'West Side',         sub:'District del Sol, Cesar Chavez St'},
+  {id:'frog',   name:'Frogtown',          sub:'Thomas-Dale, University Ave'},
+  {id:'rondo',  name:'Rondo',             sub:'Summit-University, Selby Ave'},
+  {id:'north',  name:'North End',         sub:'Rice St, Maryland Ave area'},
+  {id:'midway', name:'Midway',            sub:'Hamline, Snelling, Green Line'},
+  {id:'down',   name:'Downtown',          sub:'Lowertown, Capitol area'},
+  {id:'high',   name:'Highland / West 7th', sub:'Highland Park, Fort Road, Como'},
+  {id:'any',    name:"I'm not sure",      sub:"That's okay - start here", unsure:true}
+];
+
+var R = {
+  r211:{name:'2-1-1 United Way Helpline',tagline:'Free and confidential help finding anything  -  food, housing, bills, health care. A real person answers, 24 hours a day.',phone:'211',addr:'Call or text from anywhere in Minnesota',hrs:'24 hours a day, 7 days a week',url:'https://www.211unitedway.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  r988:{name:'988  -  Mental Health Crisis Line',tagline:'If you are in a mental health crisis or thinking about hurting yourself, call or text 988. Free. Confidential. Someone answers.',phone:'988',addr:'Call or text from anywhere, anytime',hrs:'24 hours a day, 7 days a week',url:'https://988lifeline.org/',langs:['English','Spanish'],urg:true,d:['all']},
+  rcra:{name:'Ramsey County Adult Crisis Line',tagline:'For adults in a mental health crisis. Phone support and mobile outreach available. Walk-in clinic open most days.',phone:'651-266-7900',addr:'402 University Ave E, St. Paul (walk-in)',hrs:'Walk-in: Mon-Fri 8am-7pm, Sat-Sun 10am-5pm',url:'https://www.ramseycounty.us/residents/health-medical/clinics-services/mental-health',langs:['English'],urg:true,d:['all']},
+  rcrk:{name:'Ramsey County Children Crisis Line',tagline:'For children and teens under 18 in a mental health crisis. Available any time, day or night.',phone:'651-266-7878',addr:'Phone and mobile outreach',hrs:'24 hours a day, 7 days a week',url:'https://www.ramseycounty.us/residents/health-medical/clinics-services/mental-health',langs:['English'],urg:true,d:['all']},
+  hml:{name:'HOME Line  -  Free Renter Legal Help',tagline:'Talk to a free housing attorney about your rights as a renter. No appointment needed. Multiple languages available.',phone:'612-728-5767',addr:'Phone  -  serves all of Minnesota',hrs:'Monday through Friday, business hours',url:'https://homelinemn.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  era:{name:'Saint Paul Emergency Rent Help',tagline:'The City may pay up to $3,500 of your late rent directly to your landlord if you have received an eviction notice. Applications reopen April 1, 2026.',phone:'651-266-6671',addr:'Apply at stpaul.gov/era or by phone',hrs:'Call or check online for current availability',url:'https://www.stpaul.gov/departments/planning-and-economic-development/housing/emergency-rent-assistance-program-era',langs:['English'],urg:true,d:['all']},
+  mla:{name:'Mid-Minnesota Legal Aid',tagline:'Free legal help for people with low income. Housing, family, immigration, and disability cases.',phone:'612-334-5970',addr:'Twin Cities offices  -  phone and in-person',hrs:'Monday through Friday, business hours',url:'https://mylegalaid.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  ilcm:{name:'Immigrant Law Center of Minnesota',tagline:'Free immigration legal help for people with low income. Visas, status, naturalization, and deportation defense.',phone:'1-800-223-1368',addr:'St. Paul and Twin Cities offices',hrs:'ICE detainees: Mon-Thu 1-3pm. All others: call.',url:'https://www.ilcm.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  spimm:{name:'Saint Paul Immigration Resources',tagline:"Official City of Saint Paul page. Know-your-rights information, emergency contacts, and legal help. Updated regularly.",phone:null,addr:'stpaul.gov/immigration-resources',hrs:'Online 24 hours a day',url:'https://www.stpaul.gov/departments/city-attorney/immigration-resources',langs:['English','Spanish','Somali','Hmong','Karen'],urg:true,d:['all']},
+  cap:{name:'Help Paying Energy Bills',tagline:'Free help paying your heating and energy bills through the LIHEAP program for qualifying households.',phone:'651-603-5800',addr:'Ramsey and Washington Counties',hrs:'Monday through Friday, business hours',url:'https://caprw.org/',langs:['English'],urg:false,d:['all']},
+  shlt:{name:'Catholic Charities  -  Emergency Shelter',tagline:'Emergency shelter for adults who need a place to stay tonight.',phone:'651-232-0100',addr:'183 Old 6th St W, St. Paul 55102',hrs:'Open every day',url:'https://www.cctwincities.org/services/housing/',langs:['English'],urg:true,d:['all']},
+  mnc:{name:'Minnesota Community Care',tagline:'Health care for everyone regardless of income or insurance. Sliding scale pricing. Multiple Saint Paul locations. No one is turned away.',phone:'651-778-2884',addr:'Multiple Saint Paul locations  -  call for nearest',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  wic:{name:'Walk-In Counseling Center',tagline:'Free anonymous counseling. No appointment, no insurance, no ID needed. Come in during clinic hours.',phone:'612-870-0565',addr:'Minneapolis and St. Paul locations',hrs:'Weekdays during clinic hours',url:'https://walkin.org/',langs:['English'],urg:false,d:['all']},
+  rcc:{name:'Ramsey County Child Care Help',tagline:'Help paying for child care if you work, go to school, or are in job training.',phone:'651-266-4444',addr:'Apply online or by phone',hrs:'Monday through Friday, 8am-4:30pm',url:'https://www.ramseycounty.us/residents/children-family-services/child-care-assistance',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  iimn:{name:'International Institute of Minnesota',tagline:'Refugee resettlement, citizenship help, English classes, and job training for immigrants and refugees.',phone:'651-647-0191',addr:'1694 Como Ave, St. Paul 55108',hrs:'Monday through Friday, business hours',url:'https://iimn.org/',langs:['English','Spanish','Somali','Hmong','Karen'],urg:false,d:['all']},
+  opp:{name:'Saint Paul Opportunity Center',tagline:'Full services in one place. Health care, mental health, job training, meals, housing help, and showers. Open 7 days a week.',phone:'651-228-0018',addr:'393 University Ave W, St. Paul 55103',hrs:'7 days a week, 9am-5:15pm',url:null,langs:['English'],urg:false,d:['all','down','midway']},
+  mrf:{name:'Merrick Community Services Food Shelf',tagline:'You shop like a store and choose what your family needs. Drive-through available. Right on the East Side.',phone:'651-287-2088',addr:'1669 Arcade St N, Door 3, St. Paul 55106',hrs:'Monday through Thursday, 8am-5:30pm',url:'https://merrickcs.org/community-services/food/',langs:['English'],urg:false,d:['east']},
+  fotv:{name:'Fruit of the Vine Food Shelf',tagline:'Welcoming food shelf on Arcade Street. Spanish support available.',phone:'952-595-5980',addr:'1280 Arcade St, St. Paul 55106',hrs:'Call for current hours',url:'https://vcsmn.org/services/',langs:['English','Spanish'],urg:false,d:['east']},
+  nbhf:{name:'Neighborhood House Food Market',tagline:'Free monthly food market. No ID or papers needed. Open to everyone.',phone:'651-789-3630',addr:'690 E 7th St, St. Paul 55106',hrs:'Monthly  -  call for dates',url:'https://neighborhoodhousemn.org/programs/food-support/',langs:['English','Hmong','Spanish','Somali'],urg:false,d:['east']},
+  clues:{name:'CLUES  -  Health, Legal, and Job Help',tagline:'Walk in for mental health care, legal help, financial coaching, and job support. Any insurance or none. East Side location.',phone:'612-746-3537',addr:'797 E 7th St, St. Paul 55106',hrs:'Call for hours',url:'https://clues.org/',langs:['English','Spanish'],urg:false,d:['east','west']},
+  icm:{name:'Immigrant Connection Mosaic',tagline:'Low-cost immigration legal help right on the East Side. Naturalization, visas, status renewals. Approved by the U.S. Department of Justice.',phone:'651-583-8797',addr:'East Wheelock Pkwy near Payne Ave, St. Paul',hrs:'By appointment',url:'https://www.mosaicstpaul.org/learn-more',langs:['English'],urg:false,d:['east']},
+  mrj:{name:'Merrick  -  Job and Employment Help',tagline:'Free help with job searching and resumes on the East Side.',phone:'651-771-9339',addr:'1669 Arcade St N, St. Paul 55106',hrs:'Monday through Thursday, 8am-5:30pm',url:'https://merrickcs.org/',langs:['English'],urg:false,d:['east']},
+  f2f:{name:'Face to Face  -  Youth Support',tagline:'Drop-in shelter and mental health support for young people ages 14 to 24. No appointment needed.',phone:'651-772-5555',addr:'1165 Arcade St, St. Paul 55106',hrs:'Mon-Thu 10am-6pm, Fri 10am-4pm',url:'https://face2face.org/',langs:['English','Hmong'],urg:false,d:['east']},
+  mncw:{name:'Minnesota Community Care  -  West Side',tagline:'Health care for everyone. Founded in 1969 to serve the West Side. Sliding scale. No one turned away.',phone:'651-312-1996',addr:'30 E Baker St, St. Paul 55107',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish'],urg:false,d:['west']},
+  wsco:{name:'West Side Community Organization',tagline:'Your neighborhood organization. Help with tenant rights, housing issues, and connecting to resources on the West Side.',phone:'651-293-1708',addr:'West Side, St. Paul',hrs:'Call for hours',url:'https://www.wsco.org/',langs:['English','Spanish'],urg:false,d:['west']},
+  ftft:{name:'Feeding Frogtown',tagline:'Free groceries every other Friday. You pick what you need. No ID. No appointment. No paperwork. Open to everyone.',phone:'651-236-8699',addr:'685 Minnehaha Ave W, St. Paul 55104',hrs:'Every other Friday, 3pm-6pm',url:'https://www.frogtownmn.org/feedingfrogtown',langs:['English','Hmong','Karen'],urg:false,d:['frog']},
+  fna:{name:'Frogtown Neighborhood Association',tagline:'Your neighborhood organization. Tenant rights, housing help, and resources for Frogtown residents.',phone:'651-236-8699',addr:'501 Dale St N, St. Paul 55103',hrs:'Call for hours',url:'https://www.frogtownmn.org/',langs:['English','Hmong','Karen'],urg:false,d:['frog']},
+  mncf:{name:'Minnesota Community Care  -  Frogtown',tagline:'Health care for everyone. Youth clinic for ages 12 to 22. Sliding scale. No one turned away.',phone:'651-793-2234',addr:'1212 University Ave, St. Paul 55104',hrs:'Monday through Thursday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['frog','midway']},
+  hallie:{name:'Hallie Q. Brown Food Shelf',tagline:'Serving the Rondo community since 1929. You pick what your family needs. Fresh produce every day.',phone:'651-224-4601',addr:'270 Kent St, St. Paul 55102',hrs:'Mon-Thu 9am-6pm, Fri 9am-4pm',url:'https://www.hallieqbrown.org/',langs:['English'],urg:false,d:['rondo']},
+  aurora:{name:'Aurora St. Anthony  -  Housing Help',tagline:'Helps people in Rondo, Frogtown, and Summit-University find and keep affordable housing.',phone:'651-221-0512',addr:'Rondo and Frogtown area',hrs:'Call for hours',url:'https://www.aurorastanthony.org/',langs:['English'],urg:false,d:['rondo','frog']},
+  keystone:{name:'Keystone Community Food Center',tagline:'No appointment needed. Walk in during service hours and pick what your household needs. Green Line accessible.',phone:'651-917-3792',addr:'1800 University Ave W, St. Paul 55104',hrs:'Mon-Fri 10am-12pm and 2pm-4pm',url:'https://keystoneservices.org/food-shelf/',langs:['English'],urg:false,d:['north','midway']},
+  mncn:{name:'Minnesota Community Care  -  North End',tagline:'Health care for everyone on the North End. Sliding scale pricing. No one turned away.',phone:'651-487-8539',addr:'740 W Rose Ave, St. Paul 55117',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English'],urg:false,d:['north']}
 };
 
-var NBHDS=[
-  {id:"east_side",name:"East Side",sub:"Payne-Phalen, Arcade, Dayton's Bluff"},
-  {id:"west_side",name:"West Side",sub:"District del Sol, Cesar Chavez St"},
-  {id:"frogtown", name:"Frogtown",  sub:"Thomas-Dale, University Ave"},
-  {id:"rondo",    name:"Rondo",     sub:"Summit-University, Selby Ave"},
-  {id:"north_end",name:"North End", sub:"Rice St, Maryland Ave area"},
-  {id:"midway",   name:"Midway",    sub:"Hamline, Snelling, Green Line"},
-  {id:"downtown", name:"Downtown",  sub:"Lowertown, Capitol area"},
-  {id:"other",    name:"Highland / West 7th",sub:"Highland Park, West 7th, Como, Mac-Groveland"},
-  {id:"citywide", name:"I'm not sure",sub:"That's okay - start here",unsure:true}
+var TILES = [
+  {id:'food', icon:'&#127869;', label:'I need food', branch:null,
+   res:{def:['mrf','fotv','nbhf','ftft','hallie','keystone','r211']}},
+  {id:'housing', icon:'&#127968;', label:'I need help with housing',
+   branch:{q:'What is happening with your housing?', opts:[
+     {label:"I got an eviction notice or I'm behind on rent", sub:'You may have more options than you know', key:'evict'},
+     {label:'I need a place to stay tonight', sub:'Emergency shelter', key:'shelter'}
+   ]},
+   res:{evict:['hml','era','mla'], shelter:['shlt','r211','hml']}},
+  {id:'health', icon:'&#10084;&#65039;', label:'I need health care',
+   branch:{q:'What kind of help do you need?', opts:[
+     {label:'I am in a mental health crisis right now', sub:null, key:'crisis'},
+     {label:'Mental health care  -  not an emergency', sub:'Counseling, therapy, support', key:'mental'},
+     {label:'Physical health or medical care', sub:'Doctor, clinic, pharmacy', key:'physical'},
+     {label:'Help for a child or teenager', sub:'Under 18 years old', key:'child'}
+   ]},
+   res:{crisis:['r988','rcra','rcrk'], mental:['wic','rcra','clues','mnc'], physical:['mnc','mncw','mncf','mncn'], child:['rcrk','f2f','mnc']}},
+  {id:'money', icon:'&#128181;', label:'I need help with bills or money', branch:null,
+   res:{def:['cap','era','clues','r211']}},
+  {id:'legal', icon:'&#9878;&#65039;', label:'I need legal help',
+   branch:{q:'What kind of legal help do you need?', opts:[
+     {label:'A landlord or housing problem', sub:null, key:'house'},
+     {label:'Immigration issue', sub:'Status, ICE, or deportation', key:'immig'},
+     {label:'Something else', sub:null, key:'other'}
+   ]},
+   res:{house:['hml','mla','era'], immig:['spimm','ilcm','icm'], other:['mla','r211']}},
+  {id:'kids', icon:'&#128103;', label:'I need help with kids or child care', branch:null,
+   res:{def:['rcc','nbhf','f2f','r211']}},
+  {id:'work', icon:'&#128188;', label:'I need work or job training', branch:null,
+   res:{def:['mrj','iimn','clues','opp','r211']}},
+  {id:'immig', icon:'&#127758;', label:'I need immigration help',
+   branch:{q:'What do you need right now?', opts:[
+     {label:'I am in danger or need help right now', sub:'ICE, detention, or emergency', key:'urg'},
+     {label:'I need legal help with my case or documents', sub:'Visas, citizenship, permits', key:'legal'}
+   ]},
+   res:{urg:['spimm','ilcm','icm'], legal:['icm','ilcm','iimn']}},
+  {id:'unsure', icon:'&#128172;', label:"I'm not sure where to start",
+   sub:"That's okay. Here are the most helpful places.", branch:null,
+   res:{def:['r211','mrf','hml','r988','mnc']}}
 ];
 
-var TILES=[
-  {id:"food",icon:"&#127869;",label:"I need food",branch:null,
-   results:{default:["merrick_f","fotv","nbhd_f","feeding_ft","hallie","keystone","r211"]}},
-  {id:"housing",icon:"&#127968;",label:"I need help with housing",
-   branch:{q:"What is happening with your housing?",opts:[
-     {label:"I got an eviction notice or I'm behind on rent",sub:"You may have more options than you know",key:"eviction"},
-     {label:"I need a place to stay tonight",sub:"Emergency shelter",key:"shelter"}
-   ]},
-   results:{eviction:["home_line","era","legal_aid"],shelter:["shelter","r211","home_line"]}},
-  {id:"health",icon:"&#10084;&#65039;",label:"I need health care",
-   branch:{q:"What kind of help do you need?",opts:[
-     {label:"Mental health or I am in a crisis right now",sub:null,key:"mental"},
-     {label:"Physical health or medical care",sub:"Doctor, clinic, pharmacy",key:"physical"}
-   ]},
-   results:{mental:["r988","ramsey_a","ramsey_k","walkin","clues"],physical:["mn_care","mnc_west","mnc_frog","mnc_north","r211"]}},
-  {id:"money",icon:"&#128181;",label:"I need help with bills or money",branch:null,
-   results:{default:["cap","era","clues","r211"]}},
-  {id:"legal",icon:"&#9878;&#65039;",label:"I need legal help",
-   branch:{q:"What kind of legal help do you need?",opts:[
-     {label:"My landlord or a housing problem",sub:null,key:"housing"},
-     {label:"Immigration issue",sub:"Status, ICE, or deportation",key:"immigration"},
-     {label:"Something else",sub:null,key:"other"}
-   ]},
-   results:{housing:["home_line","legal_aid","era"],immigration:["sp_imm","ilcm","ic_mosaic"],other:["legal_aid","r211"]}},
-  {id:"kids",icon:"&#128103;",label:"I need help with kids or child care",branch:null,
-   results:{default:["childcare","nbhd_f","f2f","r211"]}},
-  {id:"work",icon:"&#128188;",label:"I need work or job training",branch:null,
-   results:{default:["merrick_j","iimn","clues","r211"]}},
-  {id:"immigration",icon:"&#127758;",label:"I need immigration help",
-   branch:{q:"What do you need right now?",opts:[
-     {label:"I need to know my rights or I am in danger now",sub:"ICE, detention, or emergency",key:"urgent"},
-     {label:"I need legal help with my case or documents",sub:"Visas, citizenship, permits",key:"legal"}
-   ]},
-   results:{urgent:["sp_imm","ilcm","ic_mosaic"],legal:["ic_mosaic","ilcm","iimn"]}},
-  {id:"unsure",icon:"&#128172;",label:"I'm not sure where to start",
-   sub:"That's okay. Here are the most helpful places.",branch:null,
-   results:{default:["r211","merrick_f","home_line","r988","mn_care"]}}
-];
+/* ============================================================
+   STATE
+   ============================================================ */
+var curHood = null;
+var curTile = null;
 
-var curNbhd=null,curTile=null;
-
-function announce(msg){
-  var lr=document.getElementById('live-region');
-  lr.textContent='';
-  setTimeout(function(){lr.textContent=msg;},50);
+/* ============================================================
+   UTILS
+   ============================================================ */
+function announce(msg) {
+  var el = document.getElementById('lr');
+  el.textContent = '';
+  setTimeout(function() { el.textContent = msg; }, 60);
 }
 
-function showScreen(id,msg){
-  document.querySelectorAll('.screen').forEach(function(s){
-    s.classList.remove('active');
-    s.setAttribute('aria-hidden','true');
-  });
-  var el=document.getElementById('screen-'+id);
-  el.classList.add('active');
+function showScr(id, msg) {
+  var all = document.querySelectorAll('.scr');
+  for (var i = 0; i < all.length; i++) {
+    all[i].classList.remove('on');
+    all[i].setAttribute('aria-hidden', 'true');
+  }
+  var el = document.getElementById('scr-' + id);
+  el.classList.add('on');
   el.removeAttribute('aria-hidden');
-  window.scrollTo(0,0);
-  if(msg)announce(msg);
-  var h=el.querySelector('h1,h2');
-  if(h){h.setAttribute('tabindex','-1');h.focus();}
+  window.scrollTo(0, 0);
+  if (msg) { announce(msg); }
+  var h = el.querySelector('h1,h2,[tabindex="-1"]');
+  if (h) {
+    h.setAttribute('tabindex', '-1');
+    setTimeout(function() { h.focus(); }, 50);
+  }
+  document.title = msg ? msg + '  -  Neighborhood Helper' : 'Neighborhood Helper  -  Saint Paul';
 }
 
-function fp(p){return p.replace(/[^0-9+]/g,'');}
+function el(tag) { return document.createElement(tag); }
+function txt(node, str) { node.textContent = str; return node; }
+function attr(node, k, v) { node.setAttribute(k, v); return node; }
 
-function filterR(keys){
-  if(!curNbhd||curNbhd==='citywide')return keys;
-  return keys.filter(function(k){
-    var r=R[k];if(!r)return false;
-    return r.d.indexOf('citywide')!==-1||r.d.indexOf(curNbhd)!==-1||curNbhd==='other';
+function filterRes(keys) {
+  if (!curHood || curHood === 'any') { return keys; }
+  return keys.filter(function(k) {
+    var r = R[k];
+    if (!r) { return false; }
+    return r.d.indexOf('all') !== -1 || r.d.indexOf(curHood) !== -1;
   });
 }
 
-function renderNbhds(){
-  var grid=document.getElementById('nbhd-grid');
-  grid.innerHTML='';
-  NBHDS.forEach(function(n){
-    var btn=document.createElement('button');
-    btn.className='nbhd-btn'+(n.unsure?' btn-full':'');
-    btn.setAttribute('type','button');
-    btn.setAttribute('aria-label',n.name+(n.sub?', '+n.sub:''));
-    if(n.unsure){
-      btn.innerHTML='<div class="full-icon" aria-hidden="true">&#128172;</div>'+
-        '<div><div class="nbhd-name">'+n.name+'</div>'+
-        '<div class="nbhd-sub">'+n.sub+'</div></div>';
-    }else{
-      btn.innerHTML='<div class="nbhd-name">'+n.name+'</div>'+
-        '<div class="nbhd-sub">'+n.sub+'</div>';
+/* ============================================================
+   RENDER: NEIGHBORHOODS
+   ============================================================ */
+function renderHoods() {
+  var grid = document.getElementById('hood-grid');
+  grid.innerHTML = '';
+  HOODS.forEach(function(h) {
+    var btn = el('button');
+    btn.className = 'nb' + (h.unsure ? ' full' : '');
+    btn.type = 'button';
+    attr(btn, 'aria-label', h.name + (h.sub ? ', ' + h.sub : ''));
+
+    if (h.unsure) {
+      var ico = el('span');
+      ico.className = 'full-ico';
+      attr(ico, 'aria-hidden', 'true');
+      ico.textContent = '\uD83D\uDCAC';
+      btn.appendChild(ico);
     }
-    btn.addEventListener('click',function(){
-      curNbhd=n.id;
-      renderTiles(n.name);
-      showScreen('tiles','Showing help for '+n.name);
+
+    var wrap = el('div');
+
+    var name = el('div');
+    name.className = 'nb-name';
+    txt(name, h.name);
+    wrap.appendChild(name);
+
+    if (h.sub) {
+      var sub = el('div');
+      sub.className = 'nb-sub';
+      txt(sub, h.sub);
+      wrap.appendChild(sub);
+    }
+
+    btn.appendChild(wrap);
+
+    btn.addEventListener('click', function() {
+      curHood = h.id;
+      renderTiles(h.name);
+      showScr('tiles', 'Help for ' + h.name);
     });
+
     grid.appendChild(btn);
   });
 }
 
-function renderTiles(name){
-  document.getElementById('h-tiles').innerHTML='What do you <em>need?</em>';
-  document.getElementById('tiles-sub').textContent=name+' - choose the one that fits best.';
-  var grid=document.getElementById('tiles-grid');
-  grid.innerHTML='';
-  TILES.forEach(function(tile){
-    var btn=document.createElement('button');
-    btn.className='tile-btn'+(tile.id==='unsure'?' btn-full':'');
-    btn.setAttribute('type','button');
-    btn.setAttribute('aria-label',tile.label);
-    if(tile.id==='unsure'){
-      btn.innerHTML='<div class="full-icon" aria-hidden="true">'+tile.icon+'</div>'+
-        '<div><div class="tile-label">'+tile.label+'</div>'+
-        '<div class="tile-sub-text">'+tile.sub+'</div></div>';
-    }else{
-      btn.innerHTML='<div class="tile-icon" aria-hidden="true">'+tile.icon+'</div>'+
-        '<div class="tile-label">'+tile.label+'</div>';
+/* ============================================================
+   RENDER: TILES
+   ============================================================ */
+function renderTiles(hoodName) {
+  txt(document.getElementById('tiles-place'), hoodName + '  -  choose the one that fits best.');
+
+  var grid = document.getElementById('tile-grid');
+  grid.innerHTML = '';
+
+  TILES.forEach(function(tile) {
+    var btn = el('button');
+    btn.className = 'tb' + (tile.id === 'unsure' ? ' full' : '');
+    btn.type = 'button';
+    attr(btn, 'aria-label', tile.label + (tile.sub ? ', ' + tile.sub : ''));
+
+    if (tile.id === 'unsure') {
+      var ico = el('span');
+      ico.className = 'full-ico';
+      attr(ico, 'aria-hidden', 'true');
+      ico.textContent = '\uD83D\uDCAC';
+      btn.appendChild(ico);
+    } else {
+      var ico2 = el('span');
+      ico2.className = 't-icon';
+      attr(ico2, 'aria-hidden', 'true');
+      ico2.innerHTML = tile.icon;
+      btn.appendChild(ico2);
     }
-    btn.addEventListener('click',function(){
-      curTile=tile;
-      if(tile.branch){renderBranch(tile);showScreen('branch',tile.branch.q);}
-      else{var keys=filterR(tile.results.default);renderResults(keys,tile.label);showScreen('results','Showing results for '+tile.label);}
+
+    var wrap = el('div');
+
+    var lbl = el('div');
+    lbl.className = 't-label';
+    txt(lbl, tile.label);
+    wrap.appendChild(lbl);
+
+    if (tile.sub) {
+      var sub = el('div');
+      sub.className = 't-sub';
+      txt(sub, tile.sub);
+      wrap.appendChild(sub);
+    }
+
+    btn.appendChild(wrap);
+
+    btn.addEventListener('click', function() {
+      curTile = tile;
+      if (tile.branch) {
+        renderBranch(tile);
+        showScr('branch', tile.branch.q);
+      } else {
+        var keys = filterRes(tile.res.def);
+        renderResults(keys, tile.label);
+        showScr('results', 'Results for ' + tile.label);
+      }
     });
+
     grid.appendChild(btn);
   });
-  document.getElementById('back-tiles').onclick=function(){showScreen('map','Choose your area');};
+
+  document.getElementById('btn-back-tiles').onclick = function() {
+    showScr('map', 'Choose your area');
+  };
 }
 
-function renderBranch(tile){
-  var q=document.getElementById('branch-q');
-  q.textContent=tile.branch.q;
-  var opts=document.getElementById('branch-opts');
-  opts.innerHTML='';
-  tile.branch.opts.forEach(function(opt){
-    var btn=document.createElement('button');
-    btn.className='branch-btn';
-    btn.setAttribute('type','button');
-    btn.setAttribute('aria-label',opt.label+(opt.sub?', '+opt.sub:''));
-    var labelEl=document.createElement('div');
-    labelEl.className='branch-label';
-    labelEl.textContent=opt.label;
-    btn.appendChild(labelEl);
-    if(opt.sub){
-      var subEl=document.createElement('div');
-      subEl.className='branch-sub';
-      subEl.textContent=opt.sub;
-      btn.appendChild(subEl);
+/* ============================================================
+   RENDER: BRANCH
+   ============================================================ */
+function renderBranch(tile) {
+  txt(document.getElementById('h-branch'), tile.branch.q);
+
+  var opts = document.getElementById('branch-opts');
+  opts.innerHTML = '';
+
+  tile.branch.opts.forEach(function(opt) {
+    var btn = el('button');
+    btn.className = 'bopt';
+    btn.type = 'button';
+    attr(btn, 'role', 'listitem');
+    attr(btn, 'aria-label', opt.label + (opt.sub ? ', ' + opt.sub : ''));
+
+    var lbl = el('div');
+    txt(lbl, opt.label);
+    btn.appendChild(lbl);
+
+    if (opt.sub) {
+      var sub = el('span');
+      sub.className = 'bopt-sub';
+      txt(sub, opt.sub);
+      btn.appendChild(sub);
     }
-    btn.addEventListener('click',function(){
-      var keys=filterR(tile.results[opt.key]||tile.results.default||[]);
-      renderResults(keys,opt.label);
-      showScreen('results','Showing results for '+opt.label);
+
+    btn.addEventListener('click', function() {
+      var keys = filterRes(tile.res[opt.key] || tile.res.def || []);
+      renderResults(keys, opt.label);
+      showScr('results', 'Results for ' + opt.label);
     });
+
     opts.appendChild(btn);
   });
-  document.getElementById('back-branch').onclick=function(){renderTiles(curNbhd);showScreen('tiles','Choose what you need');};
+
+  document.getElementById('btn-back-branch').onclick = function() {
+    showScr('tiles', 'Choose what you need');
+  };
 }
 
-function renderResults(keys,title){
-  document.getElementById('results-title').textContent=title;
-  var list=document.getElementById('results-list');
-  list.innerHTML='';
-  if(!keys.length){
-    var p=document.createElement('p');
-    p.textContent='Call 2-1-1 for help finding resources in your area.';
+/* ============================================================
+   RENDER: RESULTS
+   ============================================================ */
+function renderResults(keys, title) {
+  txt(document.getElementById('h-results'), title);
+
+  document.getElementById('btn-back-results').onclick = function() {
+    if (curTile && curTile.branch) {
+      showScr('branch', curTile.branch.q);
+    } else {
+      showScr('tiles', 'Choose what you need');
+    }
+  };
+
+  var list = document.getElementById('results-list');
+  list.innerHTML = '';
+
+  if (!keys.length) {
+    var p = el('p');
+    txt(p, 'Call 2-1-1  -  they can help find resources in your area.');
     list.appendChild(p);
     return;
   }
-  keys.forEach(function(k){
-    var r=R[k];if(!r)return;
-    var card=document.createElement('article');
-    card.className='r-card'+(r.urgent?' r-urgent':'');
-    card.setAttribute('aria-label',r.name);
 
-    if(r.urgent){
-      var ub=document.createElement('div');
-      ub.className='urgent-badge';
-      ub.textContent='Available 24 hours';
-      card.appendChild(ub);
+  keys.forEach(function(k) {
+    var r = R[k];
+    if (!r) { return; }
+
+    var card = el('article');
+    card.className = 'rc' + (r.urg ? ' urg' : '');
+    attr(card, 'role', 'listitem');
+    attr(card, 'aria-label', r.name);
+
+    if (r.urg) {
+      var badge = el('div');
+      badge.className = 'ubadge';
+      txt(badge, '24 hours / Urgent');
+      card.appendChild(badge);
     }
 
-    var nm=document.createElement('h3');
-    nm.className='r-name';
-    nm.textContent=r.name;
+    var nm = el('h3');
+    nm.className = 'rname';
+    txt(nm, r.name);
     card.appendChild(nm);
 
-    var tg=document.createElement('p');
-    tg.className='r-tagline';
-    tg.textContent=r.tagline;
+    var tg = el('p');
+    tg.className = 'rtag';
+    txt(tg, r.tagline);
     card.appendChild(tg);
 
-    if(r.phone){
-      var ph=document.createElement('div');
-      ph.className='r-row';
-      var ico=document.createElement('span');ico.setAttribute('aria-hidden','true');ico.textContent='\u260e\ufe0f ';
-      var a=document.createElement('a');
-      a.href='tel:'+r.phone.replace(/[^0-9+]/g,'');
-      a.className='r-phone';
-      a.textContent=r.phone;
-      a.setAttribute('aria-label','Call '+r.phone);
-      ph.appendChild(ico);ph.appendChild(a);
-      card.appendChild(ph);
+    if (r.phone) {
+      var prow = el('div');
+      prow.className = 'rrow';
+      var pico = el('span');
+      pico.className = 'rico';
+      attr(pico, 'aria-hidden', 'true');
+      pico.textContent = '\u260E\uFE0F';
+      var alink = el('a');
+      alink.href = 'tel:' + r.phone.replace(/[^0-9+]/g, '');
+      alink.className = 'rphone';
+      txt(alink, r.phone);
+      attr(alink, 'aria-label', 'Call ' + r.phone);
+      prow.appendChild(pico);
+      prow.appendChild(alink);
+      card.appendChild(prow);
     }
 
-    if(r.address){
-      var ad=document.createElement('div');
-      ad.className='r-row';
-      var ai=document.createElement('span');ai.setAttribute('aria-hidden','true');ai.textContent='\u25cf ';
-      var at=document.createElement('span');at.textContent=r.address;
-      ad.appendChild(ai);ad.appendChild(at);
-      card.appendChild(ad);
+    if (r.addr) {
+      var arow = el('div');
+      arow.className = 'rrow';
+      var aico = el('span');
+      aico.className = 'rico';
+      attr(aico, 'aria-hidden', 'true');
+      aico.textContent = '\u25CF';
+      var atxt = el('span');
+      txt(atxt, r.addr);
+      arow.appendChild(aico);
+      arow.appendChild(atxt);
+      card.appendChild(arow);
     }
 
-    if(r.hours){
-      var hr=document.createElement('div');
-      hr.className='r-row';
-      var hi=document.createElement('span');hi.setAttribute('aria-hidden','true');hi.textContent='\u25cb ';
-      var ht=document.createElement('span');ht.textContent=r.hours;
-      hr.appendChild(hi);hr.appendChild(ht);
-      card.appendChild(hr);
+    if (r.hrs) {
+      var hrow = el('div');
+      hrow.className = 'rrow';
+      var hico = el('span');
+      hico.className = 'rico';
+      attr(hico, 'aria-hidden', 'true');
+      hico.textContent = '\u25CB';
+      var htxt = el('span');
+      txt(htxt, r.hrs);
+      hrow.appendChild(hico);
+      hrow.appendChild(htxt);
+      card.appendChild(hrow);
     }
 
-    if(r.langs&&r.langs.length>1){
-      var lt=document.createElement('div');
-      lt.className='lang-tags';
-      lt.setAttribute('aria-label','Languages: '+r.langs.join(', '));
-      r.langs.forEach(function(l){
-        var s=document.createElement('span');
-        s.className='lang-tag';s.textContent=l;
+    if (r.langs && r.langs.length > 1) {
+      var lt = el('div');
+      lt.className = 'ltags';
+      attr(lt, 'aria-label', 'Languages: ' + r.langs.join(', '));
+      r.langs.forEach(function(lang) {
+        var s = el('span');
+        s.className = 'ltag';
+        txt(s, lang);
         lt.appendChild(s);
       });
       card.appendChild(lt);
     }
 
-    if(r.url){
-      var lk=document.createElement('a');
-      lk.href=r.url;lk.className='r-link';
-      lk.rel='noopener noreferrer';lk.target='_blank';
-      lk.setAttribute('aria-label','Visit '+r.name+' website (opens in new tab)');
-      lk.textContent='Visit website \u2197';
-      card.appendChild(lk);
+    if (r.url) {
+      var lnk = el('a');
+      lnk.href = r.url;
+      lnk.className = 'rlink';
+      lnk.rel = 'noopener noreferrer';
+      lnk.target = '_blank';
+      attr(lnk, 'aria-label', 'Visit ' + r.name + ' website (opens in new tab)');
+      txt(lnk, 'Visit website \u2197');
+      card.appendChild(lnk);
     }
 
-    var fl=document.createElement('a');
-    fl.href='mailto:northstarhumanrights@protonmail.com?subject=Flag: '+encodeURIComponent(r.name);
-    fl.className='flag-link';fl.rel='noopener noreferrer';
-    fl.setAttribute('aria-label','Flag '+r.name+' as outdated');
-    fl.textContent='Flag as outdated';
-    card.appendChild(fl);
+    var flg = el('button');
+    flg.className = 'flagbtn';
+    flg.type = 'button';
+    attr(flg, 'aria-label', 'Flag ' + r.name + ' as outdated  -  opens email');
+    txt(flg, 'Flag as outdated');
+    flg.addEventListener('click', function() {
+      window.location.href = 'mailto:northstarhumanrights@protonmail.com?subject=Neighborhood Helper  -  Flag: ' + encodeURIComponent(r.name);
+    });
+    card.appendChild(flg);
 
     list.appendChild(card);
   });
-  document.getElementById('back-results').onclick=function(){
-    if(curTile&&curTile.branch){showScreen('branch','');}
-    else{showScreen('tiles','');}
-  };
 }
 
-function goMap(){curNbhd=null;curTile=null;showScreen('map','Choose your area');}
+/* ============================================================
+   INIT
+   ============================================================ */
+renderHoods();
 
-// INIT
-renderNbhds();
 </script>
 </body>
 </html>
