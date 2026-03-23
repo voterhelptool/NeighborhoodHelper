@@ -30,17 +30,6 @@ Every design decision was made with them in mind:
 
 ---
 
-## What's Inside
-
-```
-stpaul-help.html     — Neighborhood Helper (Saint Paul citywide)
-eastside-help.html   — East Side resource guide (original version)
-```
-
-Both are single HTML files. No build process. No dependencies. No server. Drop either file anywhere and it works.
-
----
-
 ## Neighborhoods Covered
 
 - East Side (Payne-Phalen, Arcade, Dayton's Bluff)
@@ -176,17 +165,6 @@ This tool targets **WCAG 2.1 Level AA** compliance:
 ## License
 
 MIT License — free to use, copy, modify, and distribute. If you build on this for another city or community, please keep the privacy principles intact.
-
----
-
-## Built By
-
-**North Star Human Rights**  
-Saint Paul, Minnesota  
-[northstarhr.pages.dev](https://northstarhr.pages.dev)  
-northstarhumanrights@protonmail.com
-
-*Knowledge is power. Action makes power yours.*
 
 ---
 
