@@ -88,46 +88,6 @@ If you are a native speaker of any of these languages and want to help validate 
 
 ---
 
-## How to Contribute
-
-### Adding or updating a resource
-
-Every resource is a plain JavaScript object near the top of the file. To add one:
-
-```javascript
-your_resource_key: {
-  name: "Organization Name",
-  tagline: "One plain sentence about what they do and who they serve.",
-  phone: "6511234567",        // digits only for tel: link
-  address: "123 Main St, St. Paul 55106",
-  hours: "Monday-Friday 9am-5pm",
-  url: "https://example.org",
-  langs: ["English", "Spanish"],
-  urgent: false,              // true = available 24hrs or emergency resource
-  d: ["east_side"]            // district tags: "east_side", "west_side", 
-                              // "frogtown", "rondo", "north_end", "midway",
-                              // "downtown", "other", "citywide"
-}
-```
-
-Then add the key to the appropriate tile's `results` array in the `TILES` definition.
-
-### Flagging outdated information
-
-Every resource card has a "Flag as outdated" link that sends an email to the maintainer. If you know a phone number has changed, a program has closed, or hours are wrong — use it.
-
-### Adding a neighborhood
-
-Add an entry to the `NBHDS` array:
-
-```javascript
-{id: "your_id", name: "Neighborhood Name", sub: "Cross streets or landmarks"}
-```
-
-Then tag resources with `d: ["your_id"]` to make them appear for that neighborhood.
-
----
-
 ## Privacy
 
 This tool collects **nothing**. There are no:
