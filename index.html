@@ -689,18 +689,26 @@ var R = {
   /* HIGHLAND / WEST 7TH */
   nbhh_high:{name:'Neighborhood House - Highland Food Shelf',tagline:'Food shelf in Highland Park at Sibley Manor Apartments. Call for hours and what to bring.',phone:'651-789-3630',addr:'Sibley Manor Apartments, Highland Park, St. Paul',hrs:'Call for current hours',url:'https://neighborhoodhousemn.org/programs/food-support/',langs:['English'],urg:false,d:['high']},
   joseph_coat:{name:"Joseph's Coat - Free Clothing",tagline:'Free clothing, household items, and personal hygiene items. Appointment required. West 7th Street location.',phone:'651-291-2472',addr:'1107 West 7th St, St. Paul 55102',hrs:'Mon & Wed 9am-3pm, by appointment only',url:'https://www.josephscoatmn.org/',langs:['English'],urg:false,d:['high','west','down']},
-  united_fam:{name:'United Family Medicine',tagline:'Community health clinic on West 7th Street. Sliding scale fees. Primary care for everyone.',phone:'651-758-9500',addr:'1026 West 7th St, St. Paul 55102',hrs:'Monday through Friday, business hours',url:'https://www.ufmclinic.org/',langs:['English','Spanish'],urg:false,d:['high','west']}
+  united_fam:{name:'United Family Medicine',tagline:'Community health clinic on West 7th Street. Sliding scale fees. Primary care for everyone.',phone:'651-758-9500',addr:'1026 West 7th St, St. Paul 55102',hrs:'Monday through Friday, business hours',url:'https://www.ufmclinic.org/',langs:['English','Spanish'],urg:false,d:['high','west']},
+  /* WORK / EMPLOYMENT */
+  careerforce:{name:'CareerForce Saint Paul - Free Job Help',tagline:'Free job search help, resume writing, interview prep, and career training for everyone. Veterans services available. No cost for any services.',phone:'651-266-9890',addr:'121 7th Place East, Suite 2300, St. Paul 55101 (Ramsey County Govt Center, 2nd floor)',hrs:'Monday through Friday, 8am-4:30pm',url:'https://careerforce.mn.gov/saintpaul',langs:['English'],urg:false,d:['all']},
+  ujamaa:{name:'Ujamaa Place',tagline:'Free housing, jobs, education, and mental health support for Black men ages 18 to 30. Info sessions every Wednesday at 10am. All services free.',phone:'651-528-8006',addr:'University Ave, St. Paul (call for exact location)',hrs:'Info sessions: Wednesdays 10am. Call for full schedule.',url:'https://ujamaaplace.org/',langs:['English'],urg:false,d:['all','rondo','frog','midway']},
+  /* FOOD / REFERRAL */
+  shh_care:{name:'Second Harvest Heartland - Find Food Near You',tagline:'Call or text to find the nearest free food shelf or food distribution to you. Available in English, Spanish, Hmong, and Somali.',phone:'866-844-3663',addr:'Call or text from anywhere in the Twin Cities',hrs:'Monday through Friday, 8am-4:30pm',url:'https://www.2harvest.org/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['all']},
+  /* SHELTER / DROP-IN */
+  listening:{name:'Listening House - Drop-In Day Shelter',tagline:'No ID required. Walk in any time for a hot meal, coffee, clothing, phone access, showers, lockers, and someone who will listen.',phone:'651-227-5911',addr:'421 E 7th St, St. Paul 55101',hrs:'Tuesday through Sunday, daytime hours - call ahead',url:'https://www.listeninghouse.org/',langs:['English'],urg:true,d:['down','east']},
+  nbhh_mont:{name:'Neighborhood House - Montreal Ave Food Market',tagline:'Walk-in food market, no appointment needed. Open to everyone. No ID required. West Side and Highland area.',phone:'651-789-3630',addr:'1080 Montreal Ave, St. Paul 55116',hrs:'Monday through Friday, 9am-11:30am and 1-4pm. Walk-in, no appointment.',url:'https://neighborhoodhousemn.org/programs/food-support/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['high','west']}
 };
 
 var TILES = [
   {id:'food',icon:'&#127869;',labelKey:'food',branch:null,
-   res:{def:['mrf','fotv','nbhf','salv_east','ftft','hallie','keystone','shobi','opp','nbhh','salv_cit','nbhh_high','mfhl','r211']}},
+   res:{def:['mrf','fotv','nbhh_mont','nbhf','salv_east','ftft','hallie','keystone','shobi','opp','nbhh','salv_cit','nbhh_high','shh_care','mfhl','r211']}},
   {id:'housing',icon:'&#127968;',labelKey:'housing',
    branch:{q:'What is happening with your housing?',opts:[
      {label:'I got an eviction notice or I am behind on rent',sub:'You may have more options than you know',key:'evict'},
      {label:'I need a place to stay tonight',sub:'Emergency shelter',key:'shelter'}
    ]},
-   res:{evict:['hml','era','mla','rondo_clt','wsco'], shelter:['cc_shlt','rshlt','ugm','st_matt','r211','hml']}},
+   res:{evict:['hml','era','mla','rondo_clt','wsco'], shelter:['cc_shlt','rshlt','ugm','listening','st_matt','r211','hml']}},
   {id:'health',icon:'&#10084;&#65039;',labelKey:'health',
    branch:{q:'What kind of help do you need?',opts:[
      {label:'I am in a mental health crisis right now',sub:null,key:'crisis'},
@@ -721,7 +729,7 @@ var TILES = [
   {id:'kids',icon:'&#128103;',labelKey:'kids',branch:null,
    res:{def:['rcc','wicprog','nbhf','f2f','hallie_ctr','safezone','r211']}},
   {id:'work',icon:'&#128188;',labelKey:'work',branch:null,
-   res:{def:['mrj','iimn','clues','clues_w','opp','r211']}},
+   res:{def:['mrj','careerforce','iimn','clues','clues_w','ujamaa','opp','r211']}},
   {id:'immig',icon:'&#127758;',labelKey:'immig',
    branch:{q:'What do you need right now?',opts:[
      {label:'I am in danger or need help right now',sub:'ICE, detention, or emergency',key:'urg'},
@@ -730,7 +738,7 @@ var TILES = [
    res:{urg:['spimm','ilcm','icm'], legal:['icm','ilcm','iimn']}},
   {id:'unsure',icon:'&#128172;',labelKey:'unsure',
    subKey:'unsureSub',branch:null,
-   res:{def:['r211','mrf','hallie','keystone','hml','r988','mnc','wilder','opp','nbhf']}}
+   res:{def:['r211','mrf','hallie','keystone','listening','hml','r988','mnc','wilder','opp','nbhf']}}
 ];
 
 /* ============================================================
