@@ -3,85 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- ── PRIMARY SEO ─────────────────────────────────────────── -->
-<title>Neighborhood Helper Saint Paul | Free Community Resource Guide</title>
-<meta name="description" content="Free guide to community resources in Saint Paul, MN. Find food shelves, housing help, health care, legal aid, immigration support, and job training near your neighborhood. No account required. No data collected.">
-<meta name="keywords" content="Saint Paul resources, free food Saint Paul, housing help Saint Paul MN, legal aid Saint Paul, immigration help Saint Paul, community resources Ramsey County, food shelf Saint Paul, East Side help, Frogtown resources, Rondo community, West Side Saint Paul, free services Minnesota">
-<meta name="author" content="North Star Human Rights">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://neighborhoodhelper.pages.dev/">
-
-<!-- ── OPEN GRAPH (Facebook, LinkedIn, iMessage previews) ──── -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://neighborhoodhelper.pages.dev/">
-<meta property="og:title" content="Neighborhood Helper Saint Paul | Free Community Resource Guide">
-<meta property="og:description" content="Find food, housing help, health care, legal aid, immigration support, and job training near your Saint Paul neighborhood. Free. Private. No account needed.">
-<meta property="og:site_name" content="Neighborhood Helper">
-<meta property="og:locale" content="en_US">
-
-<!-- ── TWITTER / X CARD ────────────────────────────────────── -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Neighborhood Helper Saint Paul | Free Community Resource Guide">
-<meta name="twitter:description" content="Find food, housing, health care, legal aid, and immigration help near your Saint Paul neighborhood. Free. Private. No account needed.">
-<meta name="twitter:site" content="@northstarhr">
-
-<!-- ── GEO / LOCAL SEO ─────────────────────────────────────── -->
-<meta name="geo.region" content="US-MN">
-<meta name="geo.placename" content="Saint Paul, Minnesota">
-<meta name="geo.position" content="44.9537;-93.0900">
-<meta name="ICBM" content="44.9537, -93.0900">
-
-<!-- ── TRUST / SECURITY ────────────────────────────────────── -->
+<title>Neighborhood Helper - Saint Paul</title>
+<meta name="description" content="Free help for Saint Paul residents. Pick your neighborhood, find real help near you. No account. No data collected.">
 <meta name="theme-color" content="#0d2137">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self';">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="no-referrer">
-<meta name="referrer" content="no-referrer">
-
-<!-- ── STRUCTURED DATA (Google Rich Results / Knowledge Graph) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Neighborhood Helper Saint Paul",
-  "alternateName": "Neighborhood Helper",
-  "url": "https://neighborhoodhelper.pages.dev/",
-  "description": "Free guide to community resources in Saint Paul, Minnesota. Helps residents find food, housing assistance, health care, legal aid, immigration support, and job training by neighborhood. No account required. No data collected.",
-  "applicationCategory": "SocialApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "provider": {
-    "@type": "NonprofitOrganization",
-    "name": "North Star Human Rights",
-    "url": "https://northstarhr.pages.dev",
-    "email": "northstarhumanrights@protonmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Saint Paul",
-      "addressRegion": "MN",
-      "addressCountry": "US"
-    }
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Saint Paul",
-    "containedInPlace": {
-      "@type": "State",
-      "name": "Minnesota"
-    }
-  },
-  "inLanguage": ["en", "es", "so", "hmn"],
-  "isAccessibleForFree": true,
-  "keywords": "food shelf, housing help, legal aid, immigration, health care, job training, Saint Paul, Minnesota, community resources, Ramsey County"
-}
-</script>
-
-<!-- ── FONTS ─────────────────────────────────────────────────── -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <style>
@@ -434,7 +361,7 @@ main{
     </button>
     <div class="box">
       <h2 id="h-tiles">What do you <em>need?</em></h2>
-      <p id="tiles-place">Choose the one that fits best.</p>
+      <p id="tiles-place" data-i18n="tilesSub">Choose the one that fits best.</p>
     </div>
     <nav aria-label="Help categories" id="tile-grid" class="g2"></nav>
   </section>
@@ -457,7 +384,7 @@ main{
     </button>
     <div class="rhd">
       <h2 id="h-results" tabindex="-1"></h2>
-      <p data-i18n="resSub">Real places. Verified. All free to contact.</p>
+      <p data-i18n="resSub2">Real places. Verified. All free to contact.</p>
     </div>
     <div id="results-list" role="list"></div>
     <div class="rftr" role="complementary">
@@ -497,146 +424,180 @@ var STRINGS = {
     h1:'Where do you live?',
     h1p:'Tap your neighborhood. We will show you real help near you.',
     h2:'What do you need?',
+    tilesSub:'Choose the one that fits best.',
     resSub:'Real places. Verified. All free.',
+    resSub2:'Real places. Verified. All free to contact.',
     noRes:'Call 2-1-1 for help finding resources in your area.',
-    back:'Back',
-    visit:'Visit website',
-    flag:'Flag as outdated',
-    urg:'24 hours / Urgent',
+    back:'Back',visit:'Visit website',flag:'Flag as outdated',urg:'24 hours / Urgent',
     notFind:'Not finding what you need?',
     call211:'Call 2-1-1 free, 24 hours a day, 7 days a week. They speak many languages and can help with almost anything.',
     footerMain:'Free forever. No data collected. Educational only. Not legal advice.',
-    footerWrong:'Something wrong or out of date?',
-    footerLink:'Let us know',
-    food:'I need food',
-    housing:'I need help with housing',
-    health:'I need health care',
-    money:'I need help with bills or money',
-    legal:'I need legal help',
-    kids:'I need help with kids or child care',
-    work:'I need work or job training',
-    immig:'I need immigration help',
-    unsure:"I'm not sure where to start",
-    unsureSub:"That's okay. Here are the most helpful places."
+    footerWrong:'Something wrong or out of date?',footerLink:'Let us know',
+    food:'I need food',housing:'I need help with housing',health:'I need health care',
+    money:'I need help with bills or money',legal:'I need legal help',
+    kids:'I need help with kids or child care',work:'I need work or job training',
+    immig:'I need immigration help',unsure:"I'm not sure where to start",
+    unsureSub:"That's okay. Here are the most helpful places.",
+    b_house_q:'What is happening with your housing?',
+    b_evict:'I got an eviction notice or I am behind on rent',
+    b_evict_sub:'You may have more options than you know',
+    b_shelter:'I need a place to stay tonight',b_shelter_sub:'Emergency shelter',
+    b_health_q:'What kind of help do you need?',
+    b_crisis:'I am in a mental health crisis right now',
+    b_mental:'Mental health care - not an emergency',b_mental_sub:'Counseling, therapy, support',
+    b_physical:'Physical health or medical care',b_physical_sub:'Doctor, clinic, pharmacy',
+    b_child:'Help for a child or teenager',b_child_sub:'Under 18 years old',
+    b_legal_q:'What kind of legal help do you need?',
+    b_house:'A landlord or housing problem',
+    b_immig:'Immigration issue',b_immig_sub:'Status, ICE, or deportation',
+    b_other:'Something else',
+    b_immig_q:'What do you need right now?',
+    b_immig_urg:'I am in danger or need help right now',b_immig_urg_sub:'ICE, detention, or emergency',
+    b_immig_legal:'I need legal help with my case or documents',b_immig_legal_sub:'Visas, citizenship, permits',
+    h_east:'East Side',h_east_sub:"Payne-Phalen, Arcade, Dayton's Bluff",
+    h_west:'West Side',h_west_sub:'District del Sol, Cesar Chavez St',
+    h_frog:'Frogtown',h_frog_sub:'Thomas-Dale, University Ave',
+    h_rondo:'Rondo',h_rondo_sub:'Summit-University, Selby Ave',
+    h_north:'North End',h_north_sub:'Rice St, Maryland Ave area',
+    h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
+    h_down:'Downtown',h_down_sub:'Lowertown, Capitol area',
+    h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
+    h_any:"I'm not sure",h_any_sub:"That's okay - start here"
   },
   es:{
     tag:'Gratis · Privado · Saint Paul',
     privacy:'No recopilamos ningún dato sobre usted',
-    area:'Elija su área',
-    h1:'¿Dónde vive?',
+    area:'Elija su área',h1:'¿Dónde vive?',
     h1p:'Toque su vecindario. Le mostraremos ayuda real cerca de usted.',
-    h2:'¿Qué necesita?',
+    h2:'¿Qué necesita?',tilesSub:'Elija la que mejor le corresponda.',
     resSub:'Lugares reales. Verificados. Todos gratis.',
+    resSub2:'Lugares reales. Verificados. Todos gratis para contactar.',
     noRes:'Llame al 2-1-1 para encontrar recursos en su área.',
-    back:'Atrás',
-    visit:'Visitar sitio web',
-    flag:'Marcar como desactualizado',
-    urg:'24 horas / Urgente',
+    back:'Atrás',visit:'Visitar sitio web',flag:'Marcar como desactualizado',urg:'24 horas / Urgente',
     notFind:'¿No encuentra lo que necesita?',
-    call211:'Llame al 2-1-1 gratis, 24 horas al día, 7 días a la semana. Hablan muchos idiomas y pueden ayudar con casi todo.',
+    call211:'Llame al 2-1-1 gratis, 24 horas al día, 7 días a la semana. Hablan muchos idiomas.',
     footerMain:'Gratis para siempre. No se recopilan datos. Solo educativo. No es asesoría legal.',
-    footerWrong:'¿Algo incorrecto o desactualizado?',
-    footerLink:'Háganoslo saber',
-    food:'Necesito comida',
-    housing:'Necesito ayuda con vivienda',
-    health:'Necesito atención médica',
-    money:'Necesito ayuda con facturas o dinero',
-    legal:'Necesito ayuda legal',
-    kids:'Necesito ayuda con niños o cuidado infantil',
-    work:'Necesito trabajo o capacitación laboral',
-    immig:'Necesito ayuda con inmigración',
-    unsure:'No sé por dónde empezar',
-    unsureSub:'Está bien. Aquí están los lugares más útiles.'
+    footerWrong:'¿Algo incorrecto o desactualizado?',footerLink:'Háganoslo saber',
+    food:'Necesito comida',housing:'Necesito ayuda con vivienda',health:'Necesito atención médica',
+    money:'Necesito ayuda con facturas o dinero',legal:'Necesito ayuda legal',
+    kids:'Necesito ayuda con niños o cuidado infantil',work:'Necesito trabajo o capacitación laboral',
+    immig:'Necesito ayuda con inmigración',unsure:'No sé por dónde empezar',
+    unsureSub:'Está bien. Aquí están los lugares más útiles.',
+    b_house_q:'¿Qué está pasando con su vivienda?',
+    b_evict:'Recibí un aviso de desalojo o estoy atrasado en el alquiler',
+    b_evict_sub:'Puede que tenga más opciones de las que sabe',
+    b_shelter:'Necesito un lugar donde quedarme esta noche',b_shelter_sub:'Refugio de emergencia',
+    b_health_q:'¿Qué tipo de ayuda necesita?',
+    b_crisis:'Estoy en una crisis de salud mental ahora mismo',
+    b_mental:'Atención de salud mental - no es una emergencia',b_mental_sub:'Consejeria, terapia, apoyo',
+    b_physical:'Atención médica o física',b_physical_sub:'Médico, clínica, farmacia',
+    b_child:'Ayuda para un niño o adolescente',b_child_sub:'Menor de 18 años',
+    b_legal_q:'¿Qué tipo de ayuda legal necesita?',
+    b_house:'Un problema con el arrendador o la vivienda',
+    b_immig:'Problema de inmigración',b_immig_sub:'Estatus, ICE o deportación',
+    b_other:'Otra cosa',b_immig_q:'¿Qué necesita ahora mismo?',
+    b_immig_urg:'Estoy en peligro o necesito ayuda ahora mismo',b_immig_urg_sub:'ICE, detención o emergencia',
+    b_immig_legal:'Necesito ayuda legal con mi caso o documentos',b_immig_legal_sub:'Visas, ciudadanía, permisos',
+    h_east:'Lado Este',h_east_sub:"Payne-Phalen, Arcade, Dayton's Bluff",
+    h_west:'Lado Oeste',h_west_sub:'District del Sol, Cesar Chavez St',
+    h_frog:'Frogtown',h_frog_sub:'Thomas-Dale, University Ave',
+    h_rondo:'Rondo',h_rondo_sub:'Summit-University, Selby Ave',
+    h_north:'Norte',h_north_sub:'Rice St, Maryland Ave',
+    h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
+    h_down:'Centro',h_down_sub:'Lowertown, área del Capitolio',
+    h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
+    h_any:'No estoy seguro',h_any_sub:'Está bien - empiece aquí'
   },
   so:{
     tag:'Bilaash · Qarsoodi · Saint Paul',
     privacy:'Ma aruurinno wax macluumaad ah oo kugusaabsan',
-    area:'Dooro aagaaga',
-    h1:'Xaggee baad ku nooshahay?',
+    area:'Dooro aagaaga',h1:'Xaggee baad ku nooshahay?',
     h1p:'Taabo xaafaddaada. Waxaan ku tusaynaa gargaar dhab ah oo kuu dhow.',
-    h2:'Maxaad u baahan tahay?',
+    h2:'Maxaad u baahan tahay?',tilesSub:'Dooro mid ka mid ah.',
     resSub:'Goobaha dhab ah. La xaqiijiyay. Dhammaan bilaash.',
+    resSub2:'Goobaha dhab ah. La xaqiijiyay. Dhammaan bilaash xiriirka.',
     noRes:'Wac 2-1-1 si aad u hesho kheyraadka aagaaga.',
-    back:'Dib u noqo',
-    visit:'Booqo websaydka',
-    flag:'Calaamadee inay duugowday',
-    urg:'24 saacadood / Deg deg ah',
+    back:'Dib u noqo',visit:'Booqo websaydka',flag:'Calaamadee inay duugowday',urg:'24 saacadood / Deg deg ah',
     notFind:'Ma heshay waxa aad raadineyso?',
-    call211:'Wac 2-1-1 bilaash, 24 saacadood maalintii, 7 maalmood toddobaadka. Waxay ku hadlaan luuqado badan oo waxay kaa caawin karaan xaaladaha badan.',
+    call211:'Wac 2-1-1 bilaash, 24 saacadood maalintii, 7 maalmood toddobaadka. Waxay ku hadlaan luuqado badan.',
     footerMain:'Bilaash abadan. Ma kaydino xog. Waxbarasho kaliya. Kuma aha tallo sharci.',
-    footerWrong:'Wax khaldan ama duugowday?',
-    footerLink:'Noo soo sheeg',
-    food:'Cunto baan u baahan ahay',
-    housing:'Guri baan u baahan ahay gargaar',
-    health:'Daryeel caafimaad baan u baahan ahay',
-    money:'Lacag ama biilal baan u baahan ahay gargaar',
-    legal:'Gargaar sharci baan u baahan ahay',
-    kids:'Carruur ama daryeel carruuri baan u baahan ahay',
-    work:'Shaqo ama tababar baan u baahan ahay',
-    immig:'Gargaar socdaalka baan u baahan ahay',
+    footerWrong:'Wax khaldan ama duugowday?',footerLink:'Noo soo sheeg',
+    food:'Cunto baan u baahan ahay',housing:'Guri baan u baahan ahay gargaar',
+    health:'Daryeel caafimaad baan u baahan ahay',money:'Lacag ama biilal baan u baahan ahay gargaar',
+    legal:'Gargaar sharci baan u baahan ahay',kids:'Carruur ama daryeel carruuri baan u baahan ahay',
+    work:'Shaqo ama tababar baan u baahan ahay',immig:'Gargaar socdaalka baan u baahan ahay',
     unsure:'Garan maayo meesha aan ka bilaabo',
-    unsureSub:"Sidaas waa fiican. Kuwaas waa goobaha ugu faa'iidada badan."
+    unsureSub:"Sidaas waa fiican. Kuwaas waa goobaha ugu faa'iidada badan.",
+    b_house_q:'Maxaa ku dhacaya gurigaaga?',
+    b_evict:'Warqad ka saarista ayaan helay ama lacagtii kiradu way dhaaftay',
+    b_evict_sub:'Waxaa laga yaabaa inaad xulasho badan leedahay',
+    b_shelter:'Meel aan ku seexdo habeenkan baan u baahan ahay',b_shelter_sub:'Guri deg deg ah',
+    b_health_q:'Nooca gargaarka aad u baahan tahay?',
+    b_crisis:'Xaalad caafimaad maskax ah ayaan ku jiraa hadda',
+    b_mental:'Daryeel caafimaad maskax - xaaladda degdeg ma ahan',b_mental_sub:'La tashanaan, daawasho, taageero',
+    b_physical:'Daryeel dhaktar ama caafimaad jireed',b_physical_sub:'Dhakhtar, rugta caafimaadka, daawada',
+    b_child:'Gargaar caruur ama da-yar',b_child_sub:'Ka yar 18 sano',
+    b_legal_q:'Nooca gargaarka sharciga aad u baahan tahay?',
+    b_house:'Mushkil guriga ama mulkiiluhu',
+    b_immig:'Arrin socdaal',b_immig_sub:'Xaalada, ICE, ama sarid',
+    b_other:'Wax kale',b_immig_q:'Maxaad u baahan tahay hadda?',
+    b_immig_urg:'Khatarta ayaan ku jiraa ama gargaar baan u baahan ahay hadda',b_immig_urg_sub:'ICE, xabsi, ama xaalad deg deg ah',
+    b_immig_legal:'Gargaar sharci ah oo ku saabsan kiiskaygii ama dukumentiyada',b_immig_legal_sub:'Fiisaha, muwaatinnimada, ruqsadaha',
+    h_east:'Bariga',h_east_sub:"Payne-Phalen, Arcade, Dayton's Bluff",
+    h_west:'Galbeedka',h_west_sub:'District del Sol, Cesar Chavez St',
+    h_frog:'Frogtown',h_frog_sub:'Thomas-Dale, University Ave',
+    h_rondo:'Rondo',h_rondo_sub:'Summit-University, Selby Ave',
+    h_north:'Woqooyi',h_north_sub:'Rice St, Maryland Ave',
+    h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
+    h_down:'Xarunta Magaalada',h_down_sub:'Lowertown, aagga Capitol',
+    h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
+    h_any:'Ma garanayso',h_any_sub:'Waa fiican - halkan ku bilow'
   },
   hmn:{
     tag:'Dawb · Nkag Siab · Saint Paul',
     privacy:'Peb tsis sau ib qho ntaub ntawv txog koj',
-    area:'Xaiv koj cheeb tsam',
-    h1:'Koj nyob qhov twg?',
+    area:'Xaiv koj cheeb tsam',h1:'Koj nyob qhov twg?',
     h1p:'Kov koj cheeb tsam. Peb yuav qhia koj kev pab tiag nyob ze koj.',
-    h2:'Koj xav tau dab tsi?',
+    h2:'Koj xav tau dab tsi?',tilesSub:'Xaiv ib qho uas haum koj tshaj.',
     resSub:'Cov chaw tiag. Tau txheeb xyuas. Dawb tag nrho.',
+    resSub2:'Cov chaw tiag. Tau txheeb xyuas. Dawb tiv thaiv.',
     noRes:'Hu rau 2-1-1 kom nrhiav tau kev pab hauv koj cheeb tsam.',
-    back:'Rov qab',
-    visit:'Mus saib lub vas sab',
-    flag:'Kos tias qub lawm',
-    urg:'24 teev / Ceev ceev',
+    back:'Rov qab',visit:'Mus saib lub vas sab',flag:'Kos tias qub lawm',urg:'24 teev / Ceev ceev',
     notFind:'Puas nrhiav tsis tau yam koj xav tau?',
-    call211:'Hu rau 2-1-1 dawb, 24 teev ib hnub, 7 hnub ib lim tiam. Lawv hais ntau hom lus thiab pab tau ntau yam.',
+    call211:'Hu rau 2-1-1 dawb, 24 teev ib hnub, 7 hnub ib lim tiam. Lawv hais ntau hom lus.',
     footerMain:'Dawb ib txwm. Tsis sau ntaub ntawv. Kawm ntawv xwb. Tsis yog kev taw qhia kev cai.',
-    footerWrong:'Muaj yam yuam kev lossis qub?',
-    footerLink:'Qhia peb paub',
-    food:'Kuv xav tau zaub mov',
-    housing:'Kuv xav tau kev pab tsev nyob',
-    health:'Kuv xav tau kev kho mob',
-    money:'Kuv xav tau kev pab nqi lees lossis nyiaj',
-    legal:'Kuv xav tau kev pab kev cai lij choj',
-    kids:'Kuv xav tau kev pab me nyuam lossis tu me nyuam',
-    work:'Kuv xav tau hauj lwm lossis kev kawm txuj ci',
-    immig:'Kuv xav tau kev pab kev tsiv teb tsaws chaw',
-    unsure:'Kuv tsis paub yuav pib qhov twg',
-    unsureSub:'Tsis ua cas. Nov yog cov chaw pab tau tshaj plaws.'
-  },
-  kar:{
-    tag:'Hklé · Thă · Saint Paul',
-    privacy:'Yă oh dă phă moe dă lă ah mă',
-    area:'Nă thă kă lă',
-    h1:'Nă oă dă?',
-    h1p:'Nă thă dă kă. Yă oă nă thă ta blă dă.',
-    h2:'Nă oă dă bă?',
-    resSub:'O phă dă. Tă vă tă. Hklé tag.',
-    noRes:'Wac 2-1-1 ta blă dă.',
-    back:'Dă phă',
-    visit:'Bă web site',
-    flag:'Kă tă duug',
-    urg:'24 hr / Dă dă',
-    notFind:'Nă dă mă tă bă?',
-    call211:'Wac 2-1-1 hklé, 24 hr, 7 ni. Lawv hais kă lus la, pab dă la.',
-    footerMain:'Hklé. Dă tă lă. Education kă. Legal advice mă.',
-    footerWrong:'Yam phă?',
-    footerLink:'Qă peb',
-    food:'Yă oă sa',
-    housing:'Yă oă ta blă tsev',
-    health:'Yă oă kho mob',
-    money:'Yă oă ta blă nyiaj',
-    legal:'Yă oă ta blă cai',
-    kids:'Yă oă ta blă me nyuam',
-    work:'Yă oă hauj lwm',
-    immig:'Yă oă ta blă socdaal',
-    unsure:'Yă mă paub pib',
-    unsureSub:'Tsis ua li cas. Cov chaw no pab.'
+    footerWrong:'Muaj yam yuam kev lossis qub?',footerLink:'Qhia peb paub',
+    food:'Kuv xav tau zaub mov',housing:'Kuv xav tau kev pab tsev nyob',
+    health:'Kuv xav tau kev kho mob',money:'Kuv xav tau kev pab nqi lees lossis nyiaj',
+    legal:'Kuv xav tau kev pab kev cai lij choj',kids:'Kuv xav tau kev pab me nyuam lossis tu me nyuam',
+    work:'Kuv xav tau hauj lwm lossis kev kawm txuj ci',immig:'Kuv xav tau kev pab kev tsiv teb tsaws chaw',
+    unsure:'Kuv tsis paub yuav pib qhov twg',unsureSub:'Tsis ua cas. Nov yog cov chaw pab tau tshaj plaws.',
+    b_house_q:'Dab tsi tshwm sim rau koj lub tsev?',
+    b_evict:'Kuv tau txais ntawv ntiab tawm lossis kuv them tsis tau nqi tsev',
+    b_evict_sub:'Tej zaum koj muaj ntau txoj kev xaiv dua li koj xav',
+    b_shelter:'Kuv xav tau chaw pw hmo no',b_shelter_sub:'Chaw nyob ceev xwm',
+    b_health_q:'Koj xav tau kev pab hom twg?',
+    b_crisis:'Kuv tab tom muaj teeb meem kev xav tam sim no',
+    b_mental:'Kev pab kev xav - tsis yog ceev xwm',b_mental_sub:'Kev tham, kev kho, kev txhawb nqa',
+    b_physical:'Kev kho mob lossis saib xyuas kev noj qab haus huv',b_physical_sub:'Kws kho mob, chaw kho mob, tshuaj',
+    b_child:'Kev pab rau me nyuam lossis tub ntxhais hluas',b_child_sub:'Muaj hnub nyoog qis dua 18 xyoo',
+    b_legal_q:'Koj xav tau kev pab kev cai lij choj hom twg?',
+    b_house:'Teeb meem nrog tus tswv tsev lossis lub tsev',
+    b_immig:'Teeb meem kev tsiv teb tsaws chaw',b_immig_sub:'Xwm txheej, ICE, lossis raug ntiab tawm',
+    b_other:'Lwm yam',b_immig_q:'Koj xav tau dab tsi tam sim no?',
+    b_immig_urg:'Kuv tab tom muaj kev phom sij lossis xav tau kev pab tam sim no',b_immig_urg_sub:'ICE, raug kaw, lossis xwm txheej ceev',
+    b_immig_legal:'Kuv xav tau kev pab kev cai lij choj rau kuv rooj plaub lossis cov ntaub ntawv',b_immig_legal_sub:'Vis-xas, pej xeem, ntawv tso cai',
+    h_east:'Sab Hnub Tuaj',h_east_sub:"Payne-Phalen, Arcade, Dayton's Bluff",
+    h_west:'Sab Hnub Poob',h_west_sub:'District del Sol, Cesar Chavez St',
+    h_frog:'Frogtown',h_frog_sub:'Thomas-Dale, University Ave',
+    h_rondo:'Rondo',h_rondo_sub:'Summit-University, Selby Ave',
+    h_north:'Sab Qaum Teb',h_north_sub:'Rice St, Maryland Ave',
+    h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
+    h_down:'Nroog Nrab',h_down_sub:'Lowertown, cheeb tsam Capitol',
+    h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
+    h_any:'Kuv tsis paub',h_any_sub:'Tsis ua cas - pib ntawm no'
   }
-};
-
+}
 var curLang = 'en';
 var S = STRINGS.en;
 
@@ -644,38 +605,27 @@ function setLang(code) {
   if (!STRINGS[code]) { return; }
   curLang = code;
   S = STRINGS[code];
-
-  // Update lang buttons
   document.querySelectorAll('.lb').forEach(function(b) {
     b.classList.remove('on');
     b.removeAttribute('aria-pressed');
   });
   var active = document.querySelector('.lb[data-lang="' + code + '"]');
-  if (active) {
-    active.classList.add('on');
-    active.setAttribute('aria-pressed', 'true');
-  }
-
-  // Update all translateable elements
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n');
-    if (S[key] !== undefined) { el.textContent = S[key]; }
+  if (active) { active.classList.add('on'); active.setAttribute('aria-pressed', 'true'); }
+  document.querySelectorAll('[data-i18n]').forEach(function(node) {
+    var key = node.getAttribute('data-i18n');
+    if (S[key] !== undefined) { node.textContent = S[key]; }
   });
-
-  // Re-render current screen content (tiles labels, etc)
-  if (curHood) {
-    renderTiles(document.getElementById('tiles-place').getAttribute('data-hood-name') || curHood);
-  }
   renderHoods();
-
-  // Update html lang attribute
+  var ts = document.getElementById('scr-tiles');
+  if (ts && ts.classList.contains('on') && curHood) {
+    renderTiles(S['h_' + curHood] || curHood);
+  }
+  var bs = document.getElementById('scr-branch');
+  if (bs && bs.classList.contains('on') && curTile && curTile.branch) {
+    renderBranch(curTile);
+  }
   document.documentElement.setAttribute('lang',
-    code === 'en' ? 'en' :
-    code === 'es' ? 'es' :
-    code === 'so' ? 'so' :
-    code === 'hmn' ? 'hmn' :
-    'kar'
-  );
+    code==='en'?'en':code==='es'?'es':code==='so'?'so':'hmn');
 }
 
 'use strict';
@@ -688,15 +638,15 @@ function setLang(code) {
    ============================================================ */
 
 var HOODS = [
-  {id:'east',   name:'East Side',         sub:"Payne-Phalen, Arcade, Dayton's Bluff"},
-  {id:'west',   name:'West Side',         sub:'District del Sol, Cesar Chavez St'},
-  {id:'frog',   name:'Frogtown',          sub:'Thomas-Dale, University Ave'},
-  {id:'rondo',  name:'Rondo',             sub:'Summit-University, Selby Ave'},
-  {id:'north',  name:'North End',         sub:'Rice St, Maryland Ave area'},
-  {id:'midway', name:'Midway',            sub:'Hamline, Snelling, Green Line'},
-  {id:'down',   name:'Downtown',          sub:'Lowertown, Capitol area'},
-  {id:'high',   name:'Highland / West 7th', sub:'Highland Park, Fort Road, Como'},
-  {id:'any',    name:"I'm not sure",      sub:"That's okay - start here", unsure:true}
+  {id:'east',   nameKey:'h_east',   subKey:'h_east_sub'},
+  {id:'west',   nameKey:'h_west',   subKey:'h_west_sub'},
+  {id:'frog',   nameKey:'h_frog',   subKey:'h_frog_sub'},
+  {id:'rondo',  nameKey:'h_rondo',  subKey:'h_rondo_sub'},
+  {id:'north',  nameKey:'h_north',  subKey:'h_north_sub'},
+  {id:'midway', nameKey:'h_midway', subKey:'h_midway_sub'},
+  {id:'down',   nameKey:'h_down',   subKey:'h_down_sub'},
+  {id:'high',   nameKey:'h_high',   subKey:'h_high_sub'},
+  {id:'any',    nameKey:'h_any',    subKey:'h_any_sub', unsure:true}
 ];
 
 var R = {
@@ -777,40 +727,39 @@ var TILES = [
   {id:'food',icon:'&#127869;',labelKey:'food',branch:null,
    res:{def:['mrf','fotv','nbhh_mont','nbhf','salv_east','ftft','hallie','keystone','shobi','opp','nbhh','salv_cit','nbhh_high','shh_care','mfhl','r211']}},
   {id:'housing',icon:'&#127968;',labelKey:'housing',
-   branch:{q:'What is happening with your housing?',opts:[
-     {label:'I got an eviction notice or I am behind on rent',sub:'You may have more options than you know',key:'evict'},
-     {label:'I need a place to stay tonight',sub:'Emergency shelter',key:'shelter'}
+   branch:{qKey:'b_house_q',opts:[
+     {labelKey:'b_evict',subKey:'b_evict_sub',key:'evict'},
+     {labelKey:'b_shelter',subKey:'b_shelter_sub',key:'shelter'}
    ]},
-   res:{evict:['hml','era','mla','rondo_clt','wsco'], shelter:['cc_shlt','rshlt','ugm','listening','st_matt','r211','hml']}},
+   res:{evict:['hml','era','mla','rondo_clt','wsco'],shelter:['cc_shlt','rshlt','ugm','listening','st_matt','r211','hml']}},
   {id:'health',icon:'&#10084;&#65039;',labelKey:'health',
-   branch:{q:'What kind of help do you need?',opts:[
-     {label:'I am in a mental health crisis right now',sub:null,key:'crisis'},
-     {label:'Mental health care - not an emergency',sub:'Counseling, therapy, support',key:'mental'},
-     {label:'Physical health or medical care',sub:'Doctor, clinic, pharmacy',key:'physical'},
-     {label:'Help for a child or teenager',sub:'Under 18 years old',key:'child'}
+   branch:{qKey:'b_health_q',opts:[
+     {labelKey:'b_crisis',subKey:null,key:'crisis'},
+     {labelKey:'b_mental',subKey:'b_mental_sub',key:'mental'},
+     {labelKey:'b_physical',subKey:'b_physical_sub',key:'physical'},
+     {labelKey:'b_child',subKey:'b_child_sub',key:'child'}
    ]},
-   res:{crisis:['r988','rcra','rcrk','cornerstone','wom_adv'], mental:['wilder','wlk','rcra','clues','mnc'], physical:['mnc','mncw','mncf','mncn','united_fam'], child:['rcrk','f2f','mnc','wilder']}},
+   res:{crisis:['r988','rcra','rcrk','cornerstone','wom_adv'],mental:['wilder','wlk','rcra','clues','mnc'],physical:['mnc','mncw','mncf','mncn','united_fam'],child:['rcrk','f2f','mnc','wilder']}},
   {id:'money',icon:'&#128181;',labelKey:'money',branch:null,
    res:{def:['cap','era','wicprog','clues','clues_w','r211']}},
   {id:'legal',icon:'&#9878;&#65039;',labelKey:'legal',
-   branch:{q:'What kind of legal help do you need?',opts:[
-     {label:'A landlord or housing problem',sub:null,key:'house'},
-     {label:'Immigration issue',sub:'Status, ICE, or deportation',key:'immig'},
-     {label:'Something else',sub:null,key:'other'}
+   branch:{qKey:'b_legal_q',opts:[
+     {labelKey:'b_house',subKey:null,key:'house'},
+     {labelKey:'b_immig',subKey:'b_immig_sub',key:'immig'},
+     {labelKey:'b_other',subKey:null,key:'other'}
    ]},
-   res:{house:['hml','mla','era','wsco'], immig:['spimm','ilcm','icm','iimn'], other:['mla','r211']}},
+   res:{house:['hml','mla','era','wsco'],immig:['spimm','ilcm','icm','iimn'],other:['mla','r211']}},
   {id:'kids',icon:'&#128103;',labelKey:'kids',branch:null,
    res:{def:['rcc','wicprog','nbhf','f2f','hallie_ctr','safezone','r211']}},
   {id:'work',icon:'&#128188;',labelKey:'work',branch:null,
    res:{def:['mrj','careerforce','iimn','clues','clues_w','ujamaa','opp','r211']}},
   {id:'immig',icon:'&#127758;',labelKey:'immig',
-   branch:{q:'What do you need right now?',opts:[
-     {label:'I am in danger or need help right now',sub:'ICE, detention, or emergency',key:'urg'},
-     {label:'I need legal help with my case or documents',sub:'Visas, citizenship, permits',key:'legal'}
+   branch:{qKey:'b_immig_q',opts:[
+     {labelKey:'b_immig_urg',subKey:'b_immig_urg_sub',key:'urg'},
+     {labelKey:'b_immig_legal',subKey:'b_immig_legal_sub',key:'legal'}
    ]},
-   res:{urg:['spimm','ilcm','icm'], legal:['icm','ilcm','iimn']}},
-  {id:'unsure',icon:'&#128172;',labelKey:'unsure',
-   subKey:'unsureSub',branch:null,
+   res:{urg:['spimm','ilcm','icm'],legal:['icm','ilcm','iimn']}},
+  {id:'unsure',icon:'&#128172;',labelKey:'unsure',subKey:'unsureSub',branch:null,
    res:{def:['r211','mrf','hallie','keystone','listening','hml','r988','mnc','wilder','opp','nbhf']}}
 ];
 
@@ -868,41 +817,37 @@ function renderHoods() {
   var grid = document.getElementById('hood-grid');
   grid.innerHTML = '';
   HOODS.forEach(function(h) {
+    var name = S[h.nameKey] || h.nameKey;
+    var sub  = S[h.subKey]  || h.subKey;
     var btn = el('button');
     btn.className = 'nb' + (h.unsure ? ' full' : '');
     btn.type = 'button';
-    attr(btn, 'aria-label', h.name + (h.sub ? ', ' + h.sub : ''));
-
+    attr(btn, 'aria-label', name + ', ' + sub);
     if (h.unsure) {
       var ico = el('span');
       ico.className = 'full-ico';
       attr(ico, 'aria-hidden', 'true');
-      ico.textContent = '\uD83D\uDCAC'; // speech bubble
+      ico.textContent = '\uD83D\uDCAC';
       btn.appendChild(ico);
     }
-
     var wrap = el('div');
-
-    var name = el('div');
-    name.className = 'nb-name';
-    txt(name, h.name);
-    wrap.appendChild(name);
-
-    if (h.sub) {
-      var sub = el('div');
-      sub.className = 'nb-sub';
-      txt(sub, h.sub);
-      wrap.appendChild(sub);
-    }
-
+    var nameEl = el('div');
+    nameEl.className = 'nb-name';
+    txt(nameEl, name);
+    wrap.appendChild(nameEl);
+    var subEl = el('div');
+    subEl.className = 'nb-sub';
+    txt(subEl, sub);
+    wrap.appendChild(subEl);
     btn.appendChild(wrap);
-
-    btn.addEventListener('click', function() {
-      curHood = h.id;
-      renderTiles(h.name);
-      showScr('tiles', 'Help for ' + h.name);
-    });
-
+    btn.addEventListener('click', (function(hood) {
+      return function() {
+        curHood = hood.id;
+        var hoodName = S[hood.nameKey] || hood.nameKey;
+        renderTiles(hoodName);
+        showScr('tiles', 'Help for ' + hoodName);
+      };
+    })(h));
     grid.appendChild(btn);
   });
 }
@@ -976,38 +921,36 @@ function renderTiles(hoodName) {
    RENDER: BRANCH
    ============================================================ */
 function renderBranch(tile) {
-  txt(document.getElementById('h-branch'), tile.branch.q);
-
+  var q = S[tile.branch.qKey] || tile.branch.qKey;
+  txt(document.getElementById('h-branch'), q);
   var opts = document.getElementById('branch-opts');
   opts.innerHTML = '';
-
   tile.branch.opts.forEach(function(opt) {
+    var label = S[opt.labelKey] || opt.labelKey;
+    var sub   = opt.subKey ? (S[opt.subKey] || opt.subKey) : null;
     var btn = el('button');
     btn.className = 'bopt';
     btn.type = 'button';
     attr(btn, 'role', 'listitem');
-    attr(btn, 'aria-label', opt.label + (opt.sub ? ', ' + opt.sub : ''));
-
+    attr(btn, 'aria-label', label + (sub ? ', ' + sub : ''));
     var lbl = el('div');
-    txt(lbl, opt.label);
+    txt(lbl, label);
     btn.appendChild(lbl);
-
-    if (opt.sub) {
-      var sub = el('span');
-      sub.className = 'bopt-sub';
-      txt(sub, opt.sub);
-      btn.appendChild(sub);
+    if (sub) {
+      var subEl = el('span');
+      subEl.className = 'bopt-sub';
+      txt(subEl, sub);
+      btn.appendChild(subEl);
     }
-
-    btn.addEventListener('click', function() {
-      var keys = filterRes(tile.res[opt.key] || tile.res.def || []);
-      renderResults(keys, opt.label);
-      showScr('results', 'Results for ' + opt.label);
-    });
-
+    btn.addEventListener('click', (function(o, lbl) {
+      return function() {
+        var keys = filterRes(tile.res[o.key] || tile.res.def || []);
+        renderResults(keys, lbl);
+        showScr('results', 'Results for ' + lbl);
+      };
+    })(opt, label));
     opts.appendChild(btn);
   });
-
   document.getElementById('btn-back-branch').onclick = function() {
     showScr('tiles', 'Choose what you need');
   };
