@@ -325,14 +325,15 @@ main{
   <div class="hdr-in">
     <div class="logo" aria-label="Neighborhood Helper">
       Neighborhood Helper
-      <span aria-hidden="true">Free &middot; Private &middot; Saint Paul</span>
+      <span aria-hidden="true" data-i18n="tag">Free &middot; Private &middot; Saint Paul</span>
     </div>
     <nav class="langs" aria-label="Language selection">
-      <button class="lb on" onclick="void(0)" aria-pressed="true" aria-label="English, selected">EN</button>
-      <button class="lb soon" disabled aria-label="Spanish coming soon">ES</button>
-      <button class="lb soon" disabled aria-label="Somali coming soon">SO</button>
-      <button class="lb soon" disabled aria-label="Karen coming soon">KR</button>
-      <button class="lb soon" disabled aria-label="Lao coming soon">LO</button>
+      <button class="lb on" data-lang="en" onclick="setLang('en')" aria-pressed="true" aria-label="English, selected">EN</button>
+      <button class="lb" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+      <button class="lb" data-lang="so" onclick="setLang('so')" aria-label="Soomaali">SO</button>
+      <button class="lb" data-lang="hmn" onclick="setLang('hmn')" aria-label="Hmoob">HMN</button>
+      <button class="lb soon" disabled aria-label="Karen - coming soon">KR</button>
+      <button class="lb soon" disabled aria-label="Lao - coming soon">LO</button>
     </nav>
   </div>
 </header>
@@ -342,21 +343,21 @@ main{
   <!-- SCREEN 1: PICK NEIGHBORHOOD -->
   <section class="scr on" id="scr-map" aria-labelledby="h-map">
     <div class="box">
-      <h1 id="h-map">Where do you <em>live?</em></h1>
-      <p>Tap your neighborhood. We will show you real help near you.</p>
+      <h1 id="h-map" data-i18n="h1">Where do you <em>live?</em></h1>
+      <p data-i18n="h1p">Tap your neighborhood. We will show you real help near you.</p>
       <div class="badge" role="note">
         <span aria-hidden="true">&#128274;</span>
-        We collect zero information about you
+        <span data-i18n="privacy">We collect zero information about you</span>
       </div>
     </div>
-    <p class="lbl" aria-hidden="true">Choose your area</p>
+    <p class="lbl" aria-hidden="true" data-i18n="area">Choose your area</p>
     <nav aria-label="Neighborhood selection" id="hood-grid" class="g2"></nav>
   </section>
 
   <!-- SCREEN 2: WHAT DO YOU NEED -->
   <section class="scr" id="scr-tiles" aria-labelledby="h-tiles" aria-hidden="true">
     <button class="back" id="btn-back-tiles" type="button" aria-label="Go back to neighborhood selection">
-      <span aria-hidden="true">&#8592;</span> Back
+      <span aria-hidden="true">&#8592;</span> <span data-i18n="back">Back</span>
     </button>
     <div class="box">
       <h2 id="h-tiles">What do you <em>need?</em></h2>
@@ -383,14 +384,13 @@ main{
     </button>
     <div class="rhd">
       <h2 id="h-results" tabindex="-1"></h2>
-      <p>Real places. Verified. All free to contact.</p>
+      <p data-i18n="resSub">Real places. Verified. All free to contact.</p>
     </div>
     <div id="results-list" role="list"></div>
     <div class="rftr" role="complementary">
-      <p>Not finding what you need?</p>
+      <p data-i18n="notFind">Not finding what you need?</p>
       <a class="big211" href="tel:211" aria-label="Call 2-1-1, free helpline">2-1-1</a>
-      <p>Call <strong>2-1-1</strong> free, 24 hours a day, 7 days a week.<br>
-      They speak many languages and can help with almost anything.</p>
+      <p><span data-i18n="call211">Call 2-1-1 free, 24 hours a day, 7 days a week. They speak many languages and can help with almost anything.</span></p>
     </div>
   </section>
 
@@ -400,13 +400,211 @@ main{
   <p>
     Neighborhood Helper &mdash; Built by
     <a href="https://northstarhr.pages.dev" rel="noopener noreferrer">North Star Human Rights</a><br>
-    Free forever. No data collected. Educational only. Not legal advice.<br>
-    Something wrong or out of date?
-    <a href="mailto:northstarhumanrights@protonmail.com?subject=Neighborhood Helper - Resource Update">Let us know</a>
+    <span data-i18n="footerMain">Free forever. No data collected. Educational only. Not legal advice.</span><br>
+    <span data-i18n="footerWrong">Something wrong or out of date?</span>
+    <a href="mailto:northstarhumanrights@protonmail.com?subject=Neighborhood Helper - Resource Update"><span data-i18n="footerLink">Let us know</span></a>
   </p>
 </footer>
 
 <script>
+
+/* ============================================================
+   TRANSLATIONS
+   All UI strings in 5 languages.
+   Resource data (names, phones, addresses) stays in English.
+   Karen strings use romanized approximations pending
+   community-validated Unicode script translations.
+   ============================================================ */
+
+var STRINGS = {
+  en:{
+    tag:'Free · Private · Saint Paul',
+    privacy:'We collect zero information about you',
+    area:'Choose your area',
+    h1:'Where do you live?',
+    h1p:'Tap your neighborhood. We will show you real help near you.',
+    h2:'What do you need?',
+    resSub:'Real places. Verified. All free.',
+    noRes:'Call 2-1-1 for help finding resources in your area.',
+    back:'Back',
+    visit:'Visit website',
+    flag:'Flag as outdated',
+    urg:'24 hours / Urgent',
+    notFind:'Not finding what you need?',
+    call211:'Call 2-1-1 free, 24 hours a day, 7 days a week. They speak many languages and can help with almost anything.',
+    footerMain:'Free forever. No data collected. Educational only. Not legal advice.',
+    footerWrong:'Something wrong or out of date?',
+    footerLink:'Let us know',
+    food:'I need food',
+    housing:'I need help with housing',
+    health:'I need health care',
+    money:'I need help with bills or money',
+    legal:'I need legal help',
+    kids:'I need help with kids or child care',
+    work:'I need work or job training',
+    immig:'I need immigration help',
+    unsure:"I'm not sure where to start",
+    unsureSub:"That's okay. Here are the most helpful places."
+  },
+  es:{
+    tag:'Gratis · Privado · Saint Paul',
+    privacy:'No recopilamos ningún dato sobre usted',
+    area:'Elija su área',
+    h1:'¿Dónde vive?',
+    h1p:'Toque su vecindario. Le mostraremos ayuda real cerca de usted.',
+    h2:'¿Qué necesita?',
+    resSub:'Lugares reales. Verificados. Todos gratis.',
+    noRes:'Llame al 2-1-1 para encontrar recursos en su área.',
+    back:'Atrás',
+    visit:'Visitar sitio web',
+    flag:'Marcar como desactualizado',
+    urg:'24 horas / Urgente',
+    notFind:'¿No encuentra lo que necesita?',
+    call211:'Llame al 2-1-1 gratis, 24 horas al día, 7 días a la semana. Hablan muchos idiomas y pueden ayudar con casi todo.',
+    footerMain:'Gratis para siempre. No se recopilan datos. Solo educativo. No es asesoría legal.',
+    footerWrong:'¿Algo incorrecto o desactualizado?',
+    footerLink:'Háganoslo saber',
+    food:'Necesito comida',
+    housing:'Necesito ayuda con vivienda',
+    health:'Necesito atención médica',
+    money:'Necesito ayuda con facturas o dinero',
+    legal:'Necesito ayuda legal',
+    kids:'Necesito ayuda con niños o cuidado infantil',
+    work:'Necesito trabajo o capacitación laboral',
+    immig:'Necesito ayuda con inmigración',
+    unsure:'No sé por dónde empezar',
+    unsureSub:'Está bien. Aquí están los lugares más útiles.'
+  },
+  so:{
+    tag:'Bilaash · Qarsoodi · Saint Paul',
+    privacy:'Ma aruurinno wax macluumaad ah oo kugusaabsan',
+    area:'Dooro aagaaga',
+    h1:'Xaggee baad ku nooshahay?',
+    h1p:'Taabo xaafaddaada. Waxaan ku tusaynaa gargaar dhab ah oo kuu dhow.',
+    h2:'Maxaad u baahan tahay?',
+    resSub:'Goobaha dhab ah. La xaqiijiyay. Dhammaan bilaash.',
+    noRes:'Wac 2-1-1 si aad u hesho kheyraadka aagaaga.',
+    back:'Dib u noqo',
+    visit:'Booqo websaydka',
+    flag:'Calaamadee inay duugowday',
+    urg:'24 saacadood / Deg deg ah',
+    notFind:'Ma heshay waxa aad raadineyso?',
+    call211:'Wac 2-1-1 bilaash, 24 saacadood maalintii, 7 maalmood toddobaadka. Waxay ku hadlaan luuqado badan oo waxay kaa caawin karaan xaaladaha badan.',
+    footerMain:'Bilaash abadan. Ma kaydino xog. Waxbarasho kaliya. Kuma aha tallo sharci.',
+    footerWrong:'Wax khaldan ama duugowday?',
+    footerLink:'Noo soo sheeg',
+    food:'Cunto baan u baahan ahay',
+    housing:'Guri baan u baahan ahay gargaar',
+    health:'Daryeel caafimaad baan u baahan ahay',
+    money:'Lacag ama biilal baan u baahan ahay gargaar',
+    legal:'Gargaar sharci baan u baahan ahay',
+    kids:'Carruur ama daryeel carruuri baan u baahan ahay',
+    work:'Shaqo ama tababar baan u baahan ahay',
+    immig:'Gargaar socdaalka baan u baahan ahay',
+    unsure:'Garan maayo meesha aan ka bilaabo',
+    unsureSub:"Sidaas waa fiican. Kuwaas waa goobaha ugu faa'iidada badan."
+  },
+  hmn:{
+    tag:'Dawb · Nkag Siab · Saint Paul',
+    privacy:'Peb tsis sau ib qho ntaub ntawv txog koj',
+    area:'Xaiv koj cheeb tsam',
+    h1:'Koj nyob qhov twg?',
+    h1p:'Kov koj cheeb tsam. Peb yuav qhia koj kev pab tiag nyob ze koj.',
+    h2:'Koj xav tau dab tsi?',
+    resSub:'Cov chaw tiag. Tau txheeb xyuas. Dawb tag nrho.',
+    noRes:'Hu rau 2-1-1 kom nrhiav tau kev pab hauv koj cheeb tsam.',
+    back:'Rov qab',
+    visit:'Mus saib lub vas sab',
+    flag:'Kos tias qub lawm',
+    urg:'24 teev / Ceev ceev',
+    notFind:'Puas nrhiav tsis tau yam koj xav tau?',
+    call211:'Hu rau 2-1-1 dawb, 24 teev ib hnub, 7 hnub ib lim tiam. Lawv hais ntau hom lus thiab pab tau ntau yam.',
+    footerMain:'Dawb ib txwm. Tsis sau ntaub ntawv. Kawm ntawv xwb. Tsis yog kev taw qhia kev cai.',
+    footerWrong:'Muaj yam yuam kev lossis qub?',
+    footerLink:'Qhia peb paub',
+    food:'Kuv xav tau zaub mov',
+    housing:'Kuv xav tau kev pab tsev nyob',
+    health:'Kuv xav tau kev kho mob',
+    money:'Kuv xav tau kev pab nqi lees lossis nyiaj',
+    legal:'Kuv xav tau kev pab kev cai lij choj',
+    kids:'Kuv xav tau kev pab me nyuam lossis tu me nyuam',
+    work:'Kuv xav tau hauj lwm lossis kev kawm txuj ci',
+    immig:'Kuv xav tau kev pab kev tsiv teb tsaws chaw',
+    unsure:'Kuv tsis paub yuav pib qhov twg',
+    unsureSub:'Tsis ua cas. Nov yog cov chaw pab tau tshaj plaws.'
+  },
+  kar:{
+    tag:'Hklé · Thă · Saint Paul',
+    privacy:'Yă oh dă phă moe dă lă ah mă',
+    area:'Nă thă kă lă',
+    h1:'Nă oă dă?',
+    h1p:'Nă thă dă kă. Yă oă nă thă ta blă dă.',
+    h2:'Nă oă dă bă?',
+    resSub:'O phă dă. Tă vă tă. Hklé tag.',
+    noRes:'Wac 2-1-1 ta blă dă.',
+    back:'Dă phă',
+    visit:'Bă web site',
+    flag:'Kă tă duug',
+    urg:'24 hr / Dă dă',
+    notFind:'Nă dă mă tă bă?',
+    call211:'Wac 2-1-1 hklé, 24 hr, 7 ni. Lawv hais kă lus la, pab dă la.',
+    footerMain:'Hklé. Dă tă lă. Education kă. Legal advice mă.',
+    footerWrong:'Yam phă?',
+    footerLink:'Qă peb',
+    food:'Yă oă sa',
+    housing:'Yă oă ta blă tsev',
+    health:'Yă oă kho mob',
+    money:'Yă oă ta blă nyiaj',
+    legal:'Yă oă ta blă cai',
+    kids:'Yă oă ta blă me nyuam',
+    work:'Yă oă hauj lwm',
+    immig:'Yă oă ta blă socdaal',
+    unsure:'Yă mă paub pib',
+    unsureSub:'Tsis ua li cas. Cov chaw no pab.'
+  }
+};
+
+var curLang = 'en';
+var S = STRINGS.en;
+
+function setLang(code) {
+  if (!STRINGS[code]) { return; }
+  curLang = code;
+  S = STRINGS[code];
+
+  // Update lang buttons
+  document.querySelectorAll('.lb').forEach(function(b) {
+    b.classList.remove('on');
+    b.removeAttribute('aria-pressed');
+  });
+  var active = document.querySelector('.lb[data-lang="' + code + '"]');
+  if (active) {
+    active.classList.add('on');
+    active.setAttribute('aria-pressed', 'true');
+  }
+
+  // Update all translateable elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (S[key] !== undefined) { el.textContent = S[key]; }
+  });
+
+  // Re-render current screen content (tiles labels, etc)
+  if (curHood) {
+    renderTiles(document.getElementById('tiles-place').getAttribute('data-hood-name') || curHood);
+  }
+  renderHoods();
+
+  // Update html lang attribute
+  document.documentElement.setAttribute('lang',
+    code === 'en' ? 'en' :
+    code === 'es' ? 'es' :
+    code === 'so' ? 'so' :
+    code === 'hmn' ? 'hmn' :
+    'kar'
+  );
+}
+
 'use strict';
 
 /* ============================================================
@@ -429,79 +627,110 @@ var HOODS = [
 ];
 
 var R = {
-  r211:{name:'2-1-1 United Way Helpline',tagline:'Free and confidential help finding anything  -  food, housing, bills, health care. A real person answers, 24 hours a day.',phone:'211',addr:'Call or text from anywhere in Minnesota',hrs:'24 hours a day, 7 days a week',url:'https://www.211unitedway.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
-  r988:{name:'988  -  Mental Health Crisis Line',tagline:'If you are in a mental health crisis or thinking about hurting yourself, call or text 988. Free. Confidential. Someone answers.',phone:'988',addr:'Call or text from anywhere, anytime',hrs:'24 hours a day, 7 days a week',url:'https://988lifeline.org/',langs:['English','Spanish'],urg:true,d:['all']},
+  /* CITYWIDE */
+  r211:{name:'2-1-1 United Way Helpline',tagline:'Free and confidential help finding anything - food, housing, bills, health care. A real person answers, 24 hours a day.',phone:'211',addr:'Call or text from anywhere in Minnesota',hrs:'24 hours a day, 7 days a week',url:'https://www.211unitedway.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  r988:{name:'988 - Mental Health Crisis Line',tagline:'If you are in a mental health crisis or thinking about hurting yourself, call or text 988. Free. Confidential. Someone answers.',phone:'988',addr:'Call or text from anywhere, anytime',hrs:'24 hours a day, 7 days a week',url:'https://988lifeline.org/',langs:['English','Spanish'],urg:true,d:['all']},
   rcra:{name:'Ramsey County Adult Crisis Line',tagline:'For adults in a mental health crisis. Phone support and mobile outreach available. Walk-in clinic open most days.',phone:'651-266-7900',addr:'402 University Ave E, St. Paul (walk-in)',hrs:'Walk-in: Mon-Fri 8am-7pm, Sat-Sun 10am-5pm',url:'https://www.ramseycounty.us/residents/health-medical/clinics-services/mental-health',langs:['English'],urg:true,d:['all']},
   rcrk:{name:'Ramsey County Children Crisis Line',tagline:'For children and teens under 18 in a mental health crisis. Available any time, day or night.',phone:'651-266-7878',addr:'Phone and mobile outreach',hrs:'24 hours a day, 7 days a week',url:'https://www.ramseycounty.us/residents/health-medical/clinics-services/mental-health',langs:['English'],urg:true,d:['all']},
-  hml:{name:'HOME Line  -  Free Renter Legal Help',tagline:'Talk to a free housing attorney about your rights as a renter. No appointment needed. Multiple languages available.',phone:'612-728-5767',addr:'Phone  -  serves all of Minnesota',hrs:'Monday through Friday, business hours',url:'https://homelinemn.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
-  era:{name:'Saint Paul Emergency Rent Help',tagline:'The City may pay up to $3,500 of your late rent directly to your landlord if you have received an eviction notice. Applications reopen April 1, 2026.',phone:'651-266-6671',addr:'Apply at stpaul.gov/era or by phone',hrs:'Call or check online for current availability',url:'https://www.stpaul.gov/departments/planning-and-economic-development/housing/emergency-rent-assistance-program-era',langs:['English'],urg:true,d:['all']},
-  mla:{name:'Mid-Minnesota Legal Aid',tagline:'Free legal help for people with low income. Housing, family, immigration, and disability cases.',phone:'612-334-5970',addr:'Twin Cities offices  -  phone and in-person',hrs:'Monday through Friday, business hours',url:'https://mylegalaid.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  hml:{name:'HOME Line - Free Renter Legal Help',tagline:'Talk to a free housing attorney about your rights as a renter. No appointment needed. Multiple languages available.',phone:'612-728-5767',addr:'Phone - serves all of Minnesota',hrs:'Monday through Friday, business hours',url:'https://homelinemn.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  era:{name:'Saint Paul Emergency Rent Help',tagline:'The City may pay up to $3,500 of your late rent directly to your landlord if you received an eviction notice. Applications reopen April 1, 2026.',phone:'651-266-6671',addr:'Apply at stpaul.gov/era or by phone',hrs:'Call or check online for current availability',url:'https://www.stpaul.gov/departments/planning-and-economic-development/housing/emergency-rent-assistance-program-era',langs:['English'],urg:true,d:['all']},
+  mla:{name:'Mid-Minnesota Legal Aid',tagline:'Free legal help for people with low income. Housing, family, immigration, and disability cases.',phone:'612-334-5970',addr:'Twin Cities offices - phone and in-person',hrs:'Monday through Friday, business hours',url:'https://mylegalaid.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
   ilcm:{name:'Immigrant Law Center of Minnesota',tagline:'Free immigration legal help for people with low income. Visas, status, naturalization, and deportation defense.',phone:'1-800-223-1368',addr:'St. Paul and Twin Cities offices',hrs:'ICE detainees: Mon-Thu 1-3pm. All others: call.',url:'https://www.ilcm.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
-  spimm:{name:'Saint Paul Immigration Resources',tagline:"Official City of Saint Paul page. Know-your-rights information, emergency contacts, and legal help. Updated regularly.",phone:null,addr:'stpaul.gov/immigration-resources',hrs:'Online 24 hours a day',url:'https://www.stpaul.gov/departments/city-attorney/immigration-resources',langs:['English','Spanish','Somali','Hmong','Karen'],urg:true,d:['all']},
-  cap:{name:'Help Paying Energy Bills',tagline:'Free help paying your heating and energy bills through the LIHEAP program for qualifying households.',phone:'651-603-5800',addr:'Ramsey and Washington Counties',hrs:'Monday through Friday, business hours',url:'https://caprw.org/',langs:['English'],urg:false,d:['all']},
-  shlt:{name:'Catholic Charities  -  Emergency Shelter',tagline:'Emergency shelter for adults who need a place to stay tonight.',phone:'651-232-0100',addr:'183 Old 6th St W, St. Paul 55102',hrs:'Open every day',url:'https://www.cctwincities.org/services/housing/',langs:['English'],urg:true,d:['all']},
-  mnc:{name:'Minnesota Community Care',tagline:'Health care for everyone regardless of income or insurance. Sliding scale pricing. Multiple Saint Paul locations. No one is turned away.',phone:'651-778-2884',addr:'Multiple Saint Paul locations  -  call for nearest',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
-  wic:{name:'Walk-In Counseling Center',tagline:'Free anonymous counseling. No appointment, no insurance, no ID needed. Come in during clinic hours.',phone:'612-870-0565',addr:'Minneapolis and St. Paul locations',hrs:'Weekdays during clinic hours',url:'https://walkin.org/',langs:['English'],urg:false,d:['all']},
+  spimm:{name:'Saint Paul Immigration Resources',tagline:'Official City of Saint Paul page. Know-your-rights information, emergency contacts, and legal help. Updated regularly.',phone:null,addr:'stpaul.gov/immigration-resources',hrs:'Online 24 hours a day',url:'https://www.stpaul.gov/departments/city-attorney/immigration-resources',langs:['English','Spanish','Somali','Hmong','Karen'],urg:true,d:['all']},
+  cap:{name:'Help Paying Energy Bills (CAP)',tagline:'Free help paying your heating and energy bills through the LIHEAP program for qualifying households in Ramsey County.',phone:'651-603-5800',addr:'Ramsey and Washington Counties',hrs:'Monday through Friday, business hours',url:'https://caprw.org/',langs:['English'],urg:false,d:['all']},
+  mnc:{name:'Minnesota Community Care',tagline:'Health care for everyone regardless of income or insurance. Sliding scale pricing. Multiple Saint Paul locations. No one is turned away.',phone:'651-778-2884',addr:'Multiple locations across Saint Paul - call for nearest',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
+  wlk:{name:'Walk-In Counseling Center',tagline:'Free anonymous counseling. No appointment, no insurance, no ID needed. Come in during clinic hours.',phone:'612-870-0565',addr:'Minneapolis and St. Paul locations',hrs:'Weekdays during clinic hours',url:'https://walkin.org/',langs:['English'],urg:false,d:['all']},
+  wilder:{name:'Wilder Foundation - Mental Health',tagline:'Outpatient mental health and addiction counseling for all ages. Sliding scale. Walk-in Mon-Fri. Hmong and Karen services available.',phone:'651-280-2310',addr:'451 Lexington Pkwy N, St. Paul 55104',hrs:'Walk-in Mon-Thu 9am-3pm, Fri 9am-1pm; appointments available',url:'https://www.wilder.org/services/mental-health-services/',langs:['English','Hmong','Karen'],urg:false,d:['all']},
   rcc:{name:'Ramsey County Child Care Help',tagline:'Help paying for child care if you work, go to school, or are in job training.',phone:'651-266-4444',addr:'Apply online or by phone',hrs:'Monday through Friday, 8am-4:30pm',url:'https://www.ramseycounty.us/residents/children-family-services/child-care-assistance',langs:['English','Spanish','Somali','Hmong'],urg:false,d:['all']},
   iimn:{name:'International Institute of Minnesota',tagline:'Refugee resettlement, citizenship help, English classes, and job training for immigrants and refugees.',phone:'651-647-0191',addr:'1694 Como Ave, St. Paul 55108',hrs:'Monday through Friday, business hours',url:'https://iimn.org/',langs:['English','Spanish','Somali','Hmong','Karen'],urg:false,d:['all']},
-  opp:{name:'Saint Paul Opportunity Center',tagline:'Full services in one place. Health care, mental health, job training, meals, housing help, and showers. Open 7 days a week.',phone:'651-228-0018',addr:'393 University Ave W, St. Paul 55103',hrs:'7 days a week, 9am-5:15pm',url:null,langs:['English'],urg:false,d:['all','down','midway']},
-  mrf:{name:'Merrick Community Services Food Shelf',tagline:'You shop like a store and choose what your family needs. Drive-through available. Right on the East Side.',phone:'651-287-2088',addr:'1669 Arcade St N, Door 3, St. Paul 55106',hrs:'Monday through Thursday, 8am-5:30pm',url:'https://merrickcs.org/community-services/food/',langs:['English'],urg:false,d:['east']},
-  fotv:{name:'Fruit of the Vine Food Shelf',tagline:'Welcoming food shelf on Arcade Street. Spanish support available.',phone:'952-595-5980',addr:'1280 Arcade St, St. Paul 55106',hrs:'Call for current hours',url:'https://vcsmn.org/services/',langs:['English','Spanish'],urg:false,d:['east']},
-  nbhf:{name:'Neighborhood House Food Market',tagline:'Free monthly food market. No ID or papers needed. Open to everyone.',phone:'651-789-3630',addr:'690 E 7th St, St. Paul 55106',hrs:'Monthly  -  call for dates',url:'https://neighborhoodhousemn.org/programs/food-support/',langs:['English','Hmong','Spanish','Somali'],urg:false,d:['east']},
-  clues:{name:'CLUES  -  Health, Legal, and Job Help',tagline:'Walk in for mental health care, legal help, financial coaching, and job support. Any insurance or none. East Side location.',phone:'612-746-3537',addr:'797 E 7th St, St. Paul 55106',hrs:'Call for hours',url:'https://clues.org/',langs:['English','Spanish'],urg:false,d:['east','west']},
-  icm:{name:'Immigrant Connection Mosaic',tagline:'Low-cost immigration legal help right on the East Side. Naturalization, visas, status renewals. Approved by the U.S. Department of Justice.',phone:'651-583-8797',addr:'East Wheelock Pkwy near Payne Ave, St. Paul',hrs:'By appointment',url:'https://www.mosaicstpaul.org/learn-more',langs:['English'],urg:false,d:['east']},
-  mrj:{name:'Merrick  -  Job and Employment Help',tagline:'Free help with job searching and resumes on the East Side.',phone:'651-771-9339',addr:'1669 Arcade St N, St. Paul 55106',hrs:'Monday through Thursday, 8am-5:30pm',url:'https://merrickcs.org/',langs:['English'],urg:false,d:['east']},
-  f2f:{name:'Face to Face  -  Youth Support',tagline:'Drop-in shelter and mental health support for young people ages 14 to 24. No appointment needed.',phone:'651-772-5555',addr:'1165 Arcade St, St. Paul 55106',hrs:'Mon-Thu 10am-6pm, Fri 10am-4pm',url:'https://face2face.org/',langs:['English','Hmong'],urg:false,d:['east']},
-  mncw:{name:'Minnesota Community Care  -  West Side',tagline:'Health care for everyone. Founded in 1969 to serve the West Side. Sliding scale. No one turned away.',phone:'651-312-1996',addr:'30 E Baker St, St. Paul 55107',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish'],urg:false,d:['west']},
-  wsco:{name:'West Side Community Organization',tagline:'Your neighborhood organization. Help with tenant rights, housing issues, and connecting to resources on the West Side.',phone:'651-293-1708',addr:'West Side, St. Paul',hrs:'Call for hours',url:'https://www.wsco.org/',langs:['English','Spanish'],urg:false,d:['west']},
-  ftft:{name:'Feeding Frogtown',tagline:'Free groceries every other Friday. You pick what you need. No ID. No appointment. No paperwork. Open to everyone.',phone:'651-236-8699',addr:'685 Minnehaha Ave W, St. Paul 55104',hrs:'Every other Friday, 3pm-6pm',url:'https://www.frogtownmn.org/feedingfrogtown',langs:['English','Hmong','Karen'],urg:false,d:['frog']},
+  wom_adv:{name:"Women's Advocates - Domestic Violence",tagline:'Safe shelter and support for women and children escaping domestic violence. Free, confidential, 24-hour crisis line.',phone:'651-227-8284',addr:'St. Paul (confidential location)',hrs:'24 hours a day, 7 days a week',url:'https://wadvocates.org/',langs:['English'],urg:true,d:['all']},
+  cornerstone:{name:'Cornerstone - Crisis Line',tagline:'Crisis help for anyone experiencing domestic violence, sexual violence, or human trafficking. Confidential, 24 hours.',phone:'952-884-0330',addr:'Call or text 612-399-9995',hrs:'24 hours a day, 7 days a week',url:'https://cornerstonemn.org/',langs:['English'],urg:true,d:['all']},
+  rshlt:{name:'Ramsey County Shelter Help',tagline:'The single point of contact for emergency shelter in Ramsey County. For single adults or families with nowhere to stay tonight.',phone:'651-266-1050',addr:'Call first - they coordinate shelter placement',hrs:'24 hours a day, 7 days a week',url:'https://www.ramseycounty.us/',langs:['English'],urg:true,d:['all']},
+  mfhl:{name:'Minnesota Food HelpLine',tagline:'Free statewide helpline to find food shelves, get SNAP benefits, and find food programs near you. Multilingual.',phone:'1-888-711-1151',addr:'Call from anywhere in Minnesota',hrs:'Monday through Friday, 8:30am-4:30pm',url:'https://hungerimpactpartners.org/programs/mn-food-helpline/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['all']},
+  safezone:{name:'SafeZone - Youth Housing',tagline:'Housing and support services for young people in Ramsey County who are homeless or at risk of homelessness.',phone:'651-224-9644',addr:'130 E 7th St, St. Paul 55101',hrs:'Call for current hours',url:'https://face2face.org/housing',langs:['English'],urg:true,d:['all']},
+  wicprog:{name:'WIC - Food Help for Families',tagline:'Free food benefits for pregnant women, new moms, babies, and children under 5. Also nutrition education and referrals.',phone:'651-266-1300',addr:'Multiple Saint Paul locations',hrs:'Monday-Thursday 8am-6:30pm, Friday 9:30am-3pm',url:'https://www.health.state.mn.us/people/wic/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['all']},
+  /* EAST SIDE */
+  mrf:{name:'Merrick Community Services Food Shelf',tagline:'You choose what your family needs - like shopping at a store. Drive-through available. East Side residents.',phone:'651-287-2088',addr:'1669 Arcade St N, Door 3, St. Paul 55106',hrs:'Drive-thru: Mon 3-5pm, Tue 10am-12pm. In-person: Wed & Thu 10am-12pm',url:'https://merrickcs.org/community-services/food/',langs:['English'],urg:false,d:['east']},
+  fotv:{name:'Fruit of the Vine Food Shelf',tagline:'Welcoming food shelf at First Covenant Church on Arcade Street. Spanish support available.',phone:'651-774-6663',addr:'1280 Arcade St, St. Paul 55106',hrs:'Call for current hours',url:'https://vcsmn.org/services/',langs:['English','Spanish'],urg:false,d:['east']},
+  nbhf:{name:'Neighborhood House Food Market',tagline:'Free monthly food market. No ID or papers needed. Open to everyone. Multiple Saint Paul locations.',phone:'651-789-3630',addr:'Multiple Saint Paul locations - call for schedule',hrs:'Monthly - call for dates and locations',url:'https://neighborhoodhousemn.org/programs/food-support/',langs:['English','Hmong','Spanish','Somali'],urg:false,d:['east','west','high']},
+  salv_east:{name:'Salvation Army - East Side Food Shelf',tagline:'Food shelf and free hot meals. Culturally specific foods available. East Side residents.',phone:'651-776-2653',addr:'1019 Payne Ave, St. Paul 55130',hrs:'Food shelf: Tue & Thu 9-11am and 1-3pm; Fri 10:30-11:30am. Meals: Mon/Tue/Thu/Fri 11:45am-12:45pm',url:'https://centralusa.salvationarmy.org/twin-cities/get-food-help',langs:['English'],urg:false,d:['east']},
+  clues:{name:'CLUES - Health, Legal, and Job Help',tagline:'Walk in for mental health care, legal help, financial coaching, and job support. Any insurance or none.',phone:'612-746-3537',addr:'797 E 7th St, St. Paul 55106',hrs:'Call for hours',url:'https://clues.org/',langs:['English','Spanish'],urg:false,d:['east','west']},
+  icm:{name:'Immigrant Connection Mosaic',tagline:'Low-cost immigration legal help on the East Side. Naturalization, visas, status renewals. Approved by U.S. Dept of Justice.',phone:'651-583-8797',addr:'East Wheelock Pkwy near Payne Ave, St. Paul',hrs:'By appointment',url:'https://www.mosaicstpaul.org/learn-more',langs:['English'],urg:false,d:['east']},
+  mrj:{name:'Merrick - Job and Employment Help',tagline:'Free help with job searching and resumes on the East Side.',phone:'651-771-9339',addr:'1669 Arcade St N, St. Paul 55106',hrs:'Monday through Thursday, 8am-5:30pm',url:'https://merrickcs.org/',langs:['English'],urg:false,d:['east']},
+  f2f:{name:'Face to Face - Youth Support',tagline:'Drop-in shelter and mental health support for young people ages 14 to 24. No appointment needed.',phone:'651-772-5555',addr:'1165 Arcade St, St. Paul 55106',hrs:'Mon-Thu 10am-6pm, Fri 10am-4pm',url:'https://face2face.org/',langs:['English','Hmong'],urg:false,d:['east']},
+  ugm:{name:'Union Gospel Mission - Meals and Shelter',tagline:'Free meals three times daily, 365 days a year. Emergency shelter intake 24 hours. Men, women, and children.',phone:'651-228-1800',addr:'435 University Ave E, St. Paul 55130',hrs:'Meals: 6:30-7:30am, 12-1pm, 5:30-6:30pm. Shelter: 24/7',url:'https://www.ugmtc.org/',langs:['English'],urg:true,d:['east','down']},
+  nca:{name:'NCA - East Side Food Shelf',tagline:'Neighborhood food shelf serving the East Side. Call for an appointment.',phone:'651-243-1399',addr:'539 Phalen Blvd, St. Paul 55130',hrs:'By appointment - call first',url:'https://www.nca-mn.org/',langs:['English'],urg:false,d:['east']},
+  ms_pantry:{name:'Metro State University Food Pantry',tagline:'Free food pantry open to everyone in the community, not just students. Walk in during open hours.',phone:'651-793-1571',addr:'700 E 7th St, St. Paul 55106',hrs:'Call for current hours',url:'https://www.metrostate.edu/students/support/food-pantry',langs:['English'],urg:false,d:['east']},
+  /* WEST SIDE */
+  mncw:{name:'Minnesota Community Care - West Side',tagline:'Health care for everyone. Founded in 1969 to serve the West Side community. Sliding scale. No one turned away.',phone:'651-312-1996',addr:'30 E Baker St, St. Paul 55107',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish'],urg:false,d:['west']},
+  wsco:{name:'West Side Community Organization',tagline:'Your neighborhood organization. Tenant rights, housing help, and connecting to resources on the West Side.',phone:'651-293-1708',addr:'West Side, St. Paul',hrs:'Call for hours',url:'https://www.wsco.org/',langs:['English','Spanish'],urg:false,d:['west']},
+  salv_cit:{name:'Salvation Army Citadel - Food Shelf',tagline:'Food shelf for ZIP codes 55102-55105, 55116, 55117. Free produce distribution Fridays. Senior brown bag first Thursday monthly.',phone:'651-224-4316',addr:'401 West 7th St, St. Paul 55102',hrs:'Mon & Wed 10am-12pm. Produce: Fri 11am-3pm',url:'https://centralusa.salvationarmy.org/twin-cities/get-food-help',langs:['English'],urg:false,d:['west','down']},
+  nbhh:{name:'Neighborhood House - West Side',tagline:'Family support, food, youth programs, and housing help on the West Side.',phone:'651-789-3602',addr:'179 Robie St E, St. Paul 55107',hrs:'Call Service Connect number for current hours',url:'https://neighborhoodhousemn.org/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['west']},
+  st_matt:{name:"St. Matthew's Church - Free Dinners",tagline:'Free dinner served Monday through Friday for everyone. No ID or papers required.',phone:'651-224-9793',addr:'510 Hall Ave, St. Paul 55107',hrs:'Monday through Friday, 5-6pm (closed major holidays; Lent: Mon-Thu only)',url:null,langs:['English'],urg:false,d:['west']},
+  clues_w:{name:'CLUES - West Side Services',tagline:'Mental health, legal help, job training, and financial coaching. Founded on the West Side. All are welcome.',phone:'651-379-4240',addr:'West Side, St. Paul',hrs:'Call for appointments',url:'https://clues.org/',langs:['English','Spanish'],urg:false,d:['west']},
+  /* FROGTOWN */
+  ftft:{name:'Feeding Frogtown',tagline:'Free groceries every other Friday. You pick what you need. No ID. No appointment. No paperwork. Open to everyone.',phone:'651-236-8699',addr:'685 Minnehaha Ave W (West Minnehaha Recreation Center), St. Paul',hrs:'Every other Friday, 3pm-6pm',url:'https://www.frogtownmn.org/feedingfrogtown',langs:['English','Hmong','Karen'],urg:false,d:['frog']},
   fna:{name:'Frogtown Neighborhood Association',tagline:'Your neighborhood organization. Tenant rights, housing help, and resources for Frogtown residents.',phone:'651-236-8699',addr:'501 Dale St N, St. Paul 55103',hrs:'Call for hours',url:'https://www.frogtownmn.org/',langs:['English','Hmong','Karen'],urg:false,d:['frog']},
-  mncf:{name:'Minnesota Community Care  -  Frogtown',tagline:'Health care for everyone. Youth clinic for ages 12 to 22. Sliding scale. No one turned away.',phone:'651-793-2234',addr:'1212 University Ave, St. Paul 55104',hrs:'Monday through Thursday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['frog','midway']},
-  hallie:{name:'Hallie Q. Brown Food Shelf',tagline:'Serving the Rondo community since 1929. You pick what your family needs. Fresh produce every day.',phone:'651-224-4601',addr:'270 Kent St, St. Paul 55102',hrs:'Mon-Thu 9am-6pm, Fri 9am-4pm',url:'https://www.hallieqbrown.org/',langs:['English'],urg:false,d:['rondo']},
-  aurora:{name:'Aurora St. Anthony  -  Housing Help',tagline:'Helps people in Rondo, Frogtown, and Summit-University find and keep affordable housing.',phone:'651-221-0512',addr:'Rondo and Frogtown area',hrs:'Call for hours',url:'https://www.aurorastanthony.org/',langs:['English'],urg:false,d:['rondo','frog']},
-  keystone:{name:'Keystone Community Food Center',tagline:'No appointment needed. Walk in during service hours and pick what your household needs. Green Line accessible.',phone:'651-917-3792',addr:'1800 University Ave W, St. Paul 55104',hrs:'Mon-Fri 10am-12pm and 2pm-4pm',url:'https://keystoneservices.org/food-shelf/',langs:['English'],urg:false,d:['north','midway']},
-  mncn:{name:'Minnesota Community Care  -  North End',tagline:'Health care for everyone on the North End. Sliding scale pricing. No one turned away.',phone:'651-487-8539',addr:'740 W Rose Ave, St. Paul 55117',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English'],urg:false,d:['north']}
+  mncf:{name:'Minnesota Community Care - Frogtown',tagline:'Health care for everyone. Youth clinic for ages 12 to 22 on University Ave. Sliding scale. No one turned away.',phone:'651-793-2234',addr:'1212 University Ave, St. Paul 55104',hrs:'Monday through Thursday, 8am-4pm',url:'https://www.mncare.org/',langs:['English','Spanish','Hmong','Somali'],urg:false,d:['frog','midway']},
+  focus:{name:'FOCUS - Food Shelf on Rice Street',tagline:'Food shelf serving North End and Frogtown. No zip code restrictions.',phone:'651-222-0712',addr:'550 Rice St, St. Paul 55103',hrs:'Call for current hours',url:'https://www.focusmn.org/programs',langs:['English'],urg:false,d:['frog','north']},
+  /* RONDO */
+  hallie:{name:'Hallie Q. Brown Food Shelf',tagline:'Serving the Rondo community since 1929. By appointment only. You choose what your family needs. Fresh produce and food delivery available.',phone:'651-224-4606',addr:'270 North Kent, St. Paul 55102',hrs:'By appointment Mon-Fri 9am-5pm - call first',url:'https://www.hallieqbrown.org/',langs:['English'],urg:false,d:['rondo']},
+  hallie_ctr:{name:'Hallie Q. Brown Community Center',tagline:'Community hub for Rondo since 1929. Youth programs, senior services, and community support. Library services temporarily here too.',phone:'651-224-4601',addr:'270 Kent St, St. Paul 55102',hrs:'Monday through Friday, 9am-5pm',url:'https://www.hallieqbrown.org/',langs:['English'],urg:false,d:['rondo']},
+  aurora:{name:'Aurora St. Anthony - Housing Help',tagline:'Helps people in Rondo, Frogtown, and Summit-University find and keep affordable housing.',phone:'651-221-0512',addr:'Rondo and Frogtown area, St. Paul',hrs:'Call for hours',url:'https://www.aurorastanthony.org/',langs:['English'],urg:false,d:['rondo','frog']},
+  rondo_clt:{name:'Rondo Community Land Trust',tagline:'Affordable homeownership and commercial space in the Rondo community. If you want to own your home, call them.',phone:'651-315-7601',addr:'760 Selby Ave, St. Paul 55104',hrs:'Monday through Friday, business hours',url:'https://rondoclt.org/',langs:['English'],urg:false,d:['rondo']},
+  /* NORTH END */
+  keystone:{name:'Keystone Community Food Center',tagline:'No appointment needed. Walk in during service hours. You choose what you need. Serves downtown, North End, and Midway.',phone:'651-917-3792',addr:'1800 University Ave W, St. Paul 55104 (corner of Fairview and University)',hrs:'Mon/Tue/Thu/Fri 10am-12pm and 2-4pm; Wed 4-7pm',url:'https://keystoneservices.org/food-shelf/',langs:['English'],urg:false,d:['north','midway','down']},
+  mncn:{name:'Minnesota Community Care - North End',tagline:'Health care for everyone on the North End. Sliding scale pricing. No one turned away.',phone:'651-487-8539',addr:'740 W Rose Ave, St. Paul 55117',hrs:'Monday through Friday, 8am-4pm',url:'https://www.mncare.org/',langs:['English'],urg:false,d:['north']},
+  shobi:{name:"Shobi's Table - Free Lunch Food Truck",tagline:'Free lunch from a food truck, Tuesday through Friday. Different location each day. No ID, no appointment, no questions.',phone:null,addr:'Tue: 105 University Ave W | Wed: 1657 Rice St | Thu: 499 Charles Ave | Fri: 400 Snelling Ave N',hrs:'Tuesday through Friday, 12pm-1pm (closed January)',url:'https://www.shobistable.org/',langs:['English'],urg:false,d:['north','frog','midway','down']},
+  /* MIDWAY */
+  opp:{name:'Saint Paul Opportunity Center - Full Services',tagline:'Free meals 3 times daily, showers, health care, mental health, housing help, and job training. Open 7 days a week.',phone:'651-228-0018',addr:'422 Dorothy Day Place, St. Paul 55102',hrs:'7 days a week. Breakfast 9-9:45am, Lunch 11:45am-12:45pm, Dinner 4:30-5:15pm',url:null,langs:['English'],urg:true,d:['down','midway']},
+  /* DOWNTOWN */
+  cc_shlt:{name:'Catholic Charities - Emergency Shelter',tagline:'Emergency shelter for adults experiencing homelessness. Must be referred through Adult Shelter Connect. Call first.',phone:'651-232-0100',addr:'183 Old 6th St W, St. Paul 55102',hrs:'Open every day - call first for referral',url:'https://www.cctwincities.org/services/housing/',langs:['English'],urg:true,d:['down']},
+  /* HIGHLAND / WEST 7TH */
+  nbhh_high:{name:'Neighborhood House - Highland Food Shelf',tagline:'Food shelf in Highland Park at Sibley Manor Apartments. Call for hours and what to bring.',phone:'651-789-3630',addr:'Sibley Manor Apartments, Highland Park, St. Paul',hrs:'Call for current hours',url:'https://neighborhoodhousemn.org/programs/food-support/',langs:['English'],urg:false,d:['high']},
+  joseph_coat:{name:"Joseph's Coat - Free Clothing",tagline:'Free clothing, household items, and personal hygiene items. Appointment required. West 7th Street location.',phone:'651-291-2472',addr:'1107 West 7th St, St. Paul 55102',hrs:'Mon & Wed 9am-3pm, by appointment only',url:'https://www.josephscoatmn.org/',langs:['English'],urg:false,d:['high','west','down']},
+  united_fam:{name:'United Family Medicine',tagline:'Community health clinic on West 7th Street. Sliding scale fees. Primary care for everyone.',phone:'651-758-9500',addr:'1026 West 7th St, St. Paul 55102',hrs:'Monday through Friday, business hours',url:'https://www.ufmclinic.org/',langs:['English','Spanish'],urg:false,d:['high','west']}
 };
 
 var TILES = [
-  {id:'food', icon:'&#127869;', label:'I need food', branch:null,
-   res:{def:['mrf','fotv','nbhf','ftft','hallie','keystone','r211']}},
-  {id:'housing', icon:'&#127968;', label:'I need help with housing',
-   branch:{q:'What is happening with your housing?', opts:[
-     {label:"I got an eviction notice or I'm behind on rent", sub:'You may have more options than you know', key:'evict'},
-     {label:'I need a place to stay tonight', sub:'Emergency shelter', key:'shelter'}
+  {id:'food',icon:'&#127869;',labelKey:'food',branch:null,
+   res:{def:['mrf','fotv','nbhf','salv_east','ftft','hallie','keystone','shobi','opp','nbhh','salv_cit','nbhh_high','mfhl','r211']}},
+  {id:'housing',icon:'&#127968;',labelKey:'housing',
+   branch:{q:'What is happening with your housing?',opts:[
+     {label:'I got an eviction notice or I am behind on rent',sub:'You may have more options than you know',key:'evict'},
+     {label:'I need a place to stay tonight',sub:'Emergency shelter',key:'shelter'}
    ]},
-   res:{evict:['hml','era','mla'], shelter:['shlt','r211','hml']}},
-  {id:'health', icon:'&#10084;&#65039;', label:'I need health care',
-   branch:{q:'What kind of help do you need?', opts:[
-     {label:'I am in a mental health crisis right now', sub:null, key:'crisis'},
-     {label:'Mental health care  -  not an emergency', sub:'Counseling, therapy, support', key:'mental'},
-     {label:'Physical health or medical care', sub:'Doctor, clinic, pharmacy', key:'physical'},
-     {label:'Help for a child or teenager', sub:'Under 18 years old', key:'child'}
+   res:{evict:['hml','era','mla','rondo_clt','wsco'], shelter:['cc_shlt','rshlt','ugm','st_matt','r211','hml']}},
+  {id:'health',icon:'&#10084;&#65039;',labelKey:'health',
+   branch:{q:'What kind of help do you need?',opts:[
+     {label:'I am in a mental health crisis right now',sub:null,key:'crisis'},
+     {label:'Mental health care - not an emergency',sub:'Counseling, therapy, support',key:'mental'},
+     {label:'Physical health or medical care',sub:'Doctor, clinic, pharmacy',key:'physical'},
+     {label:'Help for a child or teenager',sub:'Under 18 years old',key:'child'}
    ]},
-   res:{crisis:['r988','rcra','rcrk'], mental:['wic','rcra','clues','mnc'], physical:['mnc','mncw','mncf','mncn'], child:['rcrk','f2f','mnc']}},
-  {id:'money', icon:'&#128181;', label:'I need help with bills or money', branch:null,
-   res:{def:['cap','era','clues','r211']}},
-  {id:'legal', icon:'&#9878;&#65039;', label:'I need legal help',
-   branch:{q:'What kind of legal help do you need?', opts:[
-     {label:'A landlord or housing problem', sub:null, key:'house'},
-     {label:'Immigration issue', sub:'Status, ICE, or deportation', key:'immig'},
-     {label:'Something else', sub:null, key:'other'}
+   res:{crisis:['r988','rcra','rcrk','cornerstone','wom_adv'], mental:['wilder','wlk','rcra','clues','mnc'], physical:['mnc','mncw','mncf','mncn','united_fam'], child:['rcrk','f2f','mnc','wilder']}},
+  {id:'money',icon:'&#128181;',labelKey:'money',branch:null,
+   res:{def:['cap','era','wicprog','clues','clues_w','r211']}},
+  {id:'legal',icon:'&#9878;&#65039;',labelKey:'legal',
+   branch:{q:'What kind of legal help do you need?',opts:[
+     {label:'A landlord or housing problem',sub:null,key:'house'},
+     {label:'Immigration issue',sub:'Status, ICE, or deportation',key:'immig'},
+     {label:'Something else',sub:null,key:'other'}
    ]},
-   res:{house:['hml','mla','era'], immig:['spimm','ilcm','icm'], other:['mla','r211']}},
-  {id:'kids', icon:'&#128103;', label:'I need help with kids or child care', branch:null,
-   res:{def:['rcc','nbhf','f2f','r211']}},
-  {id:'work', icon:'&#128188;', label:'I need work or job training', branch:null,
-   res:{def:['mrj','iimn','clues','opp','r211']}},
-  {id:'immig', icon:'&#127758;', label:'I need immigration help',
-   branch:{q:'What do you need right now?', opts:[
-     {label:'I am in danger or need help right now', sub:'ICE, detention, or emergency', key:'urg'},
-     {label:'I need legal help with my case or documents', sub:'Visas, citizenship, permits', key:'legal'}
+   res:{house:['hml','mla','era','wsco'], immig:['spimm','ilcm','icm','iimn'], other:['mla','r211']}},
+  {id:'kids',icon:'&#128103;',labelKey:'kids',branch:null,
+   res:{def:['rcc','wicprog','nbhf','f2f','hallie_ctr','safezone','r211']}},
+  {id:'work',icon:'&#128188;',labelKey:'work',branch:null,
+   res:{def:['mrj','iimn','clues','clues_w','opp','r211']}},
+  {id:'immig',icon:'&#127758;',labelKey:'immig',
+   branch:{q:'What do you need right now?',opts:[
+     {label:'I am in danger or need help right now',sub:'ICE, detention, or emergency',key:'urg'},
+     {label:'I need legal help with my case or documents',sub:'Visas, citizenship, permits',key:'legal'}
    ]},
    res:{urg:['spimm','ilcm','icm'], legal:['icm','ilcm','iimn']}},
-  {id:'unsure', icon:'&#128172;', label:"I'm not sure where to start",
-   sub:"That's okay. Here are the most helpful places.", branch:null,
-   res:{def:['r211','mrf','hml','r988','mnc']}}
+  {id:'unsure',icon:'&#128172;',labelKey:'unsure',
+   subKey:'unsureSub',branch:null,
+   res:{def:['r211','mrf','hallie','keystone','hml','r988','mnc','wilder','opp','nbhf']}}
 ];
 
 /* ============================================================
@@ -567,7 +796,7 @@ function renderHoods() {
       var ico = el('span');
       ico.className = 'full-ico';
       attr(ico, 'aria-hidden', 'true');
-      ico.textContent = '\uD83D\uDCAC';
+      ico.textContent = '\uD83D\uDCAC'; // speech bubble
       btn.appendChild(ico);
     }
 
@@ -610,13 +839,13 @@ function renderTiles(hoodName) {
     var btn = el('button');
     btn.className = 'tb' + (tile.id === 'unsure' ? ' full' : '');
     btn.type = 'button';
-    attr(btn, 'aria-label', tile.label + (tile.sub ? ', ' + tile.sub : ''));
+    attr(btn, 'aria-label', tile.label + (tile.subKey ? ', ' + (S[tile.subKey] || tile.subKey) : ''));
 
     if (tile.id === 'unsure') {
       var ico = el('span');
       ico.className = 'full-ico';
       attr(ico, 'aria-hidden', 'true');
-      ico.textContent = '\uD83D\uDCAC';
+      ico.textContent = '\uD83D\uDCAC'; // speech bubble
       btn.appendChild(ico);
     } else {
       var ico2 = el('span');
@@ -630,13 +859,13 @@ function renderTiles(hoodName) {
 
     var lbl = el('div');
     lbl.className = 't-label';
-    txt(lbl, tile.label);
+    txt(lbl, S[tile.labelKey] || tile.labelKey);
     wrap.appendChild(lbl);
 
-    if (tile.sub) {
+    if (tile.subKey) {
       var sub = el('div');
       sub.className = 't-sub';
-      txt(sub, tile.sub);
+      txt(sub, S[tile.subKey] || tile.subKey);
       wrap.appendChild(sub);
     }
 
