@@ -177,7 +177,18 @@ var STRINGS = {
     h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
     h_down:'Downtown',h_down_sub:'Lowertown, Capitol area',
     h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
-    h_any:"I'm not sure",h_any_sub:"That's okay - start here"
+    h_any:"I'm not sure",h_any_sub:"That's okay - start here",
+    reentry:'I was recently released from jail or prison',
+    ice_release:'I was recently released from ICE detention',
+    b_reentry_q:'What do you need most right now?',
+    b_reentry_house:'I need a place to stay',b_reentry_house_sub:'Housing, shelter, halfway house',
+    b_reentry_legal:'I need legal help',b_reentry_legal_sub:'Expungement, record sealing, representation',
+    b_reentry_work:'I need work or job training',b_reentry_work_sub:'Jobs that hire people with records',
+    b_reentry_other:'I need other support',b_reentry_other_sub:'Mental health, food, benefits, recovery',
+    b_ice_q:'What do you need most right now?',
+    b_ice_rights:'I need to know my rights',b_ice_rights_sub:'What ICE can and cannot do',
+    b_ice_legal:'I need immigration legal help',b_ice_legal_sub:'Status, orders, documents, family',
+    b_ice_basic:'I need food, housing, or other basics',b_ice_basic_sub:'Immediate needs after release'
   },
   es:{
     tag:'Gratis · Privado · Saint Paul',
@@ -221,7 +232,18 @@ var STRINGS = {
     h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
     h_down:'Centro',h_down_sub:'Lowertown, área del Capitolio',
     h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
-    h_any:'No estoy seguro',h_any_sub:'Está bien - empiece aquí'
+    h_any:'No estoy seguro',h_any_sub:'Está bien - empiece aquí',
+    reentry:'Salí recientemente de la cárcel o prisión',
+    ice_release:'Salí recientemente de la detención de ICE',
+    b_reentry_q:'¿Qué necesita más ahora mismo?',
+    b_reentry_house:'Necesito un lugar donde vivir',b_reentry_house_sub:'Vivienda, refugio, casa de transición',
+    b_reentry_legal:'Necesito ayuda legal',b_reentry_legal_sub:'Borrar antecedentes, representación',
+    b_reentry_work:'Necesito trabajo o capacitación',b_reentry_work_sub:'Empleos que contratan personas con antecedentes',
+    b_reentry_other:'Necesito otro apoyo',b_reentry_other_sub:'Salud mental, comida, beneficios, recuperación',
+    b_ice_q:'¿Qué necesita más ahora mismo?',
+    b_ice_rights:'Necesito saber mis derechos',b_ice_rights_sub:'Lo que ICE puede y no puede hacer',
+    b_ice_legal:'Necesito ayuda legal de inmigración',b_ice_legal_sub:'Estatus, órdenes, documentos, familia',
+    b_ice_basic:'Necesito comida, vivienda u otras necesidades básicas',b_ice_basic_sub:'Necesidades inmediatas después de la detención'
   },
   so:{
     tag:'Bilaash · Qarsoodi · Saint Paul',
@@ -266,7 +288,13 @@ var STRINGS = {
     h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
     h_down:'Xarunta Magaalada',h_down_sub:'Lowertown, aagga Capitol',
     h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
-    h_any:'Ma garanayso',h_any_sub:'Waa fiican - halkan ku bilow'
+    h_any:'Ma garanayso',h_any_sub:'Waa fiican - halkan ku bilow',
+    reentry:'Si dhawaan ayaan ka soo baxay xabsiga',
+    b_reentry_q:'Maxaad u baahan tahay hadda?',
+    b_reentry_house:'Guri baan u baahan ahay',b_reentry_house_sub:'Guri, meel ku noolaanshaha, guri ku meel gaar ah',
+    b_reentry_legal:'Gargaar sharci baan u baahan ahay',b_reentry_legal_sub:'Taariikhda dambiilaha, wakiil',
+    b_reentry_work:'Shaqo ama tababar baan u baahan ahay',b_reentry_work_sub:'Shaqooyinka dadka leh taariikhda dambiilaha',
+    b_reentry_other:'Gargaar kale baan u baahan ahay',b_reentry_other_sub:'Caafimaadka maskaxda, cunto, faa\'iidooyinka, bogsashada'
   },
   hmn:{
     tag:'Dawb · Nkag Siab · Saint Paul',
@@ -310,7 +338,13 @@ var STRINGS = {
     h_midway:'Midway',h_midway_sub:'Hamline, Snelling, Green Line',
     h_down:'Nroog Nrab',h_down_sub:'Lowertown, cheeb tsam Capitol',
     h_high:'Highland / West 7th',h_high_sub:'Highland Park, Fort Road, Como',
-    h_any:'Kuv tsis paub',h_any_sub:'Tsis ua cas - pib ntawm no'
+    h_any:'Kuv tsis paub',h_any_sub:'Tsis ua cas - pib ntawm no',
+    reentry:'Kuv nyuam qhuav tawm hauv tsev loj cuj lossis nkuaj',
+    b_reentry_q:'Koj xav tau dab tsi tam sim no?',
+    b_reentry_house:'Kuv xav tau chaw nyob',b_reentry_house_sub:'Tsev nyob, chaw pw, tsev pab rov qab',
+    b_reentry_legal:'Kuv xav tau kev pab kev cai lij choj',b_reentry_legal_sub:'Rho npe tawm hauv ntaub ntawv, sawv cev',
+    b_reentry_work:'Kuv xav tau hauj lwm lossis kev kawm txuj ci',b_reentry_work_sub:'Hauj lwm uas txais neeg muaj keeb kwm raug txim',
+    b_reentry_other:'Kuv xav tau lwm yam kev pab',b_reentry_other_sub:'Kev pab kev xav, zaub mov, txiaj ntsig, kev rov zoo'
   }
 }
 var curLang = 'en';
@@ -519,24 +553,37 @@ var TILES = [
    ]},
    res:{crisis:['r988','rcra','rcrk','cornerstone','wom_adv'],mental:['wilder','wlk','rcra','clues','mnc'],physical:['mnc','mncw','mncf','mncn','united_fam'],child:['rcrk','f2f','mnc','wilder']}},
   {id:'money',icon:'&#128181;',labelKey:'money',branch:null,
-   res:{def:['cap','era','wicprog','clues','clues_w','r211']}},
+   res:{def:['cap','era','snap_ramsey','wicprog','prep_prosper','aarp_tax','clues','clues_w','r211']}},
   {id:'legal',icon:'&#9878;&#65039;',labelKey:'legal',
    branch:{qKey:'b_legal_q',opts:[
      {labelKey:'b_house',subKey:null,key:'house'},
      {labelKey:'b_immig',subKey:'b_immig_sub',key:'immig'},
      {labelKey:'b_other',subKey:null,key:'other'}
    ]},
-   res:{house:['hml','mla','era','wsco'],immig:['spimm','ilcm','icm','iimn'],other:['mla','r211']}},
+   res:{house:['hml','mla','era','wsco'],immig:['spimm','ilcm','icm','iimn'],other:['mla','njc','r211']}},
   {id:'kids',icon:'&#128103;',labelKey:'kids',branch:null,
    res:{def:['rcc','wicprog','nbhf','f2f','hallie_ctr','safezone','r211']}},
   {id:'work',icon:'&#128188;',labelKey:'work',branch:null,
-   res:{def:['mrj','careerforce','iimn','clues','clues_w','ujamaa','opp','r211']}},
+   res:{def:['mrj','careerforce','emerge_mn','iimn','clues','clues_w','ujamaa','opp','r211']}},
   {id:'immig',icon:'&#127758;',labelKey:'immig',
    branch:{qKey:'b_immig_q',opts:[
      {labelKey:'b_immig_urg',subKey:'b_immig_urg_sub',key:'urg'},
      {labelKey:'b_immig_legal',subKey:'b_immig_legal_sub',key:'legal'}
    ]},
-   res:{urg:['spimm','ilcm','icm'],legal:['icm','ilcm','iimn']}},
+   res:{urg:['spimm','ilcm','icm','r211'],legal:['icm','ilcm','iimn','clues','mla']}},
+  {id:'reentry',icon:'&#128682;',labelKey:'reentry',
+   branch:{qKey:'b_reentry_q',opts:[
+     {labelKey:'b_reentry_house',subKey:'b_reentry_house_sub',key:'house'},
+     {labelKey:'b_reentry_legal',subKey:'b_reentry_legal_sub',key:'legal'},
+     {labelKey:'b_reentry_work',subKey:'b_reentry_work_sub',key:'work'},
+     {labelKey:'b_reentry_other',subKey:'b_reentry_other_sub',key:'other'}
+   ]},
+   res:{
+     house:['rs_eden','rhsp','ujamaa','rshlt','cc_shlt','r211'],
+     legal:['mh_reentry','smrls_exp','ramsey_exp','helpseal','njc','mla'],
+     work:['emerge_mn','careerforce','ujamaa','mrj','r211'],
+     other:['wilder','wlk','mn_recovery','juel_fair','mn_warmline','mfhl','r211']
+   }},
   {id:'unsure',icon:'&#128172;',labelKey:'unsure',subKey:'unsureSub',branch:null,
    res:{def:['r211','mrf','hallie','keystone','listening','hml','r988','mnc','wilder','opp','nbhf']}}
 ];
