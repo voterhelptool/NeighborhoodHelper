@@ -688,11 +688,11 @@ function renderTiles(hoodName) {
 
   TILES.forEach(function(tile) {
     var btn = el('button');
-    btn.className = 'tb' + (tile.id === 'unsure' || tile.full ? ' full' : '');
+    btn.className = 'tb' + (tile.id === 'unsure' ? ' full' : tile.full ? ' full-white' : '');
     btn.type = 'button';
     attr(btn, 'aria-label', tile.label + (tile.subKey ? ', ' + (S[tile.subKey] || tile.subKey) : ''));
 
-    if (tile.id === 'unsure' || tile.full) {
+    if (tile.id === 'unsure') {
       var ico = el('span');
       ico.className = 'full-ico';
       attr(ico, 'aria-hidden', 'true');
