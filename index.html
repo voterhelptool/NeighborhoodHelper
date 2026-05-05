@@ -571,7 +571,7 @@ var TILES = [
      {labelKey:'b_immig_legal',subKey:'b_immig_legal_sub',key:'legal'}
    ]},
    res:{urg:['spimm','ilcm','icm','r211'],legal:['icm','ilcm','iimn','clues','mla']}},
-  {id:'reentry',icon:'&#128682;',labelKey:'reentry',
+  {id:'reentry',icon:'&#128682;',labelKey:'reentry',full:true,
    branch:{qKey:'b_reentry_q',opts:[
      {labelKey:'b_reentry_house',subKey:'b_reentry_house_sub',key:'house'},
      {labelKey:'b_reentry_legal',subKey:'b_reentry_legal_sub',key:'legal'},
@@ -688,11 +688,11 @@ function renderTiles(hoodName) {
 
   TILES.forEach(function(tile) {
     var btn = el('button');
-    btn.className = 'tb' + (tile.id === 'unsure' ? ' full' : '');
+    btn.className = 'tb' + (tile.id === 'unsure' || tile.full ? ' full' : '');
     btn.type = 'button';
     attr(btn, 'aria-label', tile.label + (tile.subKey ? ', ' + (S[tile.subKey] || tile.subKey) : ''));
 
-    if (tile.id === 'unsure') {
+    if (tile.id === 'unsure' || tile.full) {
       var ico = el('span');
       ico.className = 'full-ico';
       attr(ico, 'aria-hidden', 'true');
