@@ -87,7 +87,7 @@
   <!-- SCREEN 3: BRANCH QUESTION -->
   <section class="scr" id="scr-branch" aria-labelledby="h-branch" aria-hidden="true">
     <button class="back" id="btn-back-branch" type="button" aria-label="Go back to categories">
-      <span aria-hidden="true">&#8592;</span> Back
+      <span aria-hidden="true">&#8592;</span> <span data-i18n="back">Back</span>
     </button>
     <div class="bcard" role="group" aria-labelledby="h-branch">
       <p class="bq" id="h-branch" tabindex="-1"></p>
@@ -98,7 +98,7 @@
   <!-- SCREEN 4: RESULTS -->
   <section class="scr" id="scr-results" aria-labelledby="h-results" aria-hidden="true">
     <button class="back" id="btn-back-results" type="button" aria-label="Go back">
-      <span aria-hidden="true">&#8592;</span> Back
+      <span aria-hidden="true">&#8592;</span> <span data-i18n="back">Back</span>
     </button>
     <div class="rhd">
       <h2 id="h-results" tabindex="-1"></h2>
@@ -472,6 +472,11 @@ function setLang(code) {
   if (bs && bs.classList.contains('on') && curTile && curTile.branch) {
     renderBranch(curTile);
   }
+  var rs = document.getElementById('scr-results');
+  if (rs && rs.classList.contains('on') && curTile && curBranchOpt) {
+    var keys = filterRes(curTile.res[curBranchOpt] || curTile.res.def || []);
+    renderResults(keys, S[curBranchOptKey] || curBranchOptKey);
+  }
   document.documentElement.setAttribute('lang',
     code==='en'?'en':code==='es'?'es':code==='so'?'so':'hmn');
 }
@@ -562,6 +567,8 @@ var TILES = [
    ============================================================ */
 var curHood = null;
 var curTile = null;
+var curBranchOpt = null;
+var curBranchOptKey = null;
 
 /* ============================================================
    UTILS
@@ -699,9 +706,13 @@ function renderTiles(hoodName) {
     btn.addEventListener('click', function() {
       curTile = tile;
       if (tile.branch) {
+        curBranchOpt = null;
+        curBranchOptKey = null;
         renderBranch(tile);
         showScr('branch', tile.branch.q);
       } else {
+        curBranchOpt = 'def';
+        curBranchOptKey = tile.labelKey;
         var keys = filterRes(tile.res.def);
         renderResults(keys, tile.label);
         showScr('results', 'Results for ' + tile.label);
@@ -743,6 +754,8 @@ function renderBranch(tile) {
     }
     btn.addEventListener('click', (function(o, lbl) {
       return function() {
+        curBranchOpt = o.key;
+        curBranchOptKey = o.labelKey;
         var keys = filterRes(tile.res[o.key] || tile.res.def || []);
         renderResults(keys, lbl);
         showScr('results', 'Results for ' + lbl);
@@ -762,6 +775,8 @@ function renderResults(keys, title) {
   txt(document.getElementById('h-results'), title);
 
   document.getElementById('btn-back-results').onclick = function() {
+    curBranchOpt = null;
+    curBranchOptKey = null;
     if (curTile && curTile.branch) {
       showScr('branch', curTile.branch.q);
     } else {
@@ -774,7 +789,7 @@ function renderResults(keys, title) {
 
   if (!keys.length) {
     var p = el('p');
-    txt(p, 'Call 2-1-1  -  they can help find resources in your area.');
+    txt(p, S.noRes || 'Call 2-1-1 for help finding resources in your area.');
     list.appendChild(p);
     return;
   }
@@ -791,7 +806,7 @@ function renderResults(keys, title) {
     if (r.urg) {
       var badge = el('div');
       badge.className = 'ubadge';
-      txt(badge, '24 hours / Urgent');
+      txt(badge, S.urg || '24 hours / Urgent');
       card.appendChild(badge);
     }
 
@@ -870,7 +885,7 @@ function renderResults(keys, title) {
       lnk.rel = 'noopener noreferrer';
       lnk.target = '_blank';
       attr(lnk, 'aria-label', 'Visit ' + r.name + ' website (opens in new tab)');
-      txt(lnk, 'Visit website \u2197');
+      txt(lnk, (S.visit || 'Visit website') + ' \u2197');
       card.appendChild(lnk);
     }
 
@@ -878,7 +893,7 @@ function renderResults(keys, title) {
     flg.className = 'flagbtn';
     flg.type = 'button';
     attr(flg, 'aria-label', 'Flag ' + r.name + ' as outdated  -  opens email');
-    txt(flg, 'Flag as outdated');
+    txt(flg, S.flag || 'Flag as outdated');
     flg.addEventListener('click', function() {
       window.location.href = 'mailto:northstarhumanrights@protonmail.com?subject=Neighborhood Helper  -  Flag: ' + encodeURIComponent(r.name);
     });
