@@ -209,7 +209,13 @@ var STRINGS = {
     b_ice_q:'What do you need most right now?',
     b_ice_rights:'I need to know my rights',b_ice_rights_sub:'What ICE can and cannot do',
     b_ice_legal:'I need immigration legal help',b_ice_legal_sub:'Status, orders, documents, family',
-    b_ice_basic:'I need food, housing, or other basics',b_ice_basic_sub:'Immediate needs after release'
+    b_ice_basic:'I need food, housing, or other basics',b_ice_basic_sub:'Immediate needs after release',
+    sa:'I experienced sexual assault or violence',
+    b_sa_q:'What would help you most right now?',
+    b_sa_talk:'I need someone to talk to',b_sa_talk_sub:'Confidential. No police required.',
+    b_sa_medical:'I need medical care',b_sa_medical_sub:'Care and exams without a police report',
+    b_sa_shelter:'I need a safe place to stay',b_sa_shelter_sub:'Emergency shelter and safety planning',
+    b_sa_legal:'I want to know my options',b_sa_legal_sub:'Legal advocacy, no pressure to report'
   },
   es:{
     tag:'Gratis · Privado · Saint Paul',
@@ -282,7 +288,13 @@ var STRINGS = {
     b_ice_q:'¿Qué necesita más ahora mismo?',
     b_ice_rights:'Necesito saber mis derechos',b_ice_rights_sub:'Lo que ICE puede y no puede hacer',
     b_ice_legal:'Necesito ayuda legal de inmigración',b_ice_legal_sub:'Estatus, órdenes, documentos, familia',
-    b_ice_basic:'Necesito comida, vivienda u otras necesidades básicas',b_ice_basic_sub:'Necesidades inmediatas después de la detención'
+    b_ice_basic:'Necesito comida, vivienda u otras necesidades básicas',b_ice_basic_sub:'Necesidades inmediatas después de la detención',
+    sa:'Experimenté una agresión sexual o violencia',
+    b_sa_q:'¿Qué le ayudaría más ahora mismo?',
+    b_sa_talk:'Necesito hablar con alguien',b_sa_talk_sub:'Confidencial. No se requiere denuncia policial.',
+    b_sa_medical:'Necesito atención médica',b_sa_medical_sub:'Atención y exámenes sin denuncia policial',
+    b_sa_shelter:'Necesito un lugar seguro donde quedarme',b_sa_shelter_sub:'Refugio de emergencia y plan de seguridad',
+    b_sa_legal:'Quiero saber mis opciones',b_sa_legal_sub:'Asesoría legal, sin presión para denunciar'
   },
   so:{
     tag:'Bilaash · Qarsoodi · Saint Paul',
@@ -351,7 +363,13 @@ var STRINGS = {
     b_reentry_house:'Guri baan u baahan ahay',b_reentry_house_sub:'Guri, meel ku noolaanshaha, guri ku meel gaar ah',
     b_reentry_legal:'Gargaar sharci baan u baahan ahay',b_reentry_legal_sub:'Taariikhda dambiilaha, wakiil',
     b_reentry_work:'Shaqo ama tababar baan u baahan ahay',b_reentry_work_sub:'Shaqooyinka dadka leh taariikhda dambiilaha',
-    b_reentry_other:'Gargaar kale baan u baahan ahay',b_reentry_other_sub:'Caafimaadka maskaxda, cunto, faa\'iidooyinka, bogsashada'
+    b_reentry_other:'Gargaar kale baan u baahan ahay',b_reentry_other_sub:'Caafimaadka maskaxda, cunto, faa\'iidooyinka, bogsashada',
+    sa:'Waxaa ii dhacay xadgudub galmood ama rabshad',
+    b_sa_q:'Maxaa kugu caawin lahayd hadda?',
+    b_sa_talk:'Qof baan la hadli rabaa',b_sa_talk_sub:'Qarsoodi. Booliska looma sheegi doono.',
+    b_sa_medical:'Daaweyn baan u baahan ahay',b_sa_medical_sub:'Daaweyn iyo baaritaan booliska la'aanteed',
+    b_sa_shelter:'Meel ammaan ah baan u baahan ahay',b_sa_shelter_sub:'Guri deg deg ah iyo qorshe ammaanka',
+    b_sa_legal:'Xulashooyinkayga baan ogaan rabaa',b_sa_legal_sub:'Gargaar sharci, cadaadin ma jirto'
   },
   hmn:{
     tag:'Dawb · Ntiag Tug · Saint Paul',
@@ -419,7 +437,13 @@ var STRINGS = {
     b_reentry_house:'Kuv xav tau chaw nyob',b_reentry_house_sub:'Tsev nyob, chaw pw, tsev pab rov qab',
     b_reentry_legal:'Kuv xav tau kev pab kev cai lij choj',b_reentry_legal_sub:'Rho npe tawm hauv ntaub ntawv, sawv cev',
     b_reentry_work:'Kuv xav tau hauj lwm lossis kev kawm txuj ci',b_reentry_work_sub:'Hauj lwm uas txais neeg muaj keeb kwm raug txim',
-    b_reentry_other:'Kuv xav tau lwm yam kev pab',b_reentry_other_sub:'Kev pab kev xav, zaub mov, txiaj ntsig, kev rov zoo'
+    b_reentry_other:'Kuv xav tau lwm yam kev pab',b_reentry_other_sub:'Kev pab kev xav, zaub mov, txiaj ntsig, kev rov zoo',
+    sa:'Kuv raug kev tsim txom poj niam txiv neej lossis kev ntaus',
+    b_sa_q:'Dab tsi pab tau koj tshaj tam sim no?',
+    b_sa_talk:'Kuv xav tau ib tus neeg tham',b_sa_talk_sub:'Nkag siab. Tsis tas qhia tub ceev xwm.',
+    b_sa_medical:'Kuv xav tau kev kho mob',b_sa_medical_sub:'Kev kho mob tsis tas qhia tub ceev xwm',
+    b_sa_shelter:'Kuv xav tau chaw nyob nyab xeeb',b_sa_shelter_sub:'Chaw nyob ceev xwm thiab kev npaj kev nyab xeeb',
+    b_sa_legal:'Kuv xav paub kuv cov kev xaiv',b_sa_legal_sub:'Kev pab lij choj, tsis muaj kev yuam'
   }
 }
 var curLang = 'en';
@@ -503,6 +527,19 @@ var TILES = [
      {labelKey:'b_immig_legal',subKey:'b_immig_legal_sub',key:'legal'}
    ]},
    res:{urg:['spimm','ilcm','icm','r211'],legal:['icm','ilcm','iimn','clues','mla']}},
+  {id:'sa',icon:'&#128156;',labelKey:'sa',full:true,
+   branch:{qKey:'b_sa_q',opts:[
+     {labelKey:'b_sa_talk',subKey:'b_sa_talk_sub',key:'talk'},
+     {labelKey:'b_sa_medical',subKey:'b_sa_medical_sub',key:'medical'},
+     {labelKey:'b_sa_shelter',subKey:'b_sa_shelter_sub',key:'shelter'},
+     {labelKey:'b_sa_legal',subKey:'b_sa_legal_sub',key:'legal'}
+   ]},
+   res:{
+     talk:['day1','sos_sa','cornerstone','svc','r988'],
+     medical:['sos_sa','day1','svc','hcmc','mnc','r211'],
+     shelter:['day1','sos_sa','cornerstone','wom_adv','cc_shlt','r211'],
+     legal:['standpoint','sos_sa','svc','mla','mncasa','r211']
+   }},
   {id:'reentry',icon:'&#128682;',labelKey:'reentry',full:true,
    branch:{qKey:'b_reentry_q',opts:[
      {labelKey:'b_reentry_house',subKey:'b_reentry_house_sub',key:'house'},
