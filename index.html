@@ -573,7 +573,12 @@ function filterRes(keys) {
 function renderHoods() {
   var grid = document.getElementById('hood-grid');
   grid.innerHTML = '';
-  HOODS.forEach(function(h) {
+  var sorted = HOODS.slice().sort(function(a,b){
+    if (a.unsure && !b.unsure) return 1;
+    if (!a.unsure && b.unsure) return -1;
+    return 0;
+  });
+  sorted.forEach(function(h) {
     var name = S[h.nameKey] || h.nameKey;
     var sub  = S[h.subKey]  || h.subKey;
     var btn = el('button');
