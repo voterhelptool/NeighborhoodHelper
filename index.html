@@ -29,7 +29,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Neighborhood Helper Saint Paul","url":"https://neighborhoodhelper.pages.dev/","description":"Free guide to community resources in Saint Paul, Minnesota. Helps residents find food, housing assistance, health care, legal aid, immigration support, and job training by neighborhood. No account required. No data collected.","applicationCategory":"SocialApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"NonprofitOrganization","name":"North Star Human Rights","url":"https://northstarhr.pages.dev","address":{"@type":"PostalAddress","addressLocality":"Saint Paul","addressRegion":"MN","addressCountry":"US"}},"areaServed":{"@type":"City","name":"Saint Paul"},"inLanguage":["en","es","so","hmn"],"isAccessibleForFree":true}
 </script>
-<script src="/data-stpaul.js"></script>
+<script src="/translations.js"></script>
+  <script src="/data-stpaul.js"></script>
   <script src="/data-minneapolis.js"></script>
   <script src="/data-suburbs.js"></script>
   <link rel="stylesheet" href="/style.css">
@@ -817,7 +818,10 @@ function renderResults(keys, title) {
 
     var tg = el('p');
     tg.className = 'rtag';
-    txt(tg, r.tagline);
+    var tlKey = 'tagline_' + curLang;
+    var tlText = (curLang !== 'en' && r[tlKey]) ? r[tlKey] :
+                 (typeof translateText === 'function') ? translateText(r.tagline, curLang) : r.tagline;
+    txt(tg, tlText);
     card.appendChild(tg);
 
     if (r.phone) {
@@ -845,7 +849,7 @@ function renderResults(keys, title) {
       attr(aico, 'aria-hidden', 'true');
       aico.textContent = '\u25CF';
       var atxt = el('span');
-      txt(atxt, r.addr);
+      txt(atxt, (typeof translateText === 'function') ? translateText(r.addr, curLang) : r.addr);
       arow.appendChild(aico);
       arow.appendChild(atxt);
       card.appendChild(arow);
@@ -859,7 +863,7 @@ function renderResults(keys, title) {
       attr(hico, 'aria-hidden', 'true');
       hico.textContent = '\u25CB';
       var htxt = el('span');
-      txt(htxt, r.hrs);
+      txt(htxt, (typeof translateText === 'function') ? translateText(r.hrs, curLang) : r.hrs);
       hrow.appendChild(hico);
       hrow.appendChild(htxt);
       card.appendChild(hrow);
